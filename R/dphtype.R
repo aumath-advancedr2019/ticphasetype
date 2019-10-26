@@ -6,6 +6,10 @@
 #' @param n number of observations.
 #' @param init_probs vector of initial probabilities.
 #' @param subint_mat subintensity matrix.
+#' @param n_samples number of samples to draw.
+#' @param n_OTU number of OTUs to consider
+#' @param granularity distance between numbers drawable
+#' @param type type of calculation ("T_MRCA" and later S_total)
 #'
 #' @export
 
@@ -70,7 +74,7 @@ pphtype <- function(q, init_probs, subint_mat) {
 #'
 #' @export
 
-rphtype <- function(n_samples, n_OTU, type = "T_MRCA") {
+rphtype <- function(n_samples, n_OTU, granularity = 0.01, type = "T_MRCA") {
 
   if (type == "T_MRCA") {
     # A: Calculate density function. Break when the number is very low
@@ -82,7 +86,7 @@ rphtype <- function(n_samples, n_OTU, type = "T_MRCA") {
     # I copied the dphtype function into here, because I need a contingent break in the loop.
     vec <- c()
     e <- matrix(rep(1, nrow(subint_mat)), nrow(subint_mat), 1)
-    for (i in seq(2, x, 0.01)) {
+    for (i in seq(2, x, granularity)) {
       new_item =  -init_probs%*%expm(i*subint_mat)%*%subint_mat%*%e
       vec <- c(vec,new_item)
       if (i > 4 & new_item < 0.0000000001) {
