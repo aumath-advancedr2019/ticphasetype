@@ -85,7 +85,7 @@ rphtype <- function(n_samples, n_OTU, type = "T_MRCA") {
     for (i in seq(2, x, 0.01)) {
       new_item =  -init_probs%*%expm(i*subint_mat)%*%subint_mat%*%e
       vec <- c(vec,new_item)
-      if (i > 4 & new_item < 0.00001) {
+      if (i > 4 & new_item < 0.0000000001) {
         break # TODO: use the mean (calculate using PH) to know when to look for infinitesimal value. (instead of just `i>4`)
       }
     }
