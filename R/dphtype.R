@@ -73,3 +73,7 @@ rphtype <- function(n, init_probs, subint_mat) {
 
 }
 
+
+
+
+
