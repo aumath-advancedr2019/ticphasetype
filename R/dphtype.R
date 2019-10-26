@@ -89,12 +89,12 @@ rphtype <- function(n_samples, n_OTU, granularity = 0.01, type = "T_MRCA") {
     for (i in seq(2, x, granularity)) {
       new_item =  -init_probs%*%expm(i*subint_mat)%*%subint_mat%*%e
       vec <- c(vec,new_item)
-      if (i > 4 & new_item < 0.0000000001) { # Only if you sample more than a billion, will you see a bias induced by the break.
+      if (i > 4 & new_item < 0.0000000001) { # Only if you sample more than a billion, will you see a bias induced by the `break``
         break # TODO: use the mean (calculate using PH) to know when to look for infinitesimal value. (instead of just `i>4`)
       }
     }
-    print(length(vec))
-    print(vec[1:100])
+    #print(length(vec))
+    #print(vec[1:100])
 
 
     # B: put the density function (stored in variable: `vec`) into a sampling function that accepts a weight parameter.
