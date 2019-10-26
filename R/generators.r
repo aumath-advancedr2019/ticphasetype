@@ -36,3 +36,7 @@ generate_subint_mat <- function(n, type = "T_MRCA") {
 
   T
 }
+
+generate_init_row <- function(n) {
+  c(1, rep(0, n-1))
+}
