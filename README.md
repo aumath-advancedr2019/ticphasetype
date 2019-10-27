@@ -1,4 +1,4 @@
-# tic-phasetype
+# TIC-phasetype
 
 ## Outline for package
 
@@ -18,3 +18,11 @@ Additional analyses (maybe...):
 * pm: Iker.
 * de: Carl.
 * qe: Tomas. 
+
+
+
+
+
+## Installation
+
+?
