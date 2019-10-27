@@ -25,6 +25,14 @@ rphtype(n, init_probs, subint_mat)
 
 \item{p}{vector of probabilities.}
 
+\item{n_samples}{number of samples to draw.}
+
+\item{n_OTU}{number of OTUs to consider}
+
+\item{granularity}{distance between numbers drawable}
+
+\item{type}{type of calculation ("T_MRCA" and later S_total)}
+
 \item{n}{number of observations.}
 }
 \description{
@@ -35,10 +43,11 @@ the continuous phase-type distribution
 \itemize{
 \item \code{dphtype}: Density function.
 
-\item \code{qphtype}: 
+\item \code{qphtype}: Quantile Function.
 
-\item \code{pphtype}: 
+\item \code{pphtype}: Distribution function.
 
-\item \code{rphtype}: 
+\item \code{rphtype}: Random number generator.
+So far only works for T_MRCA
 }}
 
