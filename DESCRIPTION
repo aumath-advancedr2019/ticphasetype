@@ -1,11 +1,11 @@
 Package: ticphasetype
 Type: Package
-Title: What the Package Does (Title Case)
+Title: phase-type distributions for bioinformatics
 Version: 0.1.0
-Author: Who wrote it
+Author: Tomas, Iker & Carl (TIC)
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: This package implements core functions from phase-type
+    theory used in the analysis of biological data.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true

@@ -1,4 +1,4 @@
-# TIC-phasetype
+# ticphasetype
 
 ## Outline for package
 
