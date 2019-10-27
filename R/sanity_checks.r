@@ -25,4 +25,4 @@ sanity_check_rphdph = function(OTUs = 5, draws = 1000000, granularity = 0.01) {
 }
 
 
-sanity_check_rphdph(draws = 100000)
+#sanity_check_rphdph(draws = 100000)
