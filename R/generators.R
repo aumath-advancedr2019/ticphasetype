@@ -1,9 +1,5 @@
 #' Helper functions to generate inputs for the phasetype-related functions.
 #'
-#' @param n number of samples.
-#' @param type string denoting the type of PH-related subintensity matrix wanted: T_MRCA, S_total
-#'
-#' @export
 
 
 
@@ -17,7 +13,7 @@
 #' of the time to the most recente common ancestor (MRCA)
 #'
 #'
-#' @usage rphtype(n, init_probs, subint_mat)
+#' @usage generate_subint_mat(n, type)
 #'
 #' @export
 
@@ -33,9 +29,29 @@ generate_subint_mat <- function(n, type = "T_MRCA") {
       }
     }
   }
+  # ttotal
+  else if (type == "T_Total") {
+    T = matrix(c(0), nrow = n-1, ncol = n-1)
+    for (i in 1:n-1) {
+      #T[i, i] = - choose(n-i+1, 2)
+      T[i, i] = - 0.5 * (n - i) # equivalent to the above
 
+      if (i < n-1) {
+        T[i, i+1] = -T[i, i]
+      }
+    }
+  }
   T
 }
+
+#' @describeIn generate_init_row
+#'
+#' Generates a initialization vector
+#'
+#'
+#' @usage generate_init_row(n)
+#'
+#' @export
 
 generate_init_row <- function(n) {
   c(1, rep(0, n-1))
