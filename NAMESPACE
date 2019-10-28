@@ -2,6 +2,7 @@
 
 export(dphtype)
 export(generate_subint_mat)
+export(phase_type)
 export(pphtype)
 export(qphtype)
 export(rphtype)
