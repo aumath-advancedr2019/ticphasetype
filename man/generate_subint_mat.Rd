@@ -4,12 +4,7 @@
 \alias{generate_subint_mat}
 \title{Helper functions to generate inputs for the phasetype-related functions.}
 \usage{
-rphtype(n, init_probs, subint_mat)
-}
-\arguments{
-\item{n}{number of samples.}
-
-\item{type}{string denoting the type of PH-related subintensity matrix wanted: T_MRCA, S_total}
+generate_subint_mat(n, type)
 }
 \description{
 Helper functions to generate inputs for the phasetype-related functions.

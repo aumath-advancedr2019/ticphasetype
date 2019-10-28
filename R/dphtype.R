@@ -14,6 +14,11 @@
 #' @export
 
 
+#' @import expm
+#'
+
+
+
 #' @describeIn dphtype
 #'
 #' Density function.
