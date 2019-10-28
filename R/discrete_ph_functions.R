@@ -174,10 +174,14 @@ iton_mats <- function(n, init_probs = NA, itons = 0, theta = 2){
 #'
 #' @export
 
-pdphtype <- function(k, alpha, T_star, theta){
+dsegsites <- function(k, alpha, T_star, theta){
   P = solve(diag(nrow(T_star)) - 2/theta * T_star)
   p = matrix(1, nrow = nrow(P)) - P %*% matrix(1, nrow = nrow(P))
-  dens = alpha %*% (P%^%k) %*% p
-  dens[1]
-}
 
+  dens_vec = rep(NA, k+1)
+  for (i in 1:(k+1)){
+    dens = alpha %*% (P%^%(i-1)) %*% p
+    dens_vec[i] <- dens
+  }
+  dens_vec
+}
