@@ -29,16 +29,15 @@
 sanity_check_rphdph = function(OTUs = 5, draws = 1000000, granularity = 0.01) {
 
   # rphtype data
-  init_probs = generate_init_row(OTUs - 1)
-  subint_mat = generate_subint_mat(OTUs)
-  r_data = tibble(x = rphtype(draws, init_probs, subint_mat, granularity),
+  phase_type <- phase_type(type = 'T_MRCA', n = OTUs)
+  r_data = tibble(x = rphtype(draws, phase_type, granularity),
                   p = rep(NA, length(x)),
                   data = "random sampling")# %>% ggplot(aes(x)) + geom_histogram(binwidth = granularity)
 
 
   # dphtype data
   d_data = tibble(x = seq(0, 10, granularity),
-                  p = dphtype(seq(0, 10, granularity), generate_init_row(OTUs-1), generate_subint_mat(OTUs)),
+                  p = dphtype(seq(0, 10, granularity), phase_type),
                   data = "theoretical")
   #
   ggplot(mapping = aes(color = data)) +

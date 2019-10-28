@@ -8,20 +8,18 @@
 \title{Density, distribution function, quantile function and random generation for
 the continuous phase-type distribution}
 \usage{
-dphtype(x, init_probs, subint_mat)
+dphtype(x, phase_type)
 
-qphtype(q, init_probs, subint_mat)
+qphtype(q, phase_type)
 
-pphtype(p, init_probs, subint_mat)
+pphtype(p, phase_type)
 
-rphtype(n_samples, init_probs, subint_mat, granularity = 0.01)
+rphtype(n_samples, phase_type, granularity = 0.01)
 }
 \arguments{
 \item{x, q}{vector of quantiles.}
 
-\item{init_probs}{vector of initial probabilities.}
-
-\item{subint_mat}{subintensity matrix.}
+\item{phase_type}{an object of class \code{phase_type}.}
 
 \item{p}{vector of probabilities.}
 

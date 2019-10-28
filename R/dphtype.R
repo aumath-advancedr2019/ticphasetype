@@ -4,8 +4,7 @@
 #' @param x,q vector of quantiles.
 #' @param p vector of probabilities.
 #' @param n number of observations.
-#' @param init_probs vector of initial probabilities.
-#' @param subint_mat subintensity matrix.
+#' @param phase_type an object of class \code{phase_type}.
 #' @param n_samples number of samples to draw.
 #' @param n_OTU number of OTUs to consider
 #' @param granularity distance between numbers drawable
@@ -23,15 +22,15 @@
 #'
 #' Density function.
 #'
-#' @usage dphtype(x, init_probs, subint_mat)
+#' @usage dphtype(x, phase_type)
 #'
 #' @export
 
-dphtype <- function(x, init_probs, subint_mat) {
+dphtype <- function(x, phase_type) {
   vec <- c()
-  e <- matrix(rep(1,nrow(subint_mat)), nrow(subint_mat), 1)
+  e <- matrix(rep(1,nrow(phase_type$subint_mat)), nrow(phase_type$subint_mat), 1)
   for (i in x) {
-    vec <- c(vec, -init_probs%*%expm(i*subint_mat)%*%subint_mat%*%e)
+    vec <- c(vec, -phase_type$init_probs%*%expm(i*phase_type$subint_mat)%*%phase_type$subint_mat%*%e)
   }
   vec
 }
@@ -40,13 +39,13 @@ dphtype <- function(x, init_probs, subint_mat) {
 #'
 #' Quantile Function.
 #'
-#' @usage qphtype(q, init_probs, subint_mat)
+#' @usage qphtype(q, phase_type)
 #'
 #' @export
 
-qphtype <- function(p, init_probs, subint_mat) {
+qphtype <- function(p, phase_type) {
   vec <- c()
-  inv <- function(y) uniroot(function(q) pphtype(q, init_probs, subint_mat)-y, c(0,20))$root[1]
+  inv <- function(y) uniroot(function(q) pphtype(q, phase_type$init_probs, phase_type$subint_mat)-y, c(0,20))$root[1]
   for (i in p) {
     vec <- c(vec, inv(i))
   }
@@ -57,15 +56,15 @@ qphtype <- function(p, init_probs, subint_mat) {
 #'
 #' Distribution function.
 #'
-#' @usage pphtype(p, init_probs, subint_mat)
+#' @usage pphtype(p, phase_type)
 #'
 #' @export
 
-pphtype <- function(q, init_probs, subint_mat) {
+pphtype <- function(q, phase_type) {
   vec <- c()
-  e <- matrix(rep(1,nrow(subint_mat)), nrow(subint_mat), 1)
+  e <- matrix(rep(1,nrow(phase_type$subint_mat)), nrow(phase_type$subint_mat), 1)
   for (i in q) {
-    vec <- c(vec, 1-init_probs%*%expm(i*subint_mat)%*%e)
+    vec <- c(vec, 1-phase_type$init_probs%*%expm(i*phase_type$subint_mat)%*%e)
   }
   vec
 }
@@ -75,11 +74,11 @@ pphtype <- function(q, init_probs, subint_mat) {
 #' Random number generator.
 #' So far only works for T_MRCA
 #'
-#' @usage rphtype(n_samples, init_probs, subint_mat, granularity = 0.01)
+#' @usage rphtype(n_samples, phase_type, granularity = 0.01)
 #'
 #' @export
 
-rphtype <- function(n_samples, init_probs, subint_mat, granularity = 0.01) {
+rphtype <- function(n_samples, phase_type, granularity = 0.01) {
 
 
   # A: Calculate density function. Break when the number is very low
@@ -89,10 +88,10 @@ rphtype <- function(n_samples, init_probs, subint_mat, granularity = 0.01) {
 
   # I copied the dphtype function into here, because I need a contingent break in the loop.
   vec <- c()
-  e <- matrix(rep(1, nrow(subint_mat)), nrow(subint_mat), 1)
+  e <- matrix(rep(1, nrow(phase_type$subint_mat)), nrow(phase_type$subint_mat), 1)
   for (i in seq(0, x, granularity)) {
-    new_item =  -init_probs%*%expm(i*subint_mat)%*%subint_mat%*%e
-    vec <- c(vec,new_item)
+    new_item =  -phase_type$init_probs%*%expm(i*phase_type$subint_mat)%*%phase_type$subint_mat%*%e
+    vec <- c(vec, new_item)
     if (i > 4 & new_item < 0.0000000001) { # Only if you sample more than a billion, will you see a bias induced by the `break``
       break # TODO: use the mean (calculate using PH) to know when to look for infinitesimal value. (instead of just `i>4`)
     }
