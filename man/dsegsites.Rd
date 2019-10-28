@@ -2,10 +2,10 @@
 % Please edit documentation in R/discrete_ph_functions.R
 \name{dsegsites}
 \alias{dsegsites}
-\title{pdphtype}
+\title{dsegsites}
 \usage{
 pdphtype(k, alpha, T_star, theta)
 }
 \description{
-Distribution function.
+Distribution function for segregating sites
 }
