@@ -29,7 +29,9 @@
 sanity_check_rphdph = function(OTUs = 5, draws = 1000000, granularity = 0.01) {
 
   # rphtype data
-  r_data = tibble(x = rphtype(draws, OTUs),
+  init_probs = generate_init_row(OTUs - 1)
+  subint_mat = generate_subint_mat(OTUs)
+  r_data = tibble(x = rphtype(draws, init_probs, subint_mat, granularity),
                   p = rep(NA, length(x)),
                   data = "random sampling")# %>% ggplot(aes(x)) + geom_histogram(binwidth = granularity)
 
