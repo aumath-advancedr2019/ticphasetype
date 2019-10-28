@@ -25,7 +25,12 @@ test_that("pphtype gives sensible results", {
 
 
 test_that("rphtype gives sensible results", {
-  expect_equal(2 * 2, 4)
+
+  rph = rphtype(10000, generate_init_row(5), generate_subint_mat(6))
+  expect_equal(mean(rph), 1.66, tolerance = 0.2)
+  expect_equal(var(rph), 1.14, tolerance = 0.5)
+
 })
+
 
 
