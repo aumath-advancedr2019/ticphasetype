@@ -29,7 +29,18 @@ generate_subint_mat <- function(n, type = "T_MRCA") {
       }
     }
   }
+  # ttotal
+  else if (type == "T_Total") {
+    T = matrix(c(0), nrow = n-1, ncol = n-1)
+    for (i in 1:n-1) {
+      #T[i, i] = - choose(n-i+1, 2)
+      T[i, i] = - 0.5 * (n - i) # equivalent to the above
 
+      if (i < n-1) {
+        T[i, i+1] = -T[i, i]
+      }
+    }
+  }
   T
 }
 
