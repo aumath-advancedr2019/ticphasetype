@@ -3,6 +3,7 @@
 export(dphtype)
 export(generate_init_row)
 export(generate_subint_mat)
+export(phase_type)
 export(pphtype)
 export(qphtype)
 export(rewardtransformparm)
