@@ -1,4 +1,8 @@
-library(partitions)
+#library(partitions)
+
+#' function neccessary for computing Segregating Sites Distribution using Discrete PhaseType
+#'
+#' @import partitions
 
 #' RewardTransformParm
 #'
@@ -49,6 +53,7 @@ rewardtransformparm <- function(rewards, init_probs, subint_mat){
   list("newinitprob" = alphavec, "newsubintensitymatrix" = Tstarmat, "defect" = 1 - sum(alphavec))
 }
 
+#----------------------------------------------------------------------------------------------
 
 #' RateMAndStateSpace
 #'
@@ -99,6 +104,7 @@ RateMAndStateSpace <- function(n){
   return(list(RateM=RateM,StSpM=StSpM))
 }
 
+#----------------------------------------------------------------------------------------------
 
 #' iton_mats
 #'
@@ -164,11 +170,10 @@ iton_mats <- function(n, init_probs = NA, itons = 0, theta = 2){
   list(T_star = T_star, alpha = alpha, defect = rew_transformed$defect)
 }
 
-# @describeIn dphtype
+#----------------------------------------------------------------------------------------------
+#' dsegsites
 #'
-#' pdphtype
-#'
-#' Distribution function.
+#' Distribution function for segregating sites
 #'
 #' @usage pdphtype(k, alpha, T_star, theta)
 #'
