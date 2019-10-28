@@ -14,7 +14,7 @@ qphtype(q, init_probs, subint_mat)
 
 pphtype(p, init_probs, subint_mat)
 
-rphtype(n, init_probs, subint_mat)
+rphtype(n_samples, n_OTU, granularity = 0.01, type = "T_MRCA")
 }
 \arguments{
 \item{x, q}{vector of quantiles.}
