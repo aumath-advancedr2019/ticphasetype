@@ -1,12 +1,11 @@
 #library(partitions)
 
-#' function neccessary for computing Segregating Sites Distribution using Discrete PhaseType
-#'
-#' @import partitions
 
 #' RewardTransformParm
 #'
 #' Function to compute reward transformed matrix T* as well as vector of initial probabilities and the defect
+#'
+#' @import partitions
 #'
 #' @usage rewardtransformparm(n, init_probs, subint_mat)
 #'
