@@ -14,7 +14,7 @@ qphtype(q, init_probs, subint_mat)
 
 pphtype(p, init_probs, subint_mat)
 
-rphtype(n_samples, n_OTU, granularity = 0.01, type = "T_MRCA")
+rphtype(n_samples, init_probs, subint_mat, granularity = 0.01)
 }
 \arguments{
 \item{x, q}{vector of quantiles.}
@@ -27,13 +27,13 @@ rphtype(n_samples, n_OTU, granularity = 0.01, type = "T_MRCA")
 
 \item{n_samples}{number of samples to draw.}
 
-\item{n_OTU}{number of OTUs to consider}
-
 \item{granularity}{distance between numbers drawable}
 
-\item{type}{type of calculation ("T_MRCA" and later S_total)}
-
 \item{n}{number of observations.}
+
+\item{n_OTU}{number of OTUs to consider}
+
+\item{type}{type of calculation ("T_MRCA" and later S_total)}
 }
 \description{
 Density, distribution function, quantile function and random generation for
