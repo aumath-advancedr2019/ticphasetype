@@ -1,3 +1,5 @@
+library(partitions)
+
 #' RewardTransformParm
 #'
 #' Function to compute reward transformed matrix T* as well as vector of initial probabilities and the defect
@@ -123,12 +125,12 @@ iton_mats <- function(n, init_probs = NA, itons = 0, theta = 2){
   # if nothing is supplied in the function argument, it creates a vector with first entry
   # being 1 and all the others 0
 
-  if(is.na(pi_vec)){
+  if(is.na(init_probs)){
     if(n == 2){
-      pi_vec = matrix(c(1))
+      init_probs = matrix(c(1))
     }
     else{
-      pi_vec = c(1, rep(0, nrow(T_table)-1))
+      init_probs = c(1, rep(0, nrow(T_table)-1))
     }
   }
 
@@ -155,12 +157,22 @@ iton_mats <- function(n, init_probs = NA, itons = 0, theta = 2){
     }
   }
   ############## Step2: Computation of T*, alpha and defect ##############
-  rew_transformed = rewardtransformparm(reward, pi_vec, T_table)
+  rew_transformed = rewardtransformparm(reward, init_probs, T_table)
   alpha = rew_transformed$newinitprob
   T_star = rew_transformed$newsubintensitymatrix
 
   list(T_star = T_star, alpha = alpha, defect = rew_transformed$defect)
 }
+
+# @describeIn dphtype
+#'
+#' pdphtype
+#'
+#' Distribution function.
+#'
+#' @usage pdphtype(k, alpha, T_star, theta)
+#'
+#' @export
 
 pdphtype <- function(k, alpha, T_star, theta){
   P = solve(diag(nrow(T_star)) - 2/theta * T_star)
