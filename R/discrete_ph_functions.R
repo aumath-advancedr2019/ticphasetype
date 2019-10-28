@@ -96,3 +96,76 @@ RateMAndStateSpace <- function(n){
   }
   return(list(RateM=RateM,StSpM=StSpM))
 }
+
+
+#' iton_mats
+#'
+#' Computes T* matrix, initial probabilities and defect for some frequency count (singleton, doubleton, ...)
+#'
+#' @usage iton_mats(n)
+#'
+#' for singletons
+#' @usage iton_mats(n, itons = 1, theta = 3)
+
+iton_mats <- function(n, init_probs = NA, itons = 0, theta = 2){
+
+  ############## Step1: Preparation of Rate matrix (T), initial probabilities (pi) and reward vector ##############
+  matrixes = RateMAndStateSpace(n)
+  # Rate Matrix
+  if(n == 2){
+    T_table = matrix(matrixes$RateM[1, 1])
+  }
+  else{
+    T_table = matrixes$RateM[1:ncol(matrixes$RateM)-1, 1:ncol(matrixes$RateM)-1]
+  }
+
+  # Initial Distribution (init_probs)
+  # if nothing is supplied in the function argument, it creates a vector with first entry
+  # being 1 and all the others 0
+
+  if(is.na(pi_vec)){
+    if(n == 2){
+      pi_vec = matrix(c(1))
+    }
+    else{
+      pi_vec = c(1, rep(0, nrow(T_table)-1))
+    }
+  }
+
+  # Specifying if we are considering all segregating sites or something more specific
+  if(itons == 0){ # means all (singletons + doubletons + ...)
+    if(n == 2){
+      reward = matrix(sum(matrixes$StSpM[1,]))
+    }
+    else{
+      reward = apply(matrixes$StSpM[1:nrow(matrixes$StSpM)-1, ], 1, sum)
+    }
+  }
+  else{
+    if(itons < n){
+      if(n == 2){
+        reward = matrix(matrixes$StSpM[1,1])
+      }
+      else{
+        reward = matrixes$StSpM[1:nrow(matrixes$StSpM)-1,][,itons]
+      }
+    }
+    else{
+      return(0)
+    }
+  }
+  ############## Step2: Computation of T*, alpha and defect ##############
+  rew_transformed = rewardtransformparm(reward, pi_vec, T_table)
+  alpha = rew_transformed$newinitprob
+  T_star = rew_transformed$newsubintensitymatrix
+
+  list(T_star = T_star, alpha = alpha, defect = rew_transformed$defect)
+}
+
+pdphtype <- function(k, alpha, T_star, theta){
+  P = solve(diag(nrow(T_star)) - 2/theta * T_star)
+  p = matrix(1, nrow = nrow(P)) - P %*% matrix(1, nrow = nrow(P))
+  dens = alpha %*% (P%^%k) %*% p
+  dens[1]
+}
+
