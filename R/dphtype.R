@@ -45,7 +45,7 @@ dphtype <- function(x, phase_type) {
 
 qphtype <- function(p, phase_type) {
   vec <- c()
-  inv <- function(y) uniroot(function(q) pphtype(q, phase_type$init_probs, phase_type$subint_mat)-y, c(0,20))$root[1]
+  inv <- function(y) uniroot(function(q) pphtype(q, phase_type)-y, c(0,20))$root[1]
   for (i in p) {
     vec <- c(vec, inv(i))
   }
