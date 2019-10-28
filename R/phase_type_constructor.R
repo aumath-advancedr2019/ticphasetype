@@ -64,3 +64,31 @@ summary.phase_type <- function(obj) {
   cat('\nInitial probabilities:\n')
   print(obj$init_probs)
 }
+
+#' @export
+
+moment_ph <- function(obj, m) {
+  e <- matrix(rep(1,nrow(obj$subint_mat)), nrow(obj$subint_mat), 1)
+  inv <- solve(obj$subint_mat%^%m)
+  as.numeric((-1)**m*factorial(m)*obj$init_probs%*%inv%*%e)
+}
+
+#' @export
+
+mean.phase_type <- function(obj) {
+  moment_ph(obj, 1)
+}
+
+#' @export
+
+var.phase_type <- function(obj) {
+  moment_ph(obj, 2)-moment_ph(obj, 1)**2
+}
+
+
+
+
+
+
+
+
