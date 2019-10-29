@@ -175,12 +175,18 @@ dsegsites <- function(x, alpha, P){
 
 sfs <- function(n, init_probs = c(), theta = 2){
   sfs_vec <- c()
-  n_max = max(10*theta, n) # this is weird i know. I dont know how else should we control the resolution
-  for (i in 1:(n-1)) {
-    params = iton_mats(n, init_probs, itons = i, theta)
-    sfs_vec = c(sfs_vec, sum(dsegsites(1:n_max, params$alpha, params$P)*(1:n_max)))
+
+  if(length(init_probs) == 0){
+    sfs_vec <- theta / 1:n
   }
-  sfs_vec
+  else{
+    n_max = max(10*theta, n) # this is weird i know. I dont know how else should we control the resolution
+    for (i in 1:(n-1)) {
+      params = iton_mats(n, init_probs, itons = i, theta)
+      sfs_vec = c(sfs_vec, sum(dsegsites(1:n_max, params$alpha, params$P)*(1:n_max)))
+    }
+  }
+  sfs_vec / sum(sfs_vec)
 }
 
 # sfs(15)
