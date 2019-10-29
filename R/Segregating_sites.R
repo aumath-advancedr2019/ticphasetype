@@ -119,54 +119,39 @@ iton_mats <- function(n, init_probs = NA, itons = 0, theta = 2){
   ############## Step1: Preparation of Rate matrix (T), initial probabilities (pi) and reward vector ##############
   matrixes = RateMAndStateSpace(n)
   # Rate Matrix
-  if(n == 2){
-    T_table = matrix(matrixes$RateM[1, 1])
-  }
-  else{
-    T_table = matrixes$RateM[1:ncol(matrixes$RateM)-1, 1:ncol(matrixes$RateM)-1]
-  }
+  if(n == 2) {T_table = matrix(matrixes$RateM[1, 1])}
+  else{T_table = matrixes$RateM[1:ncol(matrixes$RateM)-1, 1:ncol(matrixes$RateM)-1]}
 
   # Initial Distribution (init_probs)
   # if nothing is supplied in the function argument, it creates a vector with first entry
   # being 1 and all the others 0
 
   if(is.na(init_probs)){
-    if(n == 2){
-      init_probs = matrix(c(1))
-    }
-    else{
-      init_probs = c(1, rep(0, nrow(T_table)-1))
-    }
+    if(n == 2){init_probs = matrix(c(1))}
+    else{init_probs = c(1, rep(0, nrow(T_table)-1))}
   }
 
   # Specifying if we are considering all segregating sites or something more specific
   if(itons == 0){ # means all (singletons + doubletons + ...)
-    if(n == 2){
-      reward = matrix(sum(matrixes$StSpM[1,]))
-    }
-    else{
-      reward = apply(matrixes$StSpM[1:nrow(matrixes$StSpM)-1, ], 1, sum)
-    }
+    if(n == 2){reward = matrix(sum(matrixes$StSpM[1,]))}
+    else{reward = apply(matrixes$StSpM[1:nrow(matrixes$StSpM)-1, ], 1, sum)}
   }
   else{
     if(itons < n){
-      if(n == 2){
-        reward = matrix(matrixes$StSpM[1,1])
-      }
-      else{
-        reward = matrixes$StSpM[1:nrow(matrixes$StSpM)-1,][,itons]
-      }
+      if(n == 2){reward = matrix(matrixes$StSpM[1,1])}
+      else{reward = matrixes$StSpM[1:nrow(matrixes$StSpM)-1,][,itons]}
     }
-    else{
-      return(0)
-    }
+    else{return(0)}
   }
   ############## Step2: Computation of T*, alpha and defect ##############
   rew_transformed = rewardtransformparm(reward, init_probs, T_table)
   alpha = rew_transformed$newinitprob
   T_star = rew_transformed$newsubintensitymatrix
 
-  list(T_star = T_star, alpha = alpha, defect = rew_transformed$defect)
+  ############## Step3: Computation of subtransition matrix P ##############
+  P = solve(diag(nrow(T_star)) - 2/theta * T_star)
+
+  list(P = P, T_star = T_star, alpha = alpha, defect = rew_transformed$defect)
 }
 
 #----------------------------------------------------------------------------------------------
@@ -178,14 +163,11 @@ iton_mats <- function(n, init_probs = NA, itons = 0, theta = 2){
 #'
 #' @export
 
-dsegsites <- function(k, alpha, T_star, theta){
-  P = solve(diag(nrow(T_star)) - 2/theta * T_star)
+dsegsites <- function(x, alpha, P){
   p = matrix(1, nrow = nrow(P)) - P %*% matrix(1, nrow = nrow(P))
-
-  dens_vec = rep(NA, k+1)
-  for (i in 1:(k+1)){
-    dens = alpha %*% (P%^%(i-1)) %*% p
-    dens_vec[i] <- dens
+  dens_vec = c()
+  for (i in x){
+    dens_vec <- c(dens_vec, alpha %*% (P%^%(i)) %*% p)
   }
   dens_vec
 }

@@ -24,7 +24,8 @@
 #' @export
 
 ddphtype <- function(x, subint_mat, init_probs){
-  t = 1 - rowSums(subint_mat)
+  e = matrix(1, nrow = nrow(subint_mat))
+  t = e - subint_mat %*% e
   dens_vec = c()
   for(i in x){
     dens_vec <- c(dens_vec, init_probs %*% (subint_mat %^% (i-1)) %*% t)
