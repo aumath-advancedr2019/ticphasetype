@@ -48,3 +48,16 @@ pdphtype <- function(q, subint_mat, init_probs){
   }
   prob_vec
 }
+
+#' @import matrixcalc
+
+dmoments <- function(init_probs, subint_mat, m){
+  e = matrix(1, nrow = nrow(subint_mat))
+  moment = factorial(m) * init_probs %*% (subint_mat %^% (m-1)) %*% matrixcalc::matrix.power(diag(nrow = nrow(subint_mat)), -m) %*% e
+}
+
+dvariance <- function(init_probs, subint_mat){
+  m1 = dmoments(init_probs, subint_mat, 1)
+  m2 = dmoments(init_probs, subint_mat, 2)
+  m2 - m1^2 + m1
+}
