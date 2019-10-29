@@ -1,5 +1,4 @@
-#library(partitions)
-
+#' Functions used to transform to discrete phase type and calculate the number of segregating sites
 
 #' RewardTransformParm
 #'
@@ -114,7 +113,7 @@ RateMAndStateSpace <- function(n){
 #' for singletons
 #' @usage iton_mats(n, itons = 1, theta = 3)
 
-iton_mats <- function(n, init_probs = NA, itons = 0, theta = 2){
+iton_mats <- function(n, init_probs = c(), itons = 0, theta = 2){
 
   ############## Step1: Preparation of Rate matrix (T), initial probabilities (pi) and reward vector ##############
   matrixes = RateMAndStateSpace(n)
@@ -126,11 +125,10 @@ iton_mats <- function(n, init_probs = NA, itons = 0, theta = 2){
   # if nothing is supplied in the function argument, it creates a vector with first entry
   # being 1 and all the others 0
 
-  if(is.na(init_probs)){
+  if(length(init_probs) == 0){
     if(n == 2){init_probs = matrix(c(1))}
     else{init_probs = c(1, rep(0, nrow(T_table)-1))}
   }
-
   # Specifying if we are considering all segregating sites or something more specific
   if(itons == 0){ # means all (singletons + doubletons + ...)
     if(n == 2){reward = matrix(sum(matrixes$StSpM[1,]))}
@@ -171,3 +169,20 @@ dsegsites <- function(x, alpha, P){
   }
   dens_vec
 }
+
+##### Simulated SFS #####
+# in a way wrapper for the above functions
+
+sfs <- function(n, init_probs = c(), theta = 2){
+  sfs_vec <- c()
+  n_max = max(10*theta, n) # this is weird i know. I dont know how else should we control the resolution
+  for (i in 1:(n-1)) {
+    params = iton_mats(n, init_probs, itons = i, theta)
+    sfs_vec = c(sfs_vec, sum(dsegsites(1:n_max, params$alpha, params$P)*(1:n_max)))
+  }
+  sfs_vec
+}
+
+# sfs(15)
+# sfs(15, theta = 5)
+# sfs(10, init_probs = c(0.9, 0.1, rep(0, 39)))
