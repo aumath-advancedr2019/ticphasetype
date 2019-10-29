@@ -113,7 +113,7 @@ RateMAndStateSpace <- function(n){
 #' for singletons
 #' @usage iton_mats(n, itons = 1, theta = 3)
 
-iton_mats <- function(n, init_probs = c(), itons = 0, theta = 2){
+iton_mats <- function(n, init_probs = c(), itons = 0, theta = 2, rewards = c()){
 
   ############## Step1: Preparation of Rate matrix (T), initial probabilities (pi) and reward vector ##############
   matrixes = RateMAndStateSpace(n)
@@ -129,17 +129,19 @@ iton_mats <- function(n, init_probs = c(), itons = 0, theta = 2){
     if(n == 2){init_probs = matrix(c(1))}
     else{init_probs = c(1, rep(0, nrow(T_table)-1))}
   }
+  if(length(rewards == 0)){
   # Specifying if we are considering all segregating sites or something more specific
-  if(itons == 0){ # means all (singletons + doubletons + ...)
-    if(n == 2){reward = matrix(sum(matrixes$StSpM[1,]))}
-    else{reward = apply(matrixes$StSpM[1:nrow(matrixes$StSpM)-1, ], 1, sum)}
-  }
-  else{
-    if(itons < n){
-      if(n == 2){reward = matrix(matrixes$StSpM[1,1])}
-      else{reward = matrixes$StSpM[1:nrow(matrixes$StSpM)-1,][,itons]}
+    if(itons == 0){ # means all (singletons + doubletons + ...)
+      if(n == 2){reward = matrix(sum(matrixes$StSpM[1,]))}
+      else{reward = apply(matrixes$StSpM[1:nrow(matrixes$StSpM)-1, ], 1, sum)}
     }
-    else{return(0)}
+    else{
+      if(itons < n){
+        if(n == 2){reward = matrix(matrixes$StSpM[1,1])}
+        else{reward = matrixes$StSpM[1:nrow(matrixes$StSpM)-1,][,itons]}
+      }
+      else{return(0)}
+    }
   }
   ############## Step2: Computation of T*, alpha and defect ##############
   rew_transformed = rewardtransformparm(reward, init_probs, T_table)
