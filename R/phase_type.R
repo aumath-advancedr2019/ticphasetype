@@ -45,7 +45,7 @@ phase_type <- function(type = NULL, n = NULL, subint_mat = NULL, init_probs = NU
         subint_mat[i, i+1] = -subint_mat[i, i]
       }
     }
-    init_probs <- matrix(c(1, rep(0, nrow(subint_mat) - 1)), 1, nrow(subint_mat))
+    init_probs <- Matrix(c(1, rep(0, nrow(subint_mat) - 1)), 1, nrow(subint_mat), sparse = T)
   } else if (type == "T_Total" & n%%1==0 & n>1) {
     subint_mat = matrix(c(0), nrow = n-1, ncol = n-1)
     for (i in 1:n-1) {
@@ -54,11 +54,11 @@ phase_type <- function(type = NULL, n = NULL, subint_mat = NULL, init_probs = NU
         subint_mat[i, i+1] = -subint_mat[i, i]
       }
     }
-    init_probs <- matrix(c(1, rep(0, nrow(subint_mat) - 1)), 1, nrow(subint_mat))
+    init_probs <- Matrix(c(1, rep(0, nrow(subint_mat) - 1)), 1, nrow(subint_mat), sparse = T)
   } else {
     stop('Please provide a valid type')
   }
-  value <- list(subint_mat = subint_mat, init_probs = init_probs)
+  value <- list(subint_mat = as(subint_mat, "sparseMatrix"), init_probs = init_probs)
   attr(value, "class") <- "phase_type"
   value
 }
@@ -81,7 +81,7 @@ summary.phase_type <- function(obj) {
 
 
 moment_ph <- function(obj, m) {
-  e <- matrix(rep(1,nrow(obj$subint_mat)), nrow(obj$subint_mat), 1)
+  e <- Matrix(rep(1,nrow(obj$subint_mat)), nrow(obj$subint_mat), 1, sparse = T)
   inv <- solve(obj$subint_mat%^%m)
   as.numeric((-1)**m*factorial(m)*obj$init_probs%*%inv%*%e)
 }

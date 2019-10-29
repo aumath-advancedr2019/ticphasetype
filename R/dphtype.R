@@ -28,9 +28,9 @@
 
 dphtype <- function(x, phase_type) {
   vec <- c()
-  e <- matrix(rep(1,nrow(phase_type$subint_mat)), nrow(phase_type$subint_mat), 1)
+  e <- Matrix(rep(1,nrow(phase_type$subint_mat)), nrow(phase_type$subint_mat), 1, sparse = T)
   for (i in x) {
-    vec <- c(vec, -phase_type$init_probs%*%expm(i*phase_type$subint_mat)%*%phase_type$subint_mat%*%e)
+    vec <- c(vec, (-phase_type$init_probs%*%expm.Higham08(i*phase_type$subint_mat, balancing = F)%*%phase_type$subint_mat%*%e)[1,1])
   }
   vec
 }
@@ -62,9 +62,9 @@ qphtype <- function(p, phase_type) {
 
 pphtype <- function(q, phase_type) {
   vec <- c()
-  e <- matrix(rep(1,nrow(phase_type$subint_mat)), nrow(phase_type$subint_mat), 1)
+  e <- Matrix(rep(1,nrow(phase_type$subint_mat)), nrow(phase_type$subint_mat), 1, sparse = T)
   for (i in q) {
-    vec <- c(vec, 1-phase_type$init_probs%*%expm(i*phase_type$subint_mat)%*%e)
+    vec <- c(vec, (1-phase_type$init_probs%*%expm.Higham08(i*phase_type$subint_mat, balancing = F)%*%e)[1,1])
   }
   vec
 }
@@ -88,9 +88,9 @@ rphtype <- function(n_samples, phase_type, granularity = 0.01) {
 
   # I copied the dphtype function into here, because I need a contingent break in the loop.
   vec <- c()
-  e <- matrix(rep(1, nrow(phase_type$subint_mat)), nrow(phase_type$subint_mat), 1)
+  e <- Matrix(rep(1, nrow(phase_type$subint_mat)), nrow(phase_type$subint_mat), 1, sparse = T)
   for (i in seq(0, x, granularity)) {
-    new_item =  -phase_type$init_probs%*%expm(i*phase_type$subint_mat)%*%phase_type$subint_mat%*%e
+    new_item =  (-phase_type$init_probs%*%expm.Higham08(i*phase_type$subint_mat, balancing = F)%*%phase_type$subint_mat%*%e)[1,1]
     vec <- c(vec, new_item)
     if (i > 4 & new_item < 0.0000000001) { # Only if you sample more than a billion, will you see a bias induced by the `break``
       break # TODO: use the mean (calculate using PH) to know when to look for infinitesimal value. (instead of just `i>4`)
