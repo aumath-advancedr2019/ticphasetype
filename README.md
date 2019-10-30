@@ -1,4 +1,4 @@
-# ticphasetype
+# ticphasetype [![Build Status](https://travis-ci.com/aumath-advancedr2019/ticphasetype.svg?branch=master)](https://travis-ci.com/aumath-advancedr2019/ticphasetype)
 
 ## Outline for package
 
