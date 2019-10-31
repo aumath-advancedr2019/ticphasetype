@@ -2,7 +2,8 @@
 % Please edit documentation in R/Segregating_sites.R
 \name{rewardtransformparm}
 \alias{rewardtransformparm}
-\title{RewardTransformParm}
+\title{Functions used to transform to discrete phase type and calculate the number of segregating sites
+RewardTransformParm}
 \usage{
 rewardtransformparm(n, init_probs, subint_mat)
 }
