@@ -114,10 +114,10 @@ RateMAndStateSpace <- function(n){
 #' for singletons
 #' @usage iton_mats(n, itons = 1, theta = 3)
 
-discph = function(n, k = 0, pi_vec = NA, itons = 0, theta = 2, moment = F, tail_stat = F){
+discph = function(n, pi_vec = NULL, itons = NULL, theta = 2, moment = F, tail_stat = F){
 
   # All Segregating Sites - This computes the P matrix faster than setting rewards to sum(ri)
-  if(itons == 0){
+  if(is.null(itons)){
     ph = phase_type('T_Total', n = n)
 
     T_table = ph$subint_mat
@@ -126,7 +126,9 @@ discph = function(n, k = 0, pi_vec = NA, itons = 0, theta = 2, moment = F, tail_
 
     P = solve(diag(nrow(T_table)) - 2/theta * T_table)
   }
-
+  else if(itons < 0 | !is.numeric(itons)){
+    stop('itons should be a positive number higher than zero')
+  }
   # Special Case (eg. singletons or tail statistic)
   else{
     # There is no reason to proceed if this condition is True
@@ -148,7 +150,7 @@ discph = function(n, k = 0, pi_vec = NA, itons = 0, theta = 2, moment = F, tail_
     }
 
     # Initial Distribution
-    if(is.na(pi_vec)){
+    if(is.null(pi_vec)){
       if(n == 2){
         pi_vec = matrix(c(1))
       }
@@ -187,25 +189,41 @@ discph = function(n, k = 0, pi_vec = NA, itons = 0, theta = 2, moment = F, tail_
     ########## Step3: Computation of P and p (transformation to DPH) ##########
     P = solve(diag(nrow(T_star)) - 2/theta * T_star)
   }
-  # Calculating The Moments
-  if(moment | tail_stat){
-    m1 = alpha %*% solve(diag(nrow(P)) - P) %*% matrix(1, nrow = nrow(P)) # Corollary 1.2.64
-    m2 = 2 * alpha %*% P %*% (solve(diag(nrow(P)) - P) %*% solve(diag(nrow(P)) - P)) %*% matrix(1, nrow = nrow(P))# Theorem 1.2.69
-    es = m1 - 1 + defect
-    mvar = m2 - es^2 - es
-    return(list(Moment_1 = m1[1], Moment_2 = m2[1], Variance = mvar[1], defect = defect))
+
+  if(is.null(itons)){
+    value = list(P = P, T_table = T_table, alpha = alpha, defect = defect)
   }
-  # Calculating the Probability P(S = k)
   else{
-    if(itons == 0){
-      list(P = P, alpha = alpha, defect = defect)
-    }
-    else{
-      list(P = P, T_star = T_star, alpha = alpha, defect = defect)
-    }
+    value = list(P = P, T_table = T_star, alpha = alpha, defect = defect)
   }
+  attr(value, 'class') <- 'dphase_type'
+  value
 }
 
+#' @import matrixcalc
+
+dmoments <- function(discph, m){
+  e = matrix(1, nrow = nrow(discph$P))
+  moment = factorial(m) * discph$alpha %*% (discph$P %^% (m-1)) %*% matrixcalc::matrix.power(diag(nrow = nrow(discph$P)) - discph$P, -m) %*% e
+  moment[1]
+}
+
+dvariance <- function(discph){
+  m1 = dmoments(discph, 1)
+  m2 = dmoments(discph, 2)
+  m2 - m1^2 + m1
+}
+
+summary.dphase_type <- function(obj){
+  cat('First Moment:\n')
+  print(dmoments(obj, 1))
+  cat('\nSecond Moment:\n')
+  print(dmoments(obj, 2))
+  cat('\nVariance:\n')
+  print(dvariance(obj))
+  cat('\nDefect:\n')
+  print(obj$defect)
+}
 
 sfs <- function(n_vec, theta = 2){
   sfs_df <- tibble()
@@ -214,9 +232,9 @@ sfs <- function(n_vec, theta = 2){
 
     # calculate E[ksi_i] and Var[ksi_i] for every i < n
     for (iton in 1:(n_vec[i]-1)){
-      m = discph(n_vec[i], itons = iton, moment = T, theta = theta)
-      varksi = m$Variance
-      ksi = m$Moment_1 - 1 + m$defect
+      dph = discph(n_vec[i], itons = iton, moment = T, theta = theta)
+      varksi = dvariance(dph)
+      ksi = dmoments(dph, 1) - 1 + dph$defect
       sfs_df <- bind_rows(sfs_df, tibble(n = n_vec[i], itons = iton, E_ksi = ksi, Var_ksi = varksi))
     }
   }
