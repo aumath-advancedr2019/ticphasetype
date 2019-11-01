@@ -58,7 +58,9 @@ phase_type <- function(type = NULL, n = NULL, subint_mat = NULL, init_probs = NU
   } else {
     stop('Please provide a valid type')
   }
-  value <- list(subint_mat = subint_mat, init_probs = init_probs)
+  value <- list(subint_mat = subint_mat,
+                init_probs = init_probs,
+                defect = 1-sum(init_probs))
   attr(value, "class") <- "phase_type"
   value
 }
