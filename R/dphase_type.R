@@ -2,7 +2,8 @@
 
 #' RewardTransformParm
 #'
-#' Function to compute reward transformed matrix T* as well as vector of initial probabilities and the defect
+#' Function to compute reward transformed matrix T* as well as vector of initial probabilities
+#' and the defect
 #'
 #' @import partitions
 #' @import dplyr
@@ -107,7 +108,8 @@ RateMAndStateSpace <- function(n){
 
 #'
 #'
-#' Computes P and T* matrix, initial probabilities and defect for some frequency count (singleton, doubleton, ...)
+#' Computes P and T* matrix, initial probabilities and defect for some frequency count
+#' (singleton, doubleton, ...)
 #'
 #' @usage iton_mats(n)
 #'
