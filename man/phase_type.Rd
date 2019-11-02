@@ -2,22 +2,22 @@
 % Please edit documentation in R/phase_type.R
 \name{phase_type}
 \alias{phase_type}
-\alias{summary.phase_type}
 \alias{mean.phase_type}
 \alias{var.phase_type}
+\alias{summary.phase_type}
 \title{\code{phase_type} class}
 \usage{
 phase_type(type = NULL, n = NULL,
            subint_mat = NULL, init_probs = NULL)
 
 ## S3 method for class 'phase_type'
-summary(object)
-
-## S3 method for class 'phase_type'
 mean(object)
 
 ## S3 method for class 'phase_type'
 var(object)
+
+## S3 method for class 'phase_type'
+summary(object)
 }
 \arguments{
 \item{type}{\code{'T_MRCA'}, \code{'T_Total'} or \code{NULL} (default).}
@@ -34,12 +34,39 @@ var(object)
 Description of the class \code{phase_type}, which represents continuous phase-type
 distributions.
 }
+\details{
+\code{phase_type} is the generator function for the continuous phase-type distribution class
+of the same name, which inherits from \code{list}. It can be generated in two different ways:
+\itemize{
+  \item By specifying whether the user wants a phase-type representation of the
+  total time until the most recent common ancestor (MRCA) or the total tree
+  length, for a certain number of sequences \code{n}.
+  \item By supplying a user-defined sub-intensity matrix, with optional initial
+  probabilities.
+}
+}
 \section{Methods (by generic)}{
 \itemize{
-\item \code{summary}: summary of the continuous phase-type distribution.
-
 \item \code{mean}: mean of the continuous phase-type distribution.
 
 \item \code{var}: variance of the continuous phase-type distribution.
+
+\item \code{summary}: summary of the continuous phase-type distribution.
 }}
 
+\examples{
+# Time until the MRCA
+phase_type('T_MRCA', 4)
+
+# Total tree length
+ph_example <- phase_type('T_Total', 6)
+mean(ph_example)
+var(ph_example)
+summary(ph_example)
+
+# User-specified phase-type distribution
+subint_example <- matrix(runif(16), ncol=4)
+ph_user <- phase_type(subint_mat = subint_example)
+summary(ph_user)
+
+}

@@ -1,22 +1,79 @@
-
 #' \code{dphase_type} class
 #'
-#' Description of the class \code{phase_type}, which represents discrete phase-type
+#' Description of the class \code{dphase_type}, which represents discrete phase-type
 #' distributions.
 #'
+#' \code{dphase_type} is the generator function for the discrete phase-type distribution class
+#' of the same name, which inherits from \code{list}. This function can easily produce phase-type
+#' representations of common statistics in genomics, such as the total number of segregating sites,
+#' the number of i-tons (singletons, doubletons, etc.) and the tail statistic.
+#'
+#' The discrete phase-type distribution can be generated in two different ways:
+#' \itemize{
+#'   \item By specifying whether the user wants a  discrete phase-type representation
+#'   of the total number of segregating sites (default), the number of i-tons, or the tail
+#'   statistic for a certain number of sequences \code{n}.
+#'   \item By supplying a user-defined sub-intensity matrix, with optional initial
+#'   probabilities.
+#' }
+#'
+#' See examples for further explanation on the usage.
+#'
 #' @param object an object of class \code{dphase_type}.
-#' @param type \code{'T_MRCA'}, \code{'T_Total'} or \code{NULL} (default).
-#' @param n integer larger than 1.
+#' @param n integer larger than 1, or \code{NULL} (default).
 #' @param itons integer between 1 and n-1, or \code{NULL} (default).
 #' @param init_probs vector, a one-row matrix or \code{NULL} (default).
+#' @param subint_mat matrix or \code{NULL} (default).
 #' @param theta numeric.
+#' @param tail_stat logical.
 #'
-#' @usage dphase_type(n, init_probs = NULL, itons = NULL, theta = 2, moment = F, tail_stat = F)
+#' @usage dphase_type(n = NULL, itons = NULL,
+#'             subint_mat = NULL, init_probs = NULL,
+#'             theta = 2, tail_stat = F)
 #'
+#' @examples
+#' # Total number of segregating sites
+#' dphase_type(4)
+#' dphase_type(5, theta=0.5)
+#'
+#' # Number of singletons
+#' dph_example <- dphase_type(4, itons=1)
+#' mean(dph_example)
+#' var(dph_example)
+#' summary(dph_example)
+#'
+#' # Tail statistic
+#' dph_tail <- dphase_type(4, itons=2, tail_stat=TRUE)
+#' summary(dph_tail)
 #'
 #' @export
 
-dphase_type = function(n, init_probs = NULL, itons = NULL, theta = 2, moment = F, tail_stat = F){
+dphase_type = function(n = NULL, itons = NULL, theta = 2, tail_stat = F, subint_mat = NULL, init_probs = NULL){
+
+  if (is.null(n)) {
+    if (is.null(subint_mat)) {
+      stop('Unable to construct the discrete phase-type distribution. Please provide either n or the subintensity matrix.')
+    } else if (is.matrix(subint_mat)) {
+      if (is.null(init_probs)) {
+        init_probs <- matrix(c(1, rep(0, nrow(subint_mat) - 1)), 1, nrow(subint_mat))
+        warning('The initial probability vector is automatically generated.')
+      } else if ((is.vector(init_probs) & is.atomic(init_probs)) | is.matrix(init_probs)) {
+        if (nrow(subint_mat) == length(init_probs)) {
+          init_probs <- matrix(init_probs, nrow = 1)
+        } else {
+          stop('The length of the initial probabilities does not match the size of the subintensity matrix.')
+        }
+      } else {
+        stop('The initial probabilities must be a a matrix with one row or a vector.')
+      }
+    } else {
+      stop('The subintensity matrix must be a matrix.')
+    }
+    value = list(subint_mat = subint_mat, init_probs = init_probs, defect = 1-sum(init_probs))
+    attr(value, "class") <- "phase_type"
+    return(value)
+  }
+
 
   # All Segregating Sites - This computes the P matrix faster than setting rewards to sum(ri)
   if (n<=1 | !is.numeric(n)) {
@@ -145,9 +202,15 @@ var.dphase_type <- function(obj) {
 #'
 #' @export
 
-summary.dphase_type <- function(obj){
-  cat('Mean:\n',mean(obj))
-  cat('\nVariance:\n',var(obj))
+summary.dphase_type <- function(obj) {
+  cat('\nSubintensity matrix:\n')
+  print(obj$subint_mat)
+  cat('\nInitial probabilities:\n')
+  print(obj$init_probs)
+  cat('\nDefect:\n')
+  print(obj$defect)
+  cat('\nMean: ', mean(obj), '\n', sep = '')
+  cat('\nVariance: ', var(obj), '\n\n', sep = '')
 }
 
 sfs <- function(n_vec, theta = 2){

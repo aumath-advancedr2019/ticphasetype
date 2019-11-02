@@ -7,7 +7,9 @@
 \alias{summary.dphase_type}
 \title{\code{dphase_type} class}
 \usage{
-dphase_type(n, init_probs = NULL, itons = NULL, theta = 2, moment = F, tail_stat = F)
+dphase_type(n = NULL, itons = NULL,
+            subint_mat = NULL, init_probs = NULL,
+            theta = 2, tail_stat = F)
 
 ## S3 method for class 'dphase_type'
 mean(object)
@@ -19,21 +21,40 @@ var(object)
 summary(object)
 }
 \arguments{
-\item{n}{integer larger than 1.}
-
-\item{init_probs}{vector, a one-row matrix or \code{NULL} (default).}
+\item{n}{integer larger than 1, or \code{NULL} (default).}
 
 \item{itons}{integer between 1 and n-1, or \code{NULL} (default).}
 
 \item{theta}{numeric.}
 
-\item{object}{an object of class \code{dphase_type}.}
+\item{tail_stat}{logical.}
 
-\item{type}{\code{'T_MRCA'}, \code{'T_Total'} or \code{NULL} (default).}
+\item{subint_mat}{matrix or \code{NULL} (default).}
+
+\item{init_probs}{vector, a one-row matrix or \code{NULL} (default).}
+
+\item{object}{an object of class \code{dphase_type}.}
 }
 \description{
-Description of the class \code{phase_type}, which represents discrete phase-type
+Description of the class \code{dphase_type}, which represents discrete phase-type
 distributions.
+}
+\details{
+\code{dphase_type} is the generator function for the discrete phase-type distribution class
+of the same name, which inherits from \code{list}. This function can easily produce phase-type
+representations of common statistics in genomics, such as the total number of segregating sites,
+the number of i-tons (singletons, doubletons, etc.) and the tail statistic.
+
+The discrete phase-type distribution can be generated in two different ways:
+\itemize{
+  \item By specifying whether the user wants a  discrete phase-type representation
+  of the total number of segregating sites (default), the number of i-tons, or the tail
+  statistic for a certain number of sequences \code{n}.
+  \item By supplying a user-defined sub-intensity matrix, with optional initial
+  probabilities.
+}
+
+See examples for further explanation on the usage.
 }
 \section{Methods (by generic)}{
 \itemize{
@@ -44,3 +65,19 @@ distributions.
 \item \code{summary}: summary of the discrete phase-type distribution.
 }}
 
+\examples{
+# Total number of segregating sites
+dphase_type(4)
+dphase_type(5, theta=0.5)
+
+# Number of singletons
+dph_example <- dphase_type(4, itons=1)
+mean(dph_example)
+var(dph_example)
+summary(dph_example)
+
+# Tail statistic
+dph_tail <- dphase_type(4, itons=2, tail_stat=TRUE)
+summary(dph_tail)
+
+}

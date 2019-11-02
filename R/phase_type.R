@@ -3,6 +3,16 @@
 #' Description of the class \code{phase_type}, which represents continuous phase-type
 #' distributions.
 #'
+#' \code{phase_type} is the generator function for the continuous phase-type distribution class
+#' of the same name, which inherits from \code{list}. It can be generated in two different ways:
+#' \itemize{
+#'   \item By specifying whether the user wants a phase-type representation of the
+#'   total time until the most recent common ancestor (MRCA) or the total tree
+#'   length, for a certain number of sequences \code{n}.
+#'   \item By supplying a user-defined sub-intensity matrix, with optional initial
+#'   probabilities.
+#' }
+#'
 #' @param object an object of class \code{phase_type}.
 #' @param type \code{'T_MRCA'}, \code{'T_Total'} or \code{NULL} (default).
 #' @param n integer larger than 1 or \code{NULL} (default).
@@ -11,6 +21,21 @@
 #'
 #' @usage phase_type(type = NULL, n = NULL,
 #'            subint_mat = NULL, init_probs = NULL)
+#'
+#' @examples
+#' # Time until the MRCA
+#' phase_type('T_MRCA', 4)
+#'
+#' # Total tree length
+#' ph_example <- phase_type('T_Total', 6)
+#' mean(ph_example)
+#' var(ph_example)
+#' summary(ph_example)
+#'
+#' # User-specified phase-type distribution
+#' subint_example <- matrix(runif(16), ncol=4)
+#' ph_user <- phase_type(subint_mat = subint_example)
+#' summary(ph_user)
 #'
 #' @export
 
@@ -65,22 +90,6 @@ phase_type <- function(type = NULL, n = NULL, subint_mat = NULL, init_probs = NU
   value
 }
 
-#' @describeIn phase_type
-#'
-#' summary of the continuous phase-type distribution.
-#'
-#' @usage ## S3 method for class 'phase_type'
-#' summary(object)
-#'
-#' @export
-
-summary.phase_type <- function(obj) {
-  cat('Subintensity matrix:\n')
-  print(obj$subint_mat)
-  cat('\nInitial probabilities:\n')
-  print(obj$init_probs)
-}
-
 
 moment_ph <- function(obj, m) {
   e <- matrix(rep(1,nrow(obj$subint_mat)), nrow(obj$subint_mat), 1)
@@ -120,6 +129,25 @@ var.phase_type <- function(obj) {
   moment_ph(obj, 2)-moment_ph(obj, 1)**2
 }
 
+#' @describeIn phase_type
+#'
+#' summary of the continuous phase-type distribution.
+#'
+#' @usage ## S3 method for class 'phase_type'
+#' summary(object)
+#'
+#' @export
+
+summary.phase_type <- function(obj) {
+  cat('\nSubintensity matrix:\n')
+  print(obj$subint_mat)
+  cat('\nInitial probabilities:\n')
+  print(obj$init_probs)
+  cat('\nDefect:\n')
+  print(obj$defect)
+  cat('\nMean: ', mean(obj), '\n', sep = '')
+  cat('\nVariance: ', var(obj), '\n\n', sep = '')
+}
 
 
 
