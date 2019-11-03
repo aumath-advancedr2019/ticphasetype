@@ -1,6 +1,7 @@
 ---
 title: "ticphasetype"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_document
 vignette: >
   %\VignetteIndexEntry{ticphasetype}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,6 +18,109 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(ticphasetype)
 ```
+
+#$T_{MRCA} and T_{Total}$
+
+In an evolutionary tree the time until two sequences coalesce $T_i$ can be measured in number of generations $R_i$ divided by the population size $N$, this is, $T_i=R_i/N$. $T_i$ can easily be proven to approximate to an exponential distribution with rate $\binom{i}{2}$.
+
+In order to understand the evolutionary history of sequences two additional quantities can be defined --namely the time until the most recent common ancestor $T_{MRCA}$ and the total tree length $T_{Total}$. $T_{MRCA}$ will simply be the sum of all times until two sequences coalesce, in other words $T_{MRCA}=T_n+T_{n-1}+...+T_2$, where $T_i\sim\binom{i}{2}$. $T_{Total}$, on the other hand, takes into account the length of all possible branches, so $T_{Total}=nT_n+(n-1)T_{n-1}+...+2T_2$ and, thus, $iT_i\sim \text{exp}(\binom{i-1}{2})$.
+
+The mean and variance of these two quantities can be derived relatively easy. Defining their distribution, however, has proven to be more challenging since both $T_{MRCA}$ and $T_{Total}$ are sums of independent exponentially distributed variables with different rates. Their distribution can be computed as a series of convolutions, but their formulation, application and interpretation might be challenging for the average population geneticist.
+
+Instead, we can think of the sum of exponential distributions as a continuous-time Markov chain, where coalescent events are represented as Markov jumps with rate $T_i$ for $T_{MRCA}$ and $iT_i$ for $T_{Total}$. The Markov chain will end with an absorbing state, which in both cases will be the MRCA. 
+
+The Markov chain can be represented using phase-type theory, where the jump rates are defined with a sub-intensity matrix $T$ and the initial distribution will be defined as a row vector $\pi$. If we define $\tau$ as the smallest time (or length) for which we are in the absorbing state, then $\tau\sim PH(\pi,T)$. This continuous phase-type distribution has well-documented and easy-to-implement formulas for the expectation, the variance, the survival function, the distribution function and the density function. Moreover, since both $\pi$ and $T$ can easily be speficied, we can easily represent evolutionary histories that do not follow the standard coalescent model and still use the same phase-type formulas. 
+
+`ticphasetype` contains an efficient implementation of continuous phase-type distributions. It has a user-friendly interface for creating phase-type representations of $T_{MRCA}$ and $T_{Total}$ under the standard coalescent model, but it also allows the user to specify their own sub-intensity matrix and initial probabilities for a more flexible implementation. 
+
+A `phase_type` class representing a continuous phase-type distribution for $T_{MRCA}$ can be generated using `phase_type()`. For example, when `n`=5:
+
+```{r}
+T_MRCA_ph <- phase_type(type = 'T_MRCA', n = 5)
+```
+
+There are a number of methods associated with the `phase_type`, such as:
+
+```{r}
+mean(T_MRCA_ph)
+```
+
+```{r}
+var(T_MRCA_ph)
+```
+
+```{r}
+summary(T_MRCA_ph)
+```
+
+$T_{Total}$ can also be represented using the `phase_type` class:
+
+```{r}
+T_Total_ph <- phase_type(type = 'T_Total', n = 5)
+```
+
+```{r}
+mean(T_Total_ph)
+```
+
+```{r}
+var(T_Total_ph)
+```
+
+```{r}
+summary(T_Total_ph)
+```
+
+Moreover, the height of an evolutionary tree can also be represented by a user-defined sub-intensity matrix. This is specially useful if the model does not follow Kingman’s n–coalescent, but other coalescent models such as the psi-coalescent or the beta-coalescent. As an example, an arbitrary sub-intensity matrix can be generated:
+
+```{r}
+n=5
+subint_arbit <- matrix(0, nrow = n-1, ncol = n-1)
+
+for (i in 1:(n-1)) {
+  for (j in 1:(n-1)) {
+    if (j>i) {
+      subint_arbit[i,j] <- runif(1, 1, 10)
+    }
+  }
+  subint_arbit[i,i] <- -sum(subint_arbit[i,])
+}
+
+subint_arbit[n-1,n-1] <- -1
+```
+
+```{r}
+subint_arbit
+```
+
+
+This matrix can be supplied to the `phase_type()` generator function, together with optional initial probabilities:
+
+```{r}
+T_arbit_ph <- phase_type(subint_mat = subint_arbit)
+```
+
+If the initial probabilities are not supplied (as is the case above), then `phase_type()` automatically generates a vector of initial probabilities as $\pi=(1,0,...,0)$ and raises a warning message. 
+
+We can apply the methods `phase_type` class methods for this new user-tailored phase-type distribution:
+
+```{r}
+mean(T_arbit_ph)
+```
+
+```{r}
+var(T_arbit_ph)
+```
+
+```{r}
+summary(T_arbit_ph)
+```
+
+
+
+
+
+
 
 
 
