@@ -23,7 +23,7 @@
 #'            subint_mat = NULL, init_probs = NULL)
 #'
 #' @examples
-#' library(qpdf) # I added this for devtools::check() to pass.
+#' #library(qpdf) # I added this for devtools::check() to pass.
 #' # Time until the MRCA
 #' phase_type('T_MRCA', 4)
 #'
