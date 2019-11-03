@@ -55,7 +55,7 @@ of the same name, which inherits from \code{list}. It can be generated in two di
 }}
 
 \examples{
-library(qpdf) # I added this for devtools::check() to pass.
+#library(qpdf) # I added this for devtools::check() to pass.
 # Time until the MRCA
 phase_type('T_MRCA', 4)
 

@@ -70,7 +70,7 @@ See examples for further explanation on the usage.
 dphase_type(4)
 dphase_type(5, theta=0.5)
 
-# This is example is not done:
+# Below examples are not implemented:
 # Number of singletons
 #dph_example <- dphase_type(4, itons=1)
 #mean(dph_example)
