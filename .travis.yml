@@ -13,7 +13,13 @@ r:
 os:
   - linux
   - osx
+#  - windows
 
 
 cache:
   packages: true
+
+
+jobs:
+  allow_failures:
+    - os: osx
