@@ -1,7 +1,7 @@
 ---
 title: "ticphasetype"
 output: 
-  rmarkdown::html_document
+  pdf_document
 vignette: >
   %\VignetteIndexEntry{ticphasetype}
   %\VignetteEngine{knitr::rmarkdown}
