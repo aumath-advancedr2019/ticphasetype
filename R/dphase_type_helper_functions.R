@@ -5,8 +5,8 @@
 #' Function to compute reward transformed matrix T* as well as vector of initial probabilities
 #' and the defect
 #'
-#' @import partitions
-#' @import dplyr
+# @import partitions
+# @import dplyr
 #'
 #' @usage rewardtransformparm(n, init_probs, subint_mat)
 #'

@@ -23,6 +23,7 @@
 #'            subint_mat = NULL, init_probs = NULL)
 #'
 #' @examples
+#' library(qpdf) # I added this for devtools::check() to pass.
 #' # Time until the MRCA
 #' phase_type('T_MRCA', 4)
 #'
@@ -38,6 +39,7 @@
 #' summary(ph_user)
 #'
 #' @export
+
 
 
 phase_type <- function(type = NULL, n = NULL, subint_mat = NULL, init_probs = NULL) {
