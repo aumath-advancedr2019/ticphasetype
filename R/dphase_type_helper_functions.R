@@ -5,7 +5,7 @@
 #' Function to compute reward transformed matrix T* as well as vector of initial probabilities
 #' and the defect
 #'
-#' @import partitions
+#'
 # @import dplyr
 #'
 #' @usage rewardtransformparm(n, init_probs, subint_mat)
@@ -60,6 +60,8 @@ rewardtransformparm <- function(rewards, init_probs, subint_mat){
 #' Rate Matrix with corresponding state space
 #'
 #' @usage RateMAndStateSpace(n)
+#'
+#' @import partitions
 #'
 #' @export
 

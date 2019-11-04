@@ -19,16 +19,16 @@
 #'
 #' Density function.
 #'
-#' @usage ddphtype(x, subint_mat, init_probs)
+#' @usage ddphtype(x, disc_phase_type)
 #'
 #' @export
 
-ddphtype <- function(x, dphase_type){
-  e = matrix(1, nrow = nrow(phase_type$subint_mat))
-  t = e - phase_type$subint_mat %*% e
+ddphtype <- function(x, disc_phase_type){
+  e = matrix(1, nrow = nrow(disc_phase_type$subint_mat))
+  t = e - disc_phase_type$subint_mat %*% e
   dens_vec = c()
   for(i in x){
-    dens_vec <- c(dens_vec, phase_type$init_probs %*% (phase_type$subint_mat %^% (i-1)) %*% t)
+    dens_vec <- c(dens_vec, disc_phase_type$init_probs %*% (disc_phase_type$subint_mat %^% (i-1)) %*% t)
   }
   dens_vec
 }
@@ -36,15 +36,15 @@ ddphtype <- function(x, dphase_type){
 #' @describeIn discrete_ph
 #'
 #' Distribution function.
-#' @usage pdphtype(x, subint_mat, init_probs)
+#' @usage pdphtype(x, disc_phase_type)
 #'
 #' @export
 
-pdphtype <- function(q, phase_type){
-  e = matrix(1, nrow = nrow(phase_type$subint_mat))
+pdphtype <- function(q, disc_phase_type){
+  e = matrix(1, nrow = nrow(disc_phase_type$subint_mat))
   prob_vec = c()
   for(i in q){
-    prob_vec <- c(prob_vec, 1 - phase_type$init_probs %*% (phase_type$subint_mat %^% i) %*% e)
+    prob_vec <- c(prob_vec, 1 - disc_phase_type$init_probs %*% (disc_phase_type$subint_mat %^% i) %*% e)
   }
   prob_vec
 }

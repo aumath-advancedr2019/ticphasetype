@@ -10,7 +10,7 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
-Depends: expm, tibble, ggplot2
+Depends: expm, tibble, ggplot2, partitions
 Suggests: 
     testthat (>= 2.1.0),
     knitr,

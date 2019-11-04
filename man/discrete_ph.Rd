@@ -6,9 +6,9 @@
 \title{Density, distribution function, quantile function and random generation for
 the discrete phase-type distribution}
 \usage{
-ddphtype(x, subint_mat, init_probs)
+ddphtype(x, disc_phase_type)
 
-pdphtype(x, subint_mat, init_probs)
+pdphtype(x, disc_phase_type)
 }
 \arguments{
 \item{x, q}{vector of quantiles.}

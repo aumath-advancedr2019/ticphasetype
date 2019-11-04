@@ -1,9 +1,9 @@
-#' \code{dphase_type} class
+#' \code{disc_phase_type} class
 #'
-#' Description of the class \code{dphase_type}, which represents discrete phase-type
+#' Description of the class \code{disc_phase_type}, which represents discrete phase-type
 #' distributions.
 #'
-#' \code{dphase_type} is the generator function for the discrete phase-type distribution class
+#' \code{disc_phase_type} is the generator function for the discrete phase-type distribution class
 #' of the same name, which inherits from \code{list}. This function can easily produce phase-type
 #' representations of common statistics in genomics, such as the total number of segregating sites,
 #' the number of i-tons (singletons, doubletons, etc.) and the tail statistic.
@@ -19,7 +19,7 @@
 #'
 #' See examples for further explanation on the usage.
 #'
-#' @param object an object of class \code{dphase_type}.
+#' @param object an object of class \code{disc_phase_type}.
 #' @param n integer larger than 1, or \code{NULL} (default).
 #' @param itons integer between 1 and n-1, or \code{NULL} (default).
 #' @param init_probs vector, a one-row matrix or \code{NULL} (default).
@@ -27,29 +27,29 @@
 #' @param theta numeric.
 #' @param tail_stat logical.
 #'
-#' @usage dphase_type(n = NULL, itons = NULL,
+#' @usage disc_phase_type(n = NULL, itons = NULL,
 #'             subint_mat = NULL, init_probs = NULL,
 #'             theta = 2, tail_stat = F)
 #'
 #' @examples
 #' # Total number of segregating sites
-#' dphase_type(4)
-#' dphase_type(5, theta=0.5)
+#' disc_phase_type(4)
+#' disc_phase_type(5, theta=0.5)
 #'
 #' # Below examples are not implemented:
 #' # Number of singletons
-#' dph_example <- dphase_type(4, itons=1)
-#' mean(dph_example)
-#' var(dph_example)
-#' summary(dph_example)
+#' disc_ph_example <- disc_phase_type(4, itons=1)
+#' mean(disc_ph_example)
+#' var(disc_ph_example)
+#' summary(disc_ph_example)
 #'
 #' # Tail statistic
-#' dph_tail <- dphase_type(4, itons=2, tail_stat=TRUE)
-#' summary(dph_tail)
+#' disc_ph_tail <- disc_phase_type(4, itons=2, tail_stat=TRUE)
+#' summary(disc_ph_tail)
 #'
 #' @export
 
-dphase_type = function(n = NULL, itons = NULL, theta = 2, tail_stat = F, subint_mat = NULL, init_probs = NULL){
+disc_phase_type = function(n = NULL, itons = NULL, theta = 2, tail_stat = F, subint_mat = NULL, init_probs = NULL){
 
   if (is.null(n)) {
     if (is.null(subint_mat)) {
@@ -153,21 +153,21 @@ dphase_type = function(n = NULL, itons = NULL, theta = 2, tail_stat = F, subint_
   else{
     value = list(subint_mat = P, init_probs = alpha, defect = defect)
   }
-  attr(value, 'class') <- 'dphase_type'
+  attr(value, 'class') <- 'disc_phase_type'
   value
 }
 
 
-#' @describeIn dphase_type
+#' @describeIn disc_phase_type
 #'
 #' mean of the discrete phase-type distribution.
 #'
-#' @usage ## S3 method for class 'dphase_type'
+#' @usage ## S3 method for class 'disc_phase_type'
 #' mean(object)
 #'
 #' @export
 
-mean.dphase_type <- function(obj) {
+mean.disc_phase_type <- function(obj) {
   mean <- sum(obj$init_probs%*%solve(diag(nrow = nrow(obj$subint_mat))-obj$subint_mat))
   as.numeric(mean+obj$defect)
 }
@@ -178,32 +178,32 @@ var <- function(x, ...) {
   UseMethod('var', x)
 }
 
-#' @describeIn dphase_type
+#' @describeIn disc_phase_type
 #'
 #' variance of the discrete phase-type distribution.
 #'
-#' @usage ## S3 method for class 'dphase_type'
+#' @usage ## S3 method for class 'disc_phase_type'
 #' var(object)
 #'
 #' @export
 
-var.dphase_type <- function(obj) {
+var.disc_phase_type <- function(obj) {
   variance <- sum(2*obj$init_probs%*%obj$subint_mat%*%solve((diag(nrow = nrow(obj$subint_mat))-obj$subint_mat)%^%2)) +
     mean(obj) -
     mean(obj)^2
   as.numeric(variance)
 }
 
-#' @describeIn dphase_type
+#' @describeIn disc_phase_type
 #'
 #' summary of the discrete phase-type distribution.
 #'
-#' @usage ## S3 method for class 'dphase_type'
+#' @usage ## S3 method for class 'disc_phase_type'
 #' summary(object)
 #'
 #' @export
 
-summary.dphase_type <- function(obj) {
+summary.disc_phase_type <- function(obj) {
   cat('\nSubintensity matrix:\n')
   print(obj$subint_mat)
   cat('\nInitial probabilities:\n')
