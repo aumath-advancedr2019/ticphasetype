@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 library(ticphasetype)
 ```
 
-#$T_{MRCA} and T_{Total}$
+#Continuous phase-type distributions: $T_{MRCA}$ and $T_{Total}$
 
 In an evolutionary tree the time until two sequences coalesce $T_i$ can be measured in number of generations $R_i$ divided by the population size $N$, this is, $T_i=R_i/N$. $T_i$ can easily be proven to approximate to an exponential distribution with rate $\binom{i}{2}$.
 
@@ -32,6 +32,8 @@ Instead, we can think of the sum of exponential distributions as a continuous-ti
 The Markov chain can be represented using phase-type theory, where the jump rates are defined with a sub-intensity matrix $T$ and the initial distribution will be defined as a row vector $\pi$. If we define $\tau$ as the smallest time (or length) for which we are in the absorbing state, then $\tau\sim PH(\pi,T)$. This continuous phase-type distribution has well-documented and easy-to-implement formulas for the expectation, the variance, the survival function, the distribution function and the density function. Moreover, since both $\pi$ and $T$ can easily be speficied, we can easily represent evolutionary histories that do not follow the standard coalescent model and still use the same phase-type formulas. 
 
 `ticphasetype` contains an efficient implementation of continuous phase-type distributions. It has a user-friendly interface for creating phase-type representations of $T_{MRCA}$ and $T_{Total}$ under the standard coalescent model, but it also allows the user to specify their own sub-intensity matrix and initial probabilities for a more flexible implementation. 
+
+##$T_{MRCA}$
 
 A `phase_type` class representing a continuous phase-type distribution for $T_{MRCA}$ can be generated using `phase_type()`. For example, when `n`=5:
 
@@ -53,6 +55,8 @@ var(T_MRCA_ph)
 summary(T_MRCA_ph)
 ```
 
+##$T_{Total}$
+
 $T_{Total}$ can also be represented using the `phase_type` class:
 
 ```{r}
@@ -60,16 +64,10 @@ T_Total_ph <- phase_type(type = 'T_Total', n = 5)
 ```
 
 ```{r}
-mean(T_Total_ph)
-```
-
-```{r}
-var(T_Total_ph)
-```
-
-```{r}
 summary(T_Total_ph)
 ```
+
+##User-defined sub-intensity matrix
 
 Moreover, the height of an evolutionary tree can also be represented by a user-defined sub-intensity matrix. This is specially useful if the model does not follow Kingman’s n–coalescent, but other coalescent models such as the psi-coalescent or the beta-coalescent. As an example, an arbitrary sub-intensity matrix can be generated:
 
@@ -105,26 +103,55 @@ If the initial probabilities are not supplied (as is the case above), then `phas
 We can apply the methods `phase_type` class methods for this new user-tailored phase-type distribution:
 
 ```{r}
-mean(T_arbit_ph)
-```
-
-```{r}
-var(T_arbit_ph)
-```
-
-```{r}
 summary(T_arbit_ph)
 ```
 
+##Density, distribution and quantile functions
+
+`ticphasetype` also includes the density function (`dphtype()`), quantile function (`qphtype()`), distribution function (`pphtype()`) and random draw generator (`rphtype()`) for the continuous phase-type distribution:
+
+```{r}
+dphtype(0.5, T_MRCA_ph)
+```
+
+```{r}
+x <- seq(0,10,0.1)
+y <- dphtype(x, T_MRCA_ph)
+plot(x, y)
+title('Density function of T_MRCA')
+```
+
+```{r}
+qphtype(0.5, T_MRCA_ph)
+```
+
+```{r}
+x <- seq(0,0.99,0.01)
+y <- qphtype(x, T_MRCA_ph)
+plot(x, y)
+title('Quantile function of T_MRCA')
+```
+
+```{r}
+pphtype(0.5, T_MRCA_ph)
+```
+
+```{r}
+x <- seq(0,6,0.1)
+y <- pphtype(x, T_MRCA_ph)
+plot(x, y)
+title('Distribution function of T_MRCA')
+```
 
 
+```{r}
+rphtype(3, T_MRCA_ph)
+```
 
-
-
-
-
-
-
+```{r}
+x <- rphtype(10000, T_MRCA_ph)
+hist(x, main = 'Random draws of T_MRCA', breaks=20)
+```
 
 
 
