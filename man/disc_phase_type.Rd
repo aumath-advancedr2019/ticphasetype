@@ -7,18 +7,17 @@
 \alias{summary.disc_phase_type}
 \title{\code{disc_phase_type} class}
 \usage{
-disc_phase_type(n = NULL, itons = NULL,
-            subint_mat = NULL, init_probs = NULL,
-            theta = 2, tail_stat = F)
+disc_phase_type(n = NULL, itons = NULL, theta = 2, tail_stat = F,
+  subint_mat = NULL, init_probs = NULL)
 
 ## S3 method for class 'disc_phase_type'
-mean(object)
+mean(obj)
 
 ## S3 method for class 'disc_phase_type'
-var(object)
+var(obj)
 
 ## S3 method for class 'disc_phase_type'
-summary(object)
+summary(obj)
 }
 \arguments{
 \item{n}{integer larger than 1, or \code{NULL} (default).}
@@ -33,7 +32,7 @@ summary(object)
 
 \item{init_probs}{vector, a one-row matrix or \code{NULL} (default).}
 
-\item{object}{an object of class \code{disc_phase_type}.}
+\item{obj}{an object of class \code{disc_phase_type}.}
 }
 \description{
 Description of the class \code{disc_phase_type}, which represents discrete phase-type

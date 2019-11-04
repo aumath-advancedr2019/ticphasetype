@@ -19,19 +19,15 @@ rphtype(n_samples, phase_type, granularity = 0.01)
 \arguments{
 \item{x, q}{vector of quantiles.}
 
+\item{obj}{an object of class \code{phase_type} or \code{disc_phase_type}.}
+
 \item{p}{vector of probabilities.}
 
 \item{n}{number of observations.}
 
 \item{granularity}{distance between numbers drawable}
 
-\item{phase_type}{an object of class \code{phase_type}.}
-
-\item{n_samples}{number of samples to draw.}
-
-\item{n_OTU}{number of OTUs to consider}
-
-\item{type}{type of calculation ("T_MRCA" and later S_total)}
+\item{n}{number of samples to draw.}
 }
 \description{
 Density, distribution function, quantile function and random generation for

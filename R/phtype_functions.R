@@ -4,11 +4,9 @@
 #' @param x,q vector of quantiles.
 #' @param p vector of probabilities.
 #' @param n number of observations.
-#' @param phase_type an object of class \code{phase_type}.
-#' @param n_samples number of samples to draw.
-#' @param n_OTU number of OTUs to consider
+#' @param obj an object of class \code{phase_type} or \code{disc_phase_type}.
+#' @param n number of samples to draw.
 #' @param granularity distance between numbers drawable
-#' @param type type of calculation ("T_MRCA" and later S_total)
 #'
 #' @export
 
@@ -52,6 +50,8 @@ dphtype <- function(x, obj){
 #' Quantile Function.
 #'
 #' @usage qphtype(p, obj)
+#'
+#' @import stats
 #'
 #' @export
 

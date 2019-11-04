@@ -7,17 +7,17 @@
 \alias{summary.phase_type}
 \title{\code{phase_type} class}
 \usage{
-phase_type(type = NULL, n = NULL,
-           subint_mat = NULL, init_probs = NULL)
+phase_type(type = NULL, n = NULL, subint_mat = NULL,
+  init_probs = NULL)
 
 ## S3 method for class 'phase_type'
-mean(object)
+mean(obj)
 
 ## S3 method for class 'phase_type'
-var(object)
+var(obj)
 
 ## S3 method for class 'phase_type'
-summary(object)
+summary(obj)
 }
 \arguments{
 \item{type}{\code{'T_MRCA'}, \code{'T_Total'} or \code{NULL} (default).}
@@ -28,7 +28,7 @@ summary(object)
 
 \item{init_probs}{vector, a one-row matrix or \code{NULL} (default).}
 
-\item{object}{an object of class \code{phase_type}.}
+\item{obj}{an object of class \code{phase_type}.}
 }
 \description{
 Description of the class \code{phase_type}, which represents continuous phase-type

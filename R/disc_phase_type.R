@@ -19,7 +19,7 @@
 #'
 #' See examples for further explanation on the usage.
 #'
-#' @param object an object of class \code{disc_phase_type}.
+#' @param obj an object of class \code{disc_phase_type}.
 #' @param n integer larger than 1, or \code{NULL} (default).
 #' @param itons integer between 1 and n-1, or \code{NULL} (default).
 #' @param init_probs vector, a one-row matrix or \code{NULL} (default).
@@ -163,27 +163,23 @@ disc_phase_type = function(n = NULL, itons = NULL, theta = 2, tail_stat = F, sub
 #' mean of the discrete phase-type distribution.
 #'
 #' @usage ## S3 method for class 'disc_phase_type'
-#' mean(object)
+#' mean(obj)
 #'
 #' @export
 
-mean.disc_phase_type <- function(obj) {
-  mean <- sum(obj$init_probs%*%solve(diag(nrow = nrow(obj$subint_mat))-obj$subint_mat))
-  as.numeric(mean+obj$defect)
+mean.disc_phase_type <- function(x, ...) {
+  mean <- sum(x$init_probs%*%solve(diag(nrow = nrow(x$subint_mat))-x$subint_mat))
+  as.numeric(mean+x$defect)
 }
 
-#' @export
 
-var <- function(x, ...) {
-  UseMethod('var', x)
-}
 
 #' @describeIn disc_phase_type
 #'
 #' variance of the discrete phase-type distribution.
 #'
 #' @usage ## S3 method for class 'disc_phase_type'
-#' var(object)
+#' var(obj)
 #'
 #' @export
 
@@ -199,19 +195,19 @@ var.disc_phase_type <- function(obj) {
 #' summary of the discrete phase-type distribution.
 #'
 #' @usage ## S3 method for class 'disc_phase_type'
-#' summary(object)
+#' summary(obj)
 #'
 #' @export
 
-summary.disc_phase_type <- function(obj) {
+summary.disc_phase_type <- function(object, ...) {
   cat('\nSubintensity matrix:\n')
-  print(obj$subint_mat)
+  print(object$subint_mat)
   cat('\nInitial probabilities:\n')
-  print(obj$init_probs)
+  print(object$init_probs)
   cat('\nDefect:\n')
-  print(obj$defect)
-  cat('\nMean: ', mean(obj), '\n', sep = '')
-  cat('\nVariance: ', var(obj), '\n\n', sep = '')
+  print(object$defect)
+  cat('\nMean: ', mean(object), '\n', sep = '')
+  cat('\nVariance: ', var(object), '\n\n', sep = '')
 }
 
 

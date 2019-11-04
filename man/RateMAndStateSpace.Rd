@@ -6,6 +6,9 @@
 \usage{
 RateMAndStateSpace(n)
 }
+\arguments{
+\item{n}{integer larger than 1.}
+}
 \description{
 Rate Matrix with corresponding state space
 }

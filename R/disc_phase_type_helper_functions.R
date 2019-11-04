@@ -61,6 +61,8 @@ rewardtransformparm <- function(rewards, init_probs, subint_mat){
 #'
 #' @usage RateMAndStateSpace(n)
 #'
+#' @param n integer larger than 1.
+#'
 #' @import partitions
 #'
 #' @export

@@ -32,17 +32,17 @@ sanity_check_rphdph = function(OTUs = 5, draws = 1000000, granularity = 0.01) {
   phase_type <- phase_type(type = 'T_MRCA', n = OTUs)
   r_data = tibble(x = rphtype(draws, phase_type, granularity),
                   p = rep(NA, length(x)),
-                  data = "random sampling")# %>% ggplot(aes(x)) + geom_histogram(binwidth = granularity)
+                  type = "random sampling")# %>% ggplot(aes(x)) + geom_histogram(binwidth = granularity)
 
 
   # dphtype data
   d_data = tibble(x = seq(0, 10, granularity),
                   p = dphtype(seq(0, 10, granularity), phase_type),
-                  data = "theoretical")
+                  type = "theoretical")
   #
-  ggplot(mapping = aes(color = data)) +
-    geom_point(mapping = aes(x, p), data = d_data) +
-    geom_line(mapping = aes(r_data$x), data = r_data, stat = "density", size = 1) +
+  ggplot() +
+    geom_point(mapping = aes(x, p, color = type), data = d_data) +
+    geom_line(mapping = aes(x, color = type), data = r_data, stat = "density", size = 1) +
     labs(subtitle = paste0("Comparison of dphtype() and rphtype() with ", draws, " random draws and a gran. of ", granularity))
 }
 
