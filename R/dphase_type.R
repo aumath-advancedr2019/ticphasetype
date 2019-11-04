@@ -214,20 +214,26 @@ summary.disc_phase_type <- function(obj) {
   cat('\nVariance: ', var(obj), '\n\n', sep = '')
 }
 
-sfs <- function(n_vec, theta = 2){
-  sfs_df <- tibble()
-  # iterate through sample sizes given in n_vec
-  for (i in 1:length(n_vec)){
 
-    # calculate E[ksi_i] and Var[ksi_i] for every i < n
-    for (iton in 1:(n_vec[i]-1)){
-      dph = discph(n_vec[i], itons = iton, moment = T, theta = theta)
-      varksi = var(dph)
-      ksi = dmoments(dph, 1) - 1 + dph$defect
-      sfs_df <- bind_rows(sfs_df, tibble(n = n_vec[i], itons = iton, E_ksi = ksi, Var_ksi = varksi))
+sfs <- function(n, theta = 2, init_probs = NULL){
+  E_ksi = rep(NA, n-1)
+  Var_ksi = rep(NA, n-1)
+
+  states = nrow(RateMAndStateSpace(n)$StSpM)-1
+  if(!is.null(init_probs)){
+    if(length(init_probs) != states){
+      message('Zeros added to init_probs vector to make it the right size')
+      init_probs = c(init_probs, rep(0, states - length(init_probs)))
     }
   }
-  sfs_df
+    # calculate E[ksi_i] and Var[ksi_i] for every i < n
+  for (iton in 1:(n-1)){
+    dph = disc_phase_type(n, itons = iton, theta = theta, init_probs = init_probs)
+    E_ksi[iton] = mean(dph) - 1 + dph$defect
+    Var_ksi[iton] = var(dph)
+  }
+
+  list(E_ksi = E_ksi, Var_ksi = Var_ksi)
 }
 
 #----------------------------------------------------------------------------------------------
