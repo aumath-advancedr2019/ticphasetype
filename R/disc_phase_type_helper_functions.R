@@ -8,7 +8,7 @@
 #'
 # @import dplyr
 #'
-#' @usage rewardtransformparm(n, init_probs, subint_mat)
+#' @usage rewardtransformparm(rewards, init_probs, subint_mat)
 #'
 #' @export
 

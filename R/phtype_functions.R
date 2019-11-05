@@ -105,7 +105,7 @@ pphtype <- function(q, obj){
 #'
 #' Random number generator.
 #'
-#' @usage rphtype(n_samples, phase_type, granularity = 0.01)
+#' @usage rphtype(n, obj, granularity = 0.01)
 #'
 #' @export
 

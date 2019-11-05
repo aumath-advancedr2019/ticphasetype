@@ -19,7 +19,6 @@
 #'
 #' See examples for further explanation on the usage.
 #'
-#' @param obj an object of class \code{disc_phase_type}.
 #' @param n integer larger than 1, or \code{NULL} (default).
 #' @param itons integer between 1 and n-1, or \code{NULL} (default).
 #' @param init_probs vector, a one-row matrix or \code{NULL} (default).
@@ -28,8 +27,9 @@
 #' @param tail_stat logical.
 #'
 #' @usage disc_phase_type(n = NULL, itons = NULL,
-#'             subint_mat = NULL, init_probs = NULL,
-#'             theta = 2, tail_stat = F)
+#'             theta = 2, tail_stat = F,
+#'             subint_mat = NULL, init_probs = NULL)
+#'
 #'
 #' @examples
 #' # Total number of segregating sites
@@ -158,13 +158,7 @@ disc_phase_type = function(n = NULL, itons = NULL, theta = 2, tail_stat = F, sub
 }
 
 
-#' @describeIn disc_phase_type
-#'
-#' mean of the discrete phase-type distribution.
-#'
-#' @usage ## S3 method for class 'disc_phase_type'
-#' mean(obj)
-#'
+
 #' @export
 
 mean.disc_phase_type <- function(x, ...) {
@@ -174,13 +168,8 @@ mean.disc_phase_type <- function(x, ...) {
 
 
 
-#' @describeIn disc_phase_type
-#'
-#' variance of the discrete phase-type distribution.
-#'
-#' @usage ## S3 method for class 'disc_phase_type'
-#' var(obj)
-#'
+
+
 #' @export
 
 var.disc_phase_type <- function(obj) {
@@ -190,13 +179,7 @@ var.disc_phase_type <- function(obj) {
   as.numeric(variance)
 }
 
-#' @describeIn disc_phase_type
-#'
-#' summary of the discrete phase-type distribution.
-#'
-#' @usage ## S3 method for class 'disc_phase_type'
-#' summary(obj)
-#'
+
 #' @export
 
 summary.disc_phase_type <- function(object, ...) {
@@ -232,21 +215,4 @@ sfs <- function(n, theta = 2, init_probs = NULL){
   list(E_ksi = E_ksi, Var_ksi = Var_ksi)
 }
 
-#----------------------------------------------------------------------------------------------
-#' dsegsites
-#'
-#' Distribution function for segregating sites
-#'
-#' @usage pdphtype(k, alpha, T_star, theta)
-#'
-#' @export
-
-dsegsites <- function(x, obj){
-  p = matrix(1, nrow = nrow(obj$subint_mat)) - P %*% matrix(1, nrow = nrow(obj$subint_mat))
-  dens_vec = c()
-  for (i in x){
-    dens_vec <- c(dens_vec, obj$init_probs %*% (obj$subint_mat%^%(i)) %*% p)
-  }
-  dens_vec
-}
 

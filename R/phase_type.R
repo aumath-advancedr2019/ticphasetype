@@ -13,7 +13,6 @@
 #'   probabilities.
 #' }
 #'
-#' @param obj an object of class \code{phase_type}.
 #' @param type \code{'T_MRCA'}, \code{'T_Total'} or \code{NULL} (default).
 #' @param n integer larger than 1 or \code{NULL} (default).
 #' @param subint_mat matrix or \code{NULL} (default).
@@ -101,14 +100,6 @@ moment_ph <- function(obj, m) {
 
 
 
-
-#' @describeIn phase_type
-#'
-#' mean of the continuous phase-type distribution.
-#'
-#' @usage ## S3 method for class 'phase_type'
-#' mean(obj)
-#'
 #' @export
 
 mean.phase_type <- function(x, ...) {
@@ -127,26 +118,13 @@ var <- function(obj) {
   UseMethod('var', obj)
 }
 
-#' @describeIn phase_type
-#'
-#' variance of the continuous phase-type distribution.
-#'
-#' @usage ## S3 method for class 'phase_type'
-#' var(obj)
-#'
 #' @export
 
 var.phase_type <- function(obj) {
   moment_ph(obj, 2)-moment_ph(obj, 1)**2
 }
 
-#' @describeIn phase_type
-#'
-#' summary of the continuous phase-type distribution.
-#'
-#' @usage ## S3 method for class 'phase_type'
-#' summary(obj)
-#'
+
 #' @export
 
 summary.phase_type <- function(object, ...) {

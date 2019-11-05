@@ -2,22 +2,11 @@
 % Please edit documentation in R/disc_phase_type.R
 \name{disc_phase_type}
 \alias{disc_phase_type}
-\alias{mean.disc_phase_type}
-\alias{var.disc_phase_type}
-\alias{summary.disc_phase_type}
 \title{\code{disc_phase_type} class}
 \usage{
-disc_phase_type(n = NULL, itons = NULL, theta = 2, tail_stat = F,
-  subint_mat = NULL, init_probs = NULL)
-
-## S3 method for class 'disc_phase_type'
-mean(obj)
-
-## S3 method for class 'disc_phase_type'
-var(obj)
-
-## S3 method for class 'disc_phase_type'
-summary(obj)
+disc_phase_type(n = NULL, itons = NULL,
+            theta = 2, tail_stat = F,
+            subint_mat = NULL, init_probs = NULL)
 }
 \arguments{
 \item{n}{integer larger than 1, or \code{NULL} (default).}
@@ -31,8 +20,6 @@ summary(obj)
 \item{subint_mat}{matrix or \code{NULL} (default).}
 
 \item{init_probs}{vector, a one-row matrix or \code{NULL} (default).}
-
-\item{obj}{an object of class \code{disc_phase_type}.}
 }
 \description{
 Description of the class \code{disc_phase_type}, which represents discrete phase-type
@@ -55,15 +42,6 @@ The discrete phase-type distribution can be generated in two different ways:
 
 See examples for further explanation on the usage.
 }
-\section{Methods (by generic)}{
-\itemize{
-\item \code{mean}: mean of the discrete phase-type distribution.
-
-\item \code{var}: variance of the discrete phase-type distribution.
-
-\item \code{summary}: summary of the discrete phase-type distribution.
-}}
-
 \examples{
 # Total number of segregating sites
 disc_phase_type(4)

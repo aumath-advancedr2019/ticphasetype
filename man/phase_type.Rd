@@ -2,22 +2,10 @@
 % Please edit documentation in R/phase_type.R
 \name{phase_type}
 \alias{phase_type}
-\alias{mean.phase_type}
-\alias{var.phase_type}
-\alias{summary.phase_type}
 \title{\code{phase_type} class}
 \usage{
-phase_type(type = NULL, n = NULL, subint_mat = NULL,
-  init_probs = NULL)
-
-## S3 method for class 'phase_type'
-mean(obj)
-
-## S3 method for class 'phase_type'
-var(obj)
-
-## S3 method for class 'phase_type'
-summary(obj)
+phase_type(type = NULL, n = NULL,
+           subint_mat = NULL, init_probs = NULL)
 }
 \arguments{
 \item{type}{\code{'T_MRCA'}, \code{'T_Total'} or \code{NULL} (default).}
@@ -27,8 +15,6 @@ summary(obj)
 \item{subint_mat}{matrix or \code{NULL} (default).}
 
 \item{init_probs}{vector, a one-row matrix or \code{NULL} (default).}
-
-\item{obj}{an object of class \code{phase_type}.}
 }
 \description{
 Description of the class \code{phase_type}, which represents continuous phase-type
@@ -45,15 +31,6 @@ of the same name, which inherits from \code{list}. It can be generated in two di
   probabilities.
 }
 }
-\section{Methods (by generic)}{
-\itemize{
-\item \code{mean}: mean of the continuous phase-type distribution.
-
-\item \code{var}: variance of the continuous phase-type distribution.
-
-\item \code{summary}: summary of the continuous phase-type distribution.
-}}
-
 \examples{
 #library(qpdf) # I added this for devtools::check() to pass.
 # Time until the MRCA

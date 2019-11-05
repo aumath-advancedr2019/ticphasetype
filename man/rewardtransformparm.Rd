@@ -5,7 +5,7 @@
 \title{Functions used to transform to discrete phase type and calculate the number of segregating sites
 RewardTransformParm}
 \usage{
-rewardtransformparm(n, init_probs, subint_mat)
+rewardtransformparm(rewards, init_probs, subint_mat)
 }
 \description{
 Function to compute reward transformed matrix T* as well as vector of initial probabilities

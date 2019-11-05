@@ -14,7 +14,7 @@ qphtype(p, obj)
 
 pphtype(q, obj)
 
-rphtype(n_samples, phase_type, granularity = 0.01)
+rphtype(n, obj, granularity = 0.01)
 }
 \arguments{
 \item{x, q}{vector of quantiles.}
