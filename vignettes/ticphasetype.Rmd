@@ -250,9 +250,7 @@ title('Distribution function of S_total with theta=3 and n=10')
 ```
 
 ```{r}
-barplot(sfs_10$E_ksi, names.arg = 1:9, 
-        main ='Site-frequency spectrum for n=10',
-        xlab = 'i-tons', ylab = 'Counts')
+sfs(10, plot = TRUE)
 ```
 
 ## Tail-Statistic
