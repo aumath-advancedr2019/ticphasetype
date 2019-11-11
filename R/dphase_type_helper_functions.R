@@ -68,7 +68,7 @@ RateMAndStateSpace <- function(n){
   ## Possible states
   ##----------------------------------------------------
   ## Size of the state space (number of states)
-  nSt <- P(n)
+  nSt <- partitions::P(n)
   ## Definition of the state space
   StSpM <- matrix(ncol=n,nrow=nSt)
   ## Set of partitions of [n]

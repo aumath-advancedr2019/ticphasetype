@@ -1,6 +1,9 @@
 
+
 #' @import testthat
 
+
+# 1 Test continuous phase type functions
 
 test_that("dphtype gives sensible results", {
   pht = phase_type('T_MRCA', 6)
@@ -74,4 +77,23 @@ test_that("rphtype gives sensible results", {
 })
 
 
+# clean data
+#
+# library(tidyverse)
+# data1 = read_delim(
+#   "ALL.chrMT.phase3_callmom-v0_4.20130502.genotypes.vcf",
+#   "\t",
+#   escape_double = FALSE,
+#   comment = "##",
+#   trim_ws = TRUE
+# ) %>% select(starts_with(c("HG", "NA")))
+# #data1 = data1[10:ncol(data1), 1:1000]
+# data1 %>% select(
+#   yoruban = NA18881,
+#   iberian = HG01620,
+#   chinese = HG00513,
+#   peruvian = HG02090,
+#   luhya = NA19019
+# )
 
+# compute the SFS
