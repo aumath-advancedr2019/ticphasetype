@@ -1,17 +1,21 @@
 ---
 title: "ticphasetype"
 output: 
-  pdf_document
+  pdf_document:
 vignette: >
   %\VignetteIndexEntry{ticphasetype}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+`ticphasetype` is useful for representing classical statiscics in population genetics by means of phase-type theory. This provides additional flexibility and efficiency for computing and understanding these statistics at the finest level. Do not hesitate to run `?ticphasetype` for a quick summary of the available functions, or to open the help files for the individual functions.
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  message = F,
+  error = F
 )
 ```
 
@@ -19,7 +23,8 @@ knitr::opts_chunk$set(
 library(ticphasetype)
 ```
 
-#Continuous phase-type distributions: $T_{MRCA}$ and $T_{Total}$
+
+# Continuous phase-type distributions: $T_{MRCA}$ and $T_{Total}$
 
 In an evolutionary tree the time until two sequences coalesce $T_i$ can be measured in number of generations $R_i$ divided by the population size $N$, this is, $T_i=R_i/N$. $T_i$ can easily be proven to approximate to an exponential distribution with rate $\binom{i}{2}$.
 
@@ -33,7 +38,7 @@ The Markov chain can be represented using phase-type theory, where the jump rate
 
 `ticphasetype` contains an efficient implementation of continuous phase-type distributions. It has a user-friendly interface for creating phase-type representations of $T_{MRCA}$ and $T_{Total}$ under the standard coalescent model, but it also allows the user to specify their own sub-intensity matrix and initial probabilities for a more flexible implementation. 
 
-##$T_{MRCA}$
+## $T_{MRCA}$
 
 A `phase_type` class representing a continuous phase-type distribution for $T_{MRCA}$ can be generated using `phase_type()`. For example, when `n`=5:
 
@@ -55,7 +60,7 @@ var(T_MRCA_ph)
 summary(T_MRCA_ph)
 ```
 
-##$T_{Total}$
+## $T_{Total}$
 
 $T_{Total}$ can also be represented using the `phase_type` class:
 
@@ -67,7 +72,7 @@ T_Total_ph <- phase_type(type = 'T_Total', n = 5)
 summary(T_Total_ph)
 ```
 
-##User-defined sub-intensity matrix
+## User-defined sub-intensity matrix
 
 Moreover, the height of an evolutionary tree can also be represented by a user-defined sub-intensity matrix. This is specially useful if the model does not follow Kingman’s n–coalescent, but other coalescent models such as the psi-coalescent or the beta-coalescent. As an example, an arbitrary sub-intensity matrix can be generated:
 
@@ -106,7 +111,7 @@ We can apply the methods `phase_type` class methods for this new user-tailored p
 summary(T_arbit_ph)
 ```
 
-##Density, distribution and quantile functions
+## Density, distribution and quantile functions
 
 `ticphasetype` also includes the density function (`dphtype()`), quantile function (`qphtype()`), distribution function (`pphtype()`) and random draw generator (`rphtype()`) for the continuous phase-type distribution:
 
@@ -153,13 +158,168 @@ x <- rphtype(10000, T_MRCA_ph)
 hist(x, main = 'Random draws of T_MRCA', breaks=20)
 ```
 
+# Discrete Phase-Type Distributions
+
+The class `disc_phase_type` contains:
+
+* reward-transformed matrix (denoted as `P` in [HSB 2019]).
+* vector of initial probabilities ($\alpha$).
+* defect (probability of not entering any transient state prior to absorption).
 
 
+## Total number of segregating sites $S_{total}$
+
+The total number of segregating sites can be represented using a `disc_phase_type` class, this is, by means of a discrete phase-type distribution. For example, when `n`=4:
+
+```{r}
+stotal_ph = disc_phase_type(n = 4)
+stotal_ph
+```
+
+## i-tons $\xi_i$
+
+The i-tons $\xi_i$ can also be represented using a discrete phase-type distribution. For example, the tripletons $\xi_3$ when `n`=6:
+
+```{r}
+itons_ph = disc_phase_type(n = 6, itons = 3)
+itons_ph
+```
+
+## User-defined sub-intensity matrix
+
+As with the class `phase_type`, using the `disc_phase_type()` generator the user can specify the sub-intensity matrix, with optional initial probabilities (see `?disc_phase_type` for further information).
+
+## Mean and Variance
+
+Factorial moments in general [Bladt M., Nielsen B.F. 2017]:
+
+$$
+\boldsymbol{E}[\tau(\tau-1)...(\tau-k+1)] = k!\boldsymbol{\pi}\boldsymbol{T}^{k-1}(\boldsymbol{I} - \boldsymbol{T})^{-k} \boldsymbol{e}
+$$
+
+It should be kept in memory, that the number of segregating sites is $S + 1 \sim DPH_p(\boldsymbol{\alpha, P})$, because we are not allowing the model to start in the absorbing state right away. For cases where the defect is not zero, the probability is not $1$ but rather $1 - defect$. 
+
+```{r}
+mean(itons_ph)
+```
+
+```{r}
+var(itons_ph)
+```
+
+```{r}
+summary(itons_ph)
+```
 
 
+## Density and Distribution function
+
+The `dphtype()` and `pphtype()` functions of `ticphasetype` can also accommodate the `disc_phase_type` class. For example, for $S_{total}$ when $\theta=3$:
+
+```{r}
+S_tot_ph <- disc_phase_type(10, theta = 3)
+summary(S_tot_ph)
+```
+
+```{r}
+dphtype(3, S_tot_ph)
+```
+
+```{r}
+x <- 1:30
+y <- dphtype(x, S_tot_ph)
+plot(x, y)
+title('Density function of S_total with theta=3 and n=10')
+```
 
 
+```{r}
+pphtype(15, S_tot_ph)
+```
 
+```{r}
+x <- 1:30
+y <- pphtype(x, S_tot_ph)
+plot(x, y)
+title('Distribution function of S_total with theta=3 and n=10')
+```
 
+## SFS
 
+`ticphasetype` can also be used to calculate and plot the site-frequency spectrum (SFS) given a particular `n`. For example, when `n`=10:
+
+```{r}
+(sfs_10 <- sfs(10))
+```
+
+```{r}
+sfs(10, plot = TRUE)
+```
+
+## Tail-Statistic
+
+Koskela 2018 showed that normalized singletons together with a so called `tail-statistic` can help distinguish between traditional Kingsman coalescent and multiple merger coalescent. It is defined as:
+
+$$
+S_{k+} = \sum_{i = k}^{n-1} \xi_i
+$$
+
+And this can be received from Phase type distribution very easily by summing all rewards for $itons >= k$ and using them to transform the subintensity matrix.
+
+In `ticphasetype` this is implemented by setting the `tail_stat` argument to `TRUE` in the `disc_phase_type()` function. For example, the mean of the tail statistic can be calculated using:
+
+```{r}
+# Mean of S_10+ when n=15
+mean(disc_phase_type(15, tail_stat = T, itons = 10)) - 1
+# Mean of S_10+ when n=10
+mean(disc_phase_type(20, tail_stat = T, itons = 10)) - 1
+```
+
+### Theory behind Discrete Phase-Type distributions
+
+When computing $T_{MRCA}$ or $T_{Total}$ using phase-type representation, in order to reach the absorbing state the model has to first go through all the transient states. This is not neccesarily true if we are interested in the number of segregating sites and the frequency spectrum of alleles in the sample.
+
+There are scenarios where in order to reach the absorbing state, some transient states might be skipped. In some cases there is even a probability (defect $\alpha_d$) of not entering any 'nonzero' state prior to absorption.
+
+The rate matrix has to cover up all the different transitions with corresponding rates. Then, in order to find the number of certain type of polymorphism (eg. singletons, doubletons, ...) the transition matrix has to be transformed with a reward vector to obtain $\boldsymbol{T^*} = \{t_{ij}^*\}$
+
+$$
+t_{ij}^* = -\frac{t_{ii}}{r(i)}p_{ij} ~i \neq j ~,~and~ t_{i}^* = -\frac{t_{ii}}{r(i)}p_{ij}
+$$
+
+The diagonal ($t_{ii}$) contains values such that rows of the intensity matrix $\Lambda^* = {~\boldsymbol{T^*}~\boldsymbol{t^*} \choose \boldsymbol{0}~~0}$ sum to zero.
+
+Elements $p_{ij}$ in equation (1) come from transition matrix $\boldsymbol{P}$:
+
+$$
+\boldsymbol{P} = \boldsymbol{Q}^{++} + \boldsymbol{Q}^{+0}(\boldsymbol{I} - \boldsymbol{Q}^{00})^{-1}\boldsymbol{Q}^{0+}
+$$
+
+where $\boldsymbol{Q}^{++}, \boldsymbol{Q}^{+0}, \boldsymbol{Q}^{0+}, \boldsymbol{Q}^{00}$ are components of 
+
+$$
+\boldsymbol{Q} = {{\boldsymbol{Q}^{++}~\boldsymbol{Q}^{+0}} \choose {\boldsymbol{Q}^{0+}~\boldsymbol{Q}^{00}}}
+$$
+
+which is a matrix consisting of transition probabilities
+
+$$
+q_{ij} = -\frac{t_{ij}}{t_{ii}}~i\neq j,~q_{ii} = 0
+$$
+
+The superscipts (+ or 0) in (2) and (3) correspond to the indices of nonzero and zero states respectively. 
+
+Finally, the probability distribution $P(S = k)$ is in general:
+
+$$
+P(S = k) = \boldsymbol{\pi}\boldsymbol{P}^k \boldsymbol{p}
+$$
+
+where
+
+$$
+\boldsymbol{P} = (\boldsymbol{I} - \frac{2}{\theta}\boldsymbol{T}),~\boldsymbol{p} = \boldsymbol{e} - \boldsymbol{Pe}
+$$
+
+However in this case $\boldsymbol{T}$ should be substituted by the new reward transformed matrix $\boldsymbol{T^*}$.
 

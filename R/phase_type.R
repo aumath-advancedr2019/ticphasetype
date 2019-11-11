@@ -13,7 +13,6 @@
 #'   probabilities.
 #' }
 #'
-#' @param object an object of class \code{phase_type}.
 #' @param type \code{'T_MRCA'}, \code{'T_Total'} or \code{NULL} (default).
 #' @param n integer larger than 1 or \code{NULL} (default).
 #' @param subint_mat matrix or \code{NULL} (default).
@@ -99,56 +98,44 @@ moment_ph <- function(obj, m) {
   as.numeric((-1)**m*factorial(m)*obj$init_probs%*%inv%*%e)
 }
 
-#' @describeIn phase_type
-#'
-#' mean of the continuous phase-type distribution.
-#'
-#' @usage ## S3 method for class 'phase_type'
-#' mean(object)
-#'
-#' @export
 
-mean.phase_type <- function(obj) {
-  moment_ph(obj, 1)
-}
 
 #' @export
 
-var <- function(x, ...) {
-  UseMethod('var', x)
+mean.phase_type <- function(x, ...) {
+  moment_ph(x, 1)
 }
 
-#' @describeIn phase_type
+#' Variance of phase_type distributions
 #'
-#' variance of the continuous phase-type distribution.
+#' It calculates the variance of continuous and discrete phase-type distributions,
+#' represented by the \code{phase_type} and the \code{disc_phase_type} classes
+#' respectively
 #'
-#' @usage ## S3 method for class 'phase_type'
-#' var(object)
-#'
+#' @export
+
+var <- function(obj) {
+  UseMethod('var', obj)
+}
+
 #' @export
 
 var.phase_type <- function(obj) {
   moment_ph(obj, 2)-moment_ph(obj, 1)**2
 }
 
-#' @describeIn phase_type
-#'
-#' summary of the continuous phase-type distribution.
-#'
-#' @usage ## S3 method for class 'phase_type'
-#' summary(object)
-#'
+
 #' @export
 
-summary.phase_type <- function(obj) {
+summary.phase_type <- function(object, ...) {
   cat('\nSubintensity matrix:\n')
-  print(obj$subint_mat)
+  print(object$subint_mat)
   cat('\nInitial probabilities:\n')
-  print(obj$init_probs)
+  print(object$init_probs)
   cat('\nDefect:\n')
-  print(obj$defect)
-  cat('\nMean: ', mean(obj), '\n', sep = '')
-  cat('\nVariance: ', var(obj), '\n\n', sep = '')
+  print(object$defect)
+  cat('\nMean: ', mean(object), '\n', sep = '')
+  cat('\nVariance: ', var(object), '\n\n', sep = '')
 }
 
 
