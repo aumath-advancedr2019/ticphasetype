@@ -27,5 +27,7 @@ This package also contains functions for the density (\code{\link{dphtype}}), qu
 (\code{\link{qphtype}}), distribution \code{\link{pphtype}} and random draw generator
 (\code{\link{rphtype}}) for the phase-type distributions. Additionally, the user can
 calculate and plot the site-frequency spectrum using \code{\link{sfs}}.
+
+For more details see the vignette by running \code{vignette("ticphasetype")}.
 }
 \keyword{internal}
