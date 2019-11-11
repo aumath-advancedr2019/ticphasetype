@@ -6,6 +6,9 @@
 \usage{
 var(obj)
 }
+\arguments{
+\item{obj}{a phase_type or disc_phase_type object.}
+}
 \description{
 It calculates the variance of continuous and discrete phase-type distributions,
 represented by the \code{phase_type} and the \code{disc_phase_type} classes

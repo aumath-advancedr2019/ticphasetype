@@ -112,6 +112,8 @@ mean.phase_type <- function(x, ...) {
 #' represented by the \code{phase_type} and the \code{disc_phase_type} classes
 #' respectively
 #'
+#' @param obj a phase_type or disc_phase_type object.
+#'
 #' @export
 
 var <- function(obj) {

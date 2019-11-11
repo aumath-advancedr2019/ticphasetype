@@ -23,11 +23,9 @@ rphtype(n, obj, granularity = 0.01)
 
 \item{p}{vector of probabilities.}
 
-\item{n}{number of observations.}
+\item{n}{number of samples to draw.}
 
 \item{granularity}{distance between numbers drawable}
-
-\item{n}{number of samples to draw.}
 }
 \description{
 Density, distribution function, quantile function and random generation for

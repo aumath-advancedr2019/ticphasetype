@@ -3,7 +3,6 @@
 #'
 #' @param x,q vector of quantiles.
 #' @param p vector of probabilities.
-#' @param n number of observations.
 #' @param obj an object of class \code{phase_type} or \code{disc_phase_type}.
 #' @param n number of samples to draw.
 #' @param granularity distance between numbers drawable

@@ -9,8 +9,6 @@
 # @import dplyr
 #'
 #' @usage rewardtransformparm(rewards, init_probs, subint_mat)
-#'
-#' @export
 
 rewardtransformparm <- function(rewards, init_probs, subint_mat){
   d <- sum(rewards > 0)
@@ -64,8 +62,6 @@ rewardtransformparm <- function(rewards, init_probs, subint_mat){
 #' @param n integer larger than 1.
 #'
 #' @import partitions
-#'
-#' @export
 
 RateMAndStateSpace <- function(n){
   ##----------------------------------------------------
