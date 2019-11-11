@@ -7,6 +7,13 @@ RewardTransformParm}
 \usage{
 rewardtransformparm(rewards, init_probs, subint_mat)
 }
+\arguments{
+\item{rewards}{reward vector}
+
+\item{init_probs}{initial probabilities}
+
+\item{subint_mat}{sub-intensity matrix}
+}
 \description{
 Function to compute reward transformed matrix T* as well as vector of initial probabilities
 and the defect

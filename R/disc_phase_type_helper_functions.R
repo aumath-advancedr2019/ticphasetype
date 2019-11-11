@@ -5,6 +5,9 @@
 #' Function to compute reward transformed matrix T* as well as vector of initial probabilities
 #' and the defect
 #'
+#' @param rewards reward vector
+#' @param init_probs initial probabilities
+#' @param subint_mat sub-intensity matrix
 #'
 # @import dplyr
 #'

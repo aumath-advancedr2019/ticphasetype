@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.15)  11 NOV 2019 11:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.15)  11 NOV 2019 11:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype.tex
-(/tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype.tex
+**/tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype.tex
+(/tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -990,76 +990,76 @@ File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-</tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/unnam
+</tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/unnam
 ed-chunk-13-1.pdf, id=84, 434.62375pt x 283.0575pt>
-File: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/
+File: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/
 unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/u
+<use /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/u
 nnamed-chunk-13-1.pdf>
-Package pdftex.def Info: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_
+Package pdftex.def Info: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_
 files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 339.
 (pdftex.def)             Requested size: 434.6492pt x 283.07407pt.
 [3]
-</tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/unnam
+</tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/unnam
 ed-chunk-15-1.pdf, id=90, 434.62375pt x 283.0575pt>
-File: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/
+File: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/
 unnamed-chunk-15-1.pdf Graphic file (type pdf)
-<use /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/u
+<use /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/u
 nnamed-chunk-15-1.pdf>
-Package pdftex.def Info: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_
+Package pdftex.def Info: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_
 files/figure-latex/unnamed-chunk-15-1.pdf  used on input line 357.
 (pdftex.def)             Requested size: 434.6492pt x 283.07407pt.
-[4 </tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/un
+[4 </tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/un
 named-chunk-13-1.pdf>]
-</tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/unnam
+</tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/unnam
 ed-chunk-17-1.pdf, id=103, 434.62375pt x 283.0575pt>
-File: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/
+File: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/
 unnamed-chunk-17-1.pdf Graphic file (type pdf)
-<use /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/u
+<use /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/u
 nnamed-chunk-17-1.pdf>
-Package pdftex.def Info: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_
+Package pdftex.def Info: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_
 files/figure-latex/unnamed-chunk-17-1.pdf  used on input line 375.
 (pdftex.def)             Requested size: 434.6492pt x 283.07407pt.
-[5 </tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/un
+[5 </tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/un
 named-chunk-15-1.pdf>]
-</tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/unnam
-ed-chunk-19-1.pdf, id=116, 422.57875pt x 283.0575pt>
-File: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/
+</tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/unnam
+ed-chunk-19-1.pdf, id=116, 427.5975pt x 283.0575pt>
+File: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/
 unnamed-chunk-19-1.pdf Graphic file (type pdf)
-<use /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/u
+<use /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/u
 nnamed-chunk-19-1.pdf>
-Package pdftex.def Info: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_
+Package pdftex.def Info: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_
 files/figure-latex/unnamed-chunk-19-1.pdf  used on input line 391.
-(pdftex.def)             Requested size: 422.5906pt x 283.06543pt.
-[6 </tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/un
-named-chunk-17-1.pdf> </tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_fi
+(pdftex.def)             Requested size: 427.59645pt x 283.0568pt.
+[6 </tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/un
+named-chunk-17-1.pdf> </tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_fi
 les/figure-latex/unnamed-chunk-19-1.pdf>]
 LaTeX Font Info:    Try loading font information for TS1+lmr on input line 401.
 
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [7] [8]
-</tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/unnam
+</tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/unnam
 ed-chunk-27-1.pdf, id=151, 434.62375pt x 283.0575pt>
-File: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/
+File: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/
 unnamed-chunk-27-1.pdf Graphic file (type pdf)
-<use /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/u
+<use /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/u
 nnamed-chunk-27-1.pdf>
-Package pdftex.def Info: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_
+Package pdftex.def Info: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_
 files/figure-latex/unnamed-chunk-27-1.pdf  used on input line 589.
 (pdftex.def)             Requested size: 434.6492pt x 283.07407pt.
 [9]
-</tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/unnam
+</tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/unnam
 ed-chunk-29-1.pdf, id=156, 434.62375pt x 283.0575pt>
-File: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/
+File: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/
 unnamed-chunk-29-1.pdf Graphic file (type pdf)
-<use /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/u
+<use /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/u
 nnamed-chunk-29-1.pdf>
-Package pdftex.def Info: /tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_
+Package pdftex.def Info: /tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_
 files/figure-latex/unnamed-chunk-29-1.pdf  used on input line 607.
 (pdftex.def)             Requested size: 434.6492pt x 283.07407pt.
-[10 </tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphasetype_files/figure-latex/u
-nnamed-chunk-27-1.pdf>] [11 </tmp/RtmpAJX2XQ/preview-31616d5d93ff.dir/ticphaset
+[10 </tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphasetype_files/figure-latex/u
+nnamed-chunk-27-1.pdf>] [11 </tmp/RtmpCbAxUa/preview-33c16f2e9e72.dir/ticphaset
 ype_files/figure-latex/unnamed-chunk-29-1.pdf>]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
@@ -1101,7 +1101,7 @@ r17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/font
 s/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb>
 </usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type
 1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
-Output written on ticphasetype.pdf (13 pages, 308119 bytes).
+Output written on ticphasetype.pdf (13 pages, 308126 bytes).
 PDF statistics:
  274 PDF objects out of 1000 (max. 8388607)
  219 compressed objects within 3 object streams
