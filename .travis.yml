@@ -6,21 +6,24 @@ warnings_are_errors: false
 
 
 r:
-  - oldrel
+  #- oldrel
   - release
   - devel
 
 os:
   - linux
-  - osx
+  #- osx
+  - windows
 
 addons:
   apt:
     packages: cowsay
   brew:
     packages:
-      - index
-      - framed
+      - basictex
+
+before_install:
+  - sudo tlmgr install index framed || echo "failed install"
 
 cache:
   packages: true
