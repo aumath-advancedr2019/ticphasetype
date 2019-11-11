@@ -46,7 +46,7 @@ dphtype <- function(x, obj){
 
 #' @describeIn dphtype
 #'
-#' Quantile Function.
+#' Quantile Function. Still not implemented for disc_phase_type.
 #'
 #' @usage qphtype(p, obj)
 #'
@@ -63,7 +63,7 @@ qphtype <- function(p, obj){
     }
     return(vec)
   } else if (class(obj) == 'disc_phase_type') {
-    stop('')
+    stop('Still not implemented for disc_phase_type.')
   } else {
     stop("Please provide a 'phase_type' or a 'disc_phase_type' class.")
   }
@@ -102,7 +102,7 @@ pphtype <- function(q, obj){
 
 #' @describeIn dphtype
 #'
-#' Random number generator.
+#' Random number generator. Still not implemented for disc_phase_type.
 #'
 #' @usage rphtype(n, obj, granularity = 0.01)
 #'
@@ -133,7 +133,7 @@ rphtype <- function(n, obj, granularity = 0.01){
     # B: put the density function (stored in variable: `vec`) into a sampling function that accepts a weight parameter.
     return(sample(seq(0, x, 0.01)[1:length(vec)], n, replace = T, prob = vec))
   } else if (class(obj) == 'disc_phase_type') {
-    stop('')
+    stop('Still not implemented for disc_phase_type.')
   } else {
     stop("Please provide a 'phase_type' or a 'disc_phase_type' class.")
   }
