@@ -12,7 +12,7 @@ r:
 
 os:
   - linux
-  - osx      # Problems with latex
+  # - osx      # Problems with latex
   #- windows  # Not supported
 
 addons:
