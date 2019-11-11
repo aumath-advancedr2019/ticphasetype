@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.9.2)  11 NOV 2019 10:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.15)  11 NOV 2019 11:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**ticphasetype.tex
-(./ticphasetype.tex
+**/tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype.tex
+(/tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -936,173 +936,175 @@ LaTeX Font Info:    Try loading font information for T1+lmtt on input line 128.
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 137.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 144.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 139.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 145.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 144.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 145.
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 144
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 145
 .
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 144
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 145
 .
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 144.
+(Font)              <14.4> on input line 145.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 144.
+(Font)              <10> on input line 145.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 144.
-LaTeX Font Info:    Try loading font information for U+msa on input line 144.
+(Font)              <7> on input line 145.
+LaTeX Font Info:    Try loading font information for U+msa on input line 145.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 144.
+LaTeX Font Info:    Try loading font information for U+msb on input line 145.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 146.
+(Font)              <12> on input line 147.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 196.
+(Font)              <8> on input line 147.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 196.
+(Font)              <6> on input line 147.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 196.
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 204
+(Font)              <5> on input line 150.
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 155
 .
 (/usr/share/texmf/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-<ticphasetype_files/figure-latex/unnamed-chunk-13-1.pdf, id=93, 434.62375pt x 2
-83.0575pt>
-File: ticphasetype_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type
- pdf)
-<use ticphasetype_files/figure-latex/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: ticphasetype_files/figure-latex/unnamed-chunk-13-1.pdf
-  used on input line 391.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+</tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/unnam
+ed-chunk-13-1.pdf, id=84, 434.62375pt x 283.0575pt>
+File: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/
+unnamed-chunk-13-1.pdf Graphic file (type pdf)
+<use /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/u
+nnamed-chunk-13-1.pdf>
+Package pdftex.def Info: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_
+files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 339.
 (pdftex.def)             Requested size: 434.6492pt x 283.07407pt.
-<ticphasetype_files/figure-latex/unnamed-chunk-15-1.pdf, id=94, 434.62375pt x 2
-83.0575pt>
-File: ticphasetype_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type
- pdf)
-<use ticphasetype_files/figure-latex/unnamed-chunk-15-1.pdf>
-Package pdftex.def Info: ticphasetype_files/figure-latex/unnamed-chunk-15-1.pdf
-  used on input line 409.
+[3]
+</tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/unnam
+ed-chunk-15-1.pdf, id=90, 434.62375pt x 283.0575pt>
+File: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/
+unnamed-chunk-15-1.pdf Graphic file (type pdf)
+<use /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/u
+nnamed-chunk-15-1.pdf>
+Package pdftex.def Info: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_
+files/figure-latex/unnamed-chunk-15-1.pdf  used on input line 357.
 (pdftex.def)             Requested size: 434.6492pt x 283.07407pt.
-[4 <./ticphasetype_files/figure-latex/unnamed-chunk-13-1.pdf>]
-<ticphasetype_files/figure-latex/unnamed-chunk-17-1.pdf, id=108, 434.62375pt x 
-283.0575pt>
-File: ticphasetype_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type
- pdf)
-<use ticphasetype_files/figure-latex/unnamed-chunk-17-1.pdf>
-Package pdftex.def Info: ticphasetype_files/figure-latex/unnamed-chunk-17-1.pdf
-  used on input line 427.
+[4 </tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/un
+named-chunk-13-1.pdf>]
+</tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/unnam
+ed-chunk-17-1.pdf, id=103, 434.62375pt x 283.0575pt>
+File: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/
+unnamed-chunk-17-1.pdf Graphic file (type pdf)
+<use /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/u
+nnamed-chunk-17-1.pdf>
+Package pdftex.def Info: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_
+files/figure-latex/unnamed-chunk-17-1.pdf  used on input line 375.
 (pdftex.def)             Requested size: 434.6492pt x 283.07407pt.
-[5 <./ticphasetype_files/figure-latex/unnamed-chunk-15-1.pdf>]
-<ticphasetype_files/figure-latex/unnamed-chunk-19-1.pdf, id=121, 422.57875pt x 
-283.0575pt>
-File: ticphasetype_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type
- pdf)
-<use ticphasetype_files/figure-latex/unnamed-chunk-19-1.pdf>
-Package pdftex.def Info: ticphasetype_files/figure-latex/unnamed-chunk-19-1.pdf
-  used on input line 443.
-(pdftex.def)             Requested size: 422.5906pt x 283.06543pt.
-[6 <./ticphasetype_files/figure-latex/unnamed-chunk-17-1.pdf> <./ticphasetype_f
-iles/figure-latex/unnamed-chunk-19-1.pdf>]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 454.
+[5 </tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/un
+named-chunk-15-1.pdf>]
+</tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/unnam
+ed-chunk-19-1.pdf, id=116, 427.5975pt x 283.0575pt>
+File: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/
+unnamed-chunk-19-1.pdf Graphic file (type pdf)
+<use /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/u
+nnamed-chunk-19-1.pdf>
+Package pdftex.def Info: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_
+files/figure-latex/unnamed-chunk-19-1.pdf  used on input line 391.
+(pdftex.def)             Requested size: 427.59645pt x 283.0568pt.
+[6 </tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/un
+named-chunk-17-1.pdf> </tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_fi
+les/figure-latex/unnamed-chunk-19-1.pdf>]
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 401.
 
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [7] [8]
-<ticphasetype_files/figure-latex/unnamed-chunk-27-1.pdf, id=159, 434.62375pt x 
-283.0575pt>
-File: ticphasetype_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (type
- pdf)
-<use ticphasetype_files/figure-latex/unnamed-chunk-27-1.pdf>
-Package pdftex.def Info: ticphasetype_files/figure-latex/unnamed-chunk-27-1.pdf
-  used on input line 647.
+</tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/unnam
+ed-chunk-27-1.pdf, id=151, 434.62375pt x 283.0575pt>
+File: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/
+unnamed-chunk-27-1.pdf Graphic file (type pdf)
+<use /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/u
+nnamed-chunk-27-1.pdf>
+Package pdftex.def Info: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_
+files/figure-latex/unnamed-chunk-27-1.pdf  used on input line 589.
 (pdftex.def)             Requested size: 434.6492pt x 283.07407pt.
 [9]
-<ticphasetype_files/figure-latex/unnamed-chunk-29-1.pdf, id=165, 434.62375pt x 
-283.0575pt>
-File: ticphasetype_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type
- pdf)
-<use ticphasetype_files/figure-latex/unnamed-chunk-29-1.pdf>
-Package pdftex.def Info: ticphasetype_files/figure-latex/unnamed-chunk-29-1.pdf
-  used on input line 665.
+</tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/unnam
+ed-chunk-29-1.pdf, id=156, 434.62375pt x 283.0575pt>
+File: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/
+unnamed-chunk-29-1.pdf Graphic file (type pdf)
+<use /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/u
+nnamed-chunk-29-1.pdf>
+Package pdftex.def Info: /tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_
+files/figure-latex/unnamed-chunk-29-1.pdf  used on input line 607.
 (pdftex.def)             Requested size: 434.6492pt x 283.07407pt.
-[10 <./ticphasetype_files/figure-latex/unnamed-chunk-27-1.pdf>]
-<ticphasetype_files/figure-latex/unnamed-chunk-31-1.pdf, id=178, 422.57875pt x 
-283.0575pt>
-File: ticphasetype_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (type
- pdf)
-<use ticphasetype_files/figure-latex/unnamed-chunk-31-1.pdf>
-Package pdftex.def Info: ticphasetype_files/figure-latex/unnamed-chunk-31-1.pdf
-  used on input line 693.
-(pdftex.def)             Requested size: 422.5906pt x 283.06543pt.
-[11 <./ticphasetype_files/figure-latex/unnamed-chunk-29-1.pdf>] [12 <./ticphase
-type_files/figure-latex/unnamed-chunk-31-1.pdf>]
+[10 </tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphasetype_files/figure-latex/u
+nnamed-chunk-27-1.pdf>] [11 </tmp/RtmpJygqPQ/preview-1d4e2a669889.dir/ticphaset
+ype_files/figure-latex/unnamed-chunk-29-1.pdf>]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 753.
+(amsmath)                 on input line 720.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 796.
+[12]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 763.
 [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 796.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 763.
 (./ticphasetype.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 796.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 796.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 763.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 763.
 Package rerunfilecheck Info: File `ticphasetype.out' has not changed.
-(rerunfilecheck)             Checksum: 5F7860538F61B0BD9C03AC5F261D4AF1;2828.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 796.
+(rerunfilecheck)             Checksum: 8C5930B7A7725A34576389B8F44BC5BB;3164.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 763.
  ) 
 Here is how much of TeX's memory you used:
- 13042 strings out of 492982
- 190695 string characters out of 6134897
- 291459 words of memory out of 5000000
- 16307 multiletter control sequences out of 15000+600000
- 74520 words of font info for 103 fonts, out of 8000000 for 9000
+ 13021 strings out of 492982
+ 191154 string characters out of 6134895
+ 291538 words of memory out of 5000000
+ 16303 multiletter control sequences out of 15000+600000
+ 71359 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 32i,7n,38p,420b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 32i,7n,38p,461b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
-hare/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
--ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/f
+hare/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/l
+m/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/f
 onts/type1/public/lm/lmbsy5.pfb></usr/share/texmf/fonts/type1/public/lm/lmbsy7.
-pfb></usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/
-type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx7.pfb></
-usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/
-public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/s
-hare/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public
-/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/t
-exmf/fonts/type1/public/lm/lmmib7.pfb></usr/share/texmf/fonts/type1/public/lm/l
-mr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fo
-nts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb
-></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type
-1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr
-/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
-Output written on ticphasetype.pdf (13 pages, 336399 bytes).
+pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/
+type1/public/lm/lmbx7.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></
+usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/sh
+are/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/
+lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib7.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
+r17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/font
+s/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb>
+</usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type
+1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
+Output written on ticphasetype.pdf (13 pages, 308085 bytes).
 PDF statistics:
- 301 PDF objects out of 1000 (max. 8388607)
- 242 compressed objects within 3 object streams
- 42 named destinations out of 1000 (max. 500000)
- 10388 words of extra memory for PDF output out of 12000 (max. 10000000)
+ 274 PDF objects out of 1000 (max. 8388607)
+ 219 compressed objects within 3 object streams
+ 29 named destinations out of 1000 (max. 500000)
+ 10391 words of extra memory for PDF output out of 12000 (max. 10000000)
 

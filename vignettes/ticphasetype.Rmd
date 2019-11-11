@@ -8,7 +8,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-`ticphasetype` is useful for representing classical statiscics in population genetics by means of phase-type theory. This provides additional flexibility and efficiency for computing and understanding these statistics at the finest level. Do not hesitate to run `?ticphasetype` for a quick summary of the available functions, or to open the help files for the individual functions.
+`ticphasetype` is useful for representing classical statiscics in population genetics by means of phase-type theory. This provides additional flexibility and efficiency for computing and understanding these statistics at the finest level. Do not hesitate to run `?ticphasetype` for a quick summary of the available functions, or to open the help files for the individual functions. There is also a brief description about phase-type distributions at the end of this vignette.
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -25,18 +26,6 @@ library(ticphasetype)
 
 
 # Continuous phase-type distributions: $T_{MRCA}$ and $T_{Total}$
-
-In an evolutionary tree the time until two sequences coalesce $T_i$ can be measured in number of generations $R_i$ divided by the population size $N$, this is, $T_i=R_i/N$. $T_i$ can easily be proven to approximate to an exponential distribution with rate $\binom{i}{2}$.
-
-In order to understand the evolutionary history of sequences two additional quantities can be defined --namely the time until the most recent common ancestor $T_{MRCA}$ and the total tree length $T_{Total}$. $T_{MRCA}$ will simply be the sum of all times until two sequences coalesce, in other words $T_{MRCA}=T_n+T_{n-1}+...+T_2$, where $T_i\sim\binom{i}{2}$. $T_{Total}$, on the other hand, takes into account the length of all possible branches, so $T_{Total}=nT_n+(n-1)T_{n-1}+...+2T_2$ and, thus, $iT_i\sim \text{exp}(\binom{i-1}{2})$.
-
-The mean and variance of these two quantities can be derived relatively easy. Defining their distribution, however, has proven to be more challenging since both $T_{MRCA}$ and $T_{Total}$ are sums of independent exponentially distributed variables with different rates. Their distribution can be computed as a series of convolutions, but their formulation, application and interpretation might be challenging for the average population geneticist.
-
-Instead, we can think of the sum of exponential distributions as a continuous-time Markov chain, where coalescent events are represented as Markov jumps with rate $T_i$ for $T_{MRCA}$ and $iT_i$ for $T_{Total}$. The Markov chain will end with an absorbing state, which in both cases will be the MRCA. 
-
-The Markov chain can be represented using phase-type theory, where the jump rates are defined with a sub-intensity matrix $T$ and the initial distribution will be defined as a row vector $\pi$. If we define $\tau$ as the smallest time (or length) for which we are in the absorbing state, then $\tau\sim PH(\pi,T)$. This continuous phase-type distribution has well-documented and easy-to-implement formulas for the expectation, the variance, the survival function, the distribution function and the density function. Moreover, since both $\pi$ and $T$ can easily be speficied, we can easily represent evolutionary histories that do not follow the standard coalescent model and still use the same phase-type formulas. 
-
-`ticphasetype` contains an efficient implementation of continuous phase-type distributions. It has a user-friendly interface for creating phase-type representations of $T_{MRCA}$ and $T_{Total}$ under the standard coalescent model, but it also allows the user to specify their own sub-intensity matrix and initial probabilities for a more flexible implementation. 
 
 ## $T_{MRCA}$
 
@@ -244,17 +233,6 @@ plot(x, y)
 title('Distribution function of S_total with theta=3 and n=10')
 ```
 
-## SFS
-
-`ticphasetype` can also be used to calculate and plot the site-frequency spectrum (SFS) given a particular `n`. For example, when `n`=10:
-
-```{r}
-(sfs_10 <- sfs(10))
-```
-
-```{r}
-sfs(10, plot = TRUE)
-```
 
 ## Tail-Statistic
 
@@ -275,7 +253,24 @@ mean(disc_phase_type(15, tail_stat = T, itons = 10)) - 1
 mean(disc_phase_type(20, tail_stat = T, itons = 10)) - 1
 ```
 
-### Theory behind Discrete Phase-Type distributions
+# Theory behind Phase-Type distributions
+
+## Continuous phase-type distributions
+
+In an evolutionary tree the time until two sequences coalesce $T_i$ can be measured in number of generations $R_i$ divided by the population size $N$, this is, $T_i=R_i/N$. $T_i$ can easily be proven to approximate to an exponential distribution with rate $\binom{i}{2}$.
+
+In order to understand the evolutionary history of sequences two additional quantities can be defined --namely the time until the most recent common ancestor $T_{MRCA}$ and the total tree length $T_{Total}$. $T_{MRCA}$ will simply be the sum of all times until two sequences coalesce, in other words $T_{MRCA}=T_n+T_{n-1}+...+T_2$, where $T_i\sim\binom{i}{2}$. $T_{Total}$, on the other hand, takes into account the length of all possible branches, so $T_{Total}=nT_n+(n-1)T_{n-1}+...+2T_2$ and, thus, $iT_i\sim \text{exp}(\binom{i-1}{2})$.
+
+The mean and variance of these two quantities can be derived relatively easy. Defining their distribution, however, has proven to be more challenging since both $T_{MRCA}$ and $T_{Total}$ are sums of independent exponentially distributed variables with different rates. Their distribution can be computed as a series of convolutions, but their formulation, application and interpretation might be challenging for the average population geneticist.
+
+Instead, we can think of the sum of exponential distributions as a continuous-time Markov chain, where coalescent events are represented as Markov jumps with rate $T_i$ for $T_{MRCA}$ and $iT_i$ for $T_{Total}$. The Markov chain will end with an absorbing state, which in both cases will be the MRCA. 
+
+The Markov chain can be represented using phase-type theory, where the jump rates are defined with a sub-intensity matrix $T$ and the initial distribution will be defined as a row vector $\pi$. If we define $\tau$ as the smallest time (or length) for which we are in the absorbing state, then $\tau\sim PH(\pi,T)$. This continuous phase-type distribution has well-documented and easy-to-implement formulas for the expectation, the variance, the survival function, the distribution function and the density function. Moreover, since both $\pi$ and $T$ can easily be speficied, we can easily represent evolutionary histories that do not follow the standard coalescent model and still use the same phase-type formulas. 
+
+`ticphasetype` contains an efficient implementation of continuous phase-type distributions. It has a user-friendly interface for creating phase-type representations of $T_{MRCA}$ and $T_{Total}$ under the standard coalescent model, but it also allows the user to specify their own sub-intensity matrix and initial probabilities for a more flexible implementation. 
+
+
+## Discrete phase-type distributions
 
 When computing $T_{MRCA}$ or $T_{Total}$ using phase-type representation, in order to reach the absorbing state the model has to first go through all the transient states. This is not neccesarily true if we are interested in the number of segregating sites and the frequency spectrum of alleles in the sample.
 

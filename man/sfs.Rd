@@ -2,7 +2,7 @@
 % Please edit documentation in R/sfs.R
 \name{sfs}
 \alias{sfs}
-\title{Site Frequency spectrum}
+\title{Site Frequency Spectrum}
 \usage{
 sfs(n, theta = 2, init_probs = NULL, plot = FALSE)
 }
@@ -16,7 +16,7 @@ sfs(n, theta = 2, init_probs = NULL, plot = FALSE)
 \item{plot}{logical}
 }
 \description{
-Returns a list of expected counts of itons up to n-1. Works with different values of `theta` (population mutation parameter)
+Returns a list of expected counts of itons up to n-1 or a plot if specified. Works with different values of `theta` (population mutation parameter)
 as well as with custom vector of initial probabilities.
 }
 \examples{
