@@ -26,4 +26,5 @@ Additional analyses:
 
 ## Installation
 
-?
+If you install devtools in your R environmen install.packages("devtools"), you will be able to install our package with the following command.
+`devtools::install_github("aumath-advancedr2019/ticphasetype")`
