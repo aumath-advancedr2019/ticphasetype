@@ -1,6 +1,6 @@
-#' Site Frequency spectrum
+#' Site Frequency Spectrum
 #'
-#' @description Returns a list of expected counts of itons up to n-1. Works with different values of `theta` (population mutation parameter)
+#' @description Returns a list of expected counts of itons up to n-1 or a plot if specified. Works with different values of `theta` (population mutation parameter)
 #' as well as with custom vector of initial probabilities.
 #'
 #' @usage sfs(n, theta = 2, init_probs = NULL, plot = FALSE)
