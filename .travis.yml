@@ -14,11 +14,13 @@ os:
   - linux
   - osx
 
-
-
-before_install:
-  - sudo tlmgr install index
-  - sudo tlmgr install framed
+addons:
+  apt:
+    packages: cowsay
+  tlmgr:
+    packages:
+      - index
+      - framed
 
 cache:
   packages: true
