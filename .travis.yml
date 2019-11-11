@@ -13,8 +13,11 @@ r:
 os:
   - linux
   - osx
-#  - windows
 
+
+
+before_install:
+  - tlmgr install index
 
 cache:
   packages: true
@@ -23,3 +26,4 @@ cache:
 jobs:
   allow_failures:
     - os: osx
+    - r: oldrel
