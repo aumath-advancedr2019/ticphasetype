@@ -6,18 +6,16 @@ warnings_are_errors: false
 
 
 r:
-  #- oldrel
+  - oldrel
   - release
   - devel
 
 os:
   - linux
-  #- osx
-  - windows
+  - osx      # Problems with latex
+  #- windows  # Not supported
 
 addons:
-  apt:
-    packages: cowsay
   brew:
     packages:
       - basictex
@@ -25,8 +23,8 @@ addons:
 before_install:
   - sudo tlmgr install index framed || echo "failed install"
 
-#cache:
-#  packages: true
+cache:
+  packages: true
 
 
 jobs:
