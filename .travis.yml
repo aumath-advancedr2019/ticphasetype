@@ -17,7 +17,7 @@ os:
 addons:
   apt:
     packages: cowsay
-  tlmgr:
+  brew:
     packages:
       - index
       - framed
