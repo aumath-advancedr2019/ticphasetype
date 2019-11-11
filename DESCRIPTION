@@ -3,7 +3,7 @@ Type: Package
 Title: Phase-type distributions for bioinformatics
 Version: 0.1.0
 Author: Tomas, Iker & Carl (TIC)
-Maintainer: The package maintainer <yourself@somewhere.net>
+Maintainer: The package maintainer <kobelmas@pm.me>
 Description: This package implements core functions from phase-type
     theory that are useful in the analysis of biological data.
 License: Unlimited

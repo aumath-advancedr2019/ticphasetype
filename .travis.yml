@@ -17,8 +17,8 @@ os:
 
 
 before_install:
-  - tlmgr install index
-  - tlmgr install framed
+  - sudo tlmgr install index
+  - sudo tlmgr install framed
 
 cache:
   packages: true
