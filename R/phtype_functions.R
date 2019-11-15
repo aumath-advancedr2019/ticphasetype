@@ -35,7 +35,11 @@ dphtype <- function(x, obj){
     t = e - obj$subint_mat %*% e
     dens_vec = c()
     for(i in x){
-      dens_vec <- c(dens_vec, obj$init_probs %*% (obj$subint_mat %^% (i-1)) %*% t)
+      if (i==0) {
+        dens_vec <- c(dens_vec, obj$defect)
+      } else {
+        dens_vec <- c(dens_vec, obj$init_probs %*% (obj$subint_mat %^% (i-1)) %*% t)
+      }
     }
     return(dens_vec)
   } else {
@@ -148,7 +152,7 @@ rphtype <- function(n, obj){
     # number of states
     p <- nrow(subint_mat)
     # create vector of zeroes
-    n_vec <- numeric(n)+1
+    n_vec <- numeric(n)
 
     # for each n
     for (i in 1:n) {
