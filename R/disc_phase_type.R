@@ -71,7 +71,7 @@ disc_phase_type = function(n = NULL, itons = NULL, theta = 2, tail_stat = F, sub
       stop('The subintensity matrix must be a matrix.')
     }
     value = list(subint_mat = subint_mat, init_probs = init_probs, defect = 1-sum(init_probs))
-    attr(value, "class") <- "phase_type"
+    attr(value, "class") <- "disc_phase_type"
     return(value)
   }
 

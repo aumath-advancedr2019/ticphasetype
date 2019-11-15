@@ -104,36 +104,66 @@ pphtype <- function(q, obj){
 #'
 #' Random number generator. Still not implemented for disc_phase_type.
 #'
-#' @usage rphtype(n, obj, granularity = 0.01)
+#' @usage rphtype(n, obj)
 #'
 #' @export
 
 
-rphtype <- function(n, obj, granularity = 0.01){
+rphtype <- function(n, obj){
   if (class(obj) == 'phase_type') {
-    # A: Calculate density function. Break when the number is very low
 
+    # get the sub-intensity matrix
+    subint_mat = obj$subint_mat
+    # define the intensity matrix by adding the p+1 state column
+    int_mat <- cbind(subint_mat, -rowSums(subint_mat))
+    # get initial probabilities for p+1 states
+    init_probs = c(obj$init_probs, obj$defect)
+    # number of states
+    p <- nrow(subint_mat)
+    # create vector of zeroes
+    n_vec <- numeric(n)
 
-    x = 100000
-
-    # I copied the dphtype function into here, because I need a contingent break in the loop.
-    vec <- c()
-    e <- matrix(rep(1, nrow(obj$subint_mat)), nrow(obj$subint_mat), 1)
-    for (i in seq(0, x, granularity)) {
-      new_item =  -obj$init_probs%*%expm(i*obj$subint_mat)%*%obj$subint_mat%*%e
-      vec <- c(vec, new_item)
-      if (i > 4 & new_item < 0.0000000001) { # Only if you sample more than a billion, will you see a bias induced by the `break``
-        break # TODO: use the mean (calculate using PH) to know when to look for infinitesimal value. (instead of just `i>4`)
+    # for each n
+    for (i in 1:n) {
+      # define initial state
+      j <- sample(p+1, 1, prob = init_probs)
+      # while the state is not the absorbing state
+      while (j != (p+1)) {
+        # update by adding from an exponential draw
+        n_vec[i] <- n_vec[i] + rexp(1, -int_mat[j,j])
+        # update to the new state
+        j <- sample((1:(p+1))[-j], 1, prob = int_mat[j,-j])
       }
     }
-    #print(length(vec))
-    #print(vec[1:100])
+    return(n_vec)
 
-
-    # B: put the density function (stored in variable: `vec`) into a sampling function that accepts a weight parameter.
-    return(sample(seq(0, x, 0.01)[1:length(vec)], n, replace = T, prob = vec))
   } else if (class(obj) == 'disc_phase_type') {
-    stop('Still not implemented for disc_phase_type.')
+
+    # get the sub-intensity matrix
+    subint_mat = obj$subint_mat
+    # define the intensity matrix by adding the p+1 state column
+    int_mat <- cbind(subint_mat, 1-rowSums(subint_mat))
+    # get initial probabilities for p+1 states
+    init_probs = c(obj$init_probs, obj$defect)
+    # number of states
+    p <- nrow(subint_mat)
+    # create vector of zeroes
+    n_vec <- numeric(n)+1
+
+    # for each n
+    for (i in 1:n) {
+      # define initial state
+      j <- sample(p+1, 1, prob = init_probs)
+      # while the state is not the absorbing state
+      while (j != (p+1)) {
+        # update by adding one
+        n_vec[i] <- n_vec[i] + 1
+        # update to the new state
+        j <- sample(p+1, 1, prob = int_mat[j,])
+      }
+    }
+    return(n_vec)
+
   } else {
     stop("Please provide a 'phase_type' or a 'disc_phase_type' class.")
   }
