@@ -59,19 +59,22 @@ dphtype <- function(x, obj){
 #' @export
 
 qphtype <- function(p, obj){
-  if (class(obj) == 'phase_type') {
     vec <- c()
-    inv <- function(y) uniroot(function(q) pphtype(q, obj)-y, c(0,20))$root[1]
+    inv <- function(y) uniroot(function(q) pphtype(q, obj)-y, c(0,400))$root[1]
+    if (class(obj) == 'phase_type') {
+      for (i in p) {
+        vec <- c(vec, inv(i))
+      }
+    } else if (class(obj) == 'disc_phase_type') {
     for (i in p) {
-      vec <- c(vec, inv(i))
+      vec <- c(vec, round(inv(i)))
     }
-    return(vec)
-  } else if (class(obj) == 'disc_phase_type') {
-    stop('Still not implemented for disc_phase_type.')
   } else {
     stop("Please provide a 'phase_type' or a 'disc_phase_type' class.")
   }
+    return(vec)
 }
+
 
 
 #' @describeIn dphtype
