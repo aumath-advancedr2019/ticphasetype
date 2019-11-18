@@ -137,7 +137,7 @@ itons <- function(obj, itons, theta = 2) {
   }
 
   if(length(obj$subint_mat) == 1){
-    reward = matrix(obj$RewarM)
+    reward = matrix(obj$RewardM)
   }
   else{
     reward = obj$RewardM[,itons]
@@ -184,3 +184,4 @@ tailstat <- function(obj, k, theta = 2) {
   attr(value, 'class') <- c('disc_phase_type')
   value
 }
+
