@@ -54,6 +54,19 @@ disc_phase_type = function(subint_mat = NULL, init_probs = NULL){
   if (is.null(subint_mat)) {
     stop('Unable to construct the discrete phase-type distribution. Please provide either n or the subintensity matrix.')
   }
+  if(is.null(itons)){
+    ph = t_total(n)
+
+    T_table = ph$subint_mat
+    alpha = ph$init_probs
+    defect = 0
+
+    P = solve(diag(nrow(T_table)) - 2/theta * T_table)
+  }
+  else if(itons <= 0 | itons > (n-1) | !is.numeric(itons)){
+    stop('itons should be a number between 1 and n-1')
+
+  }
   else if (is.matrix(subint_mat)) {
     if(!is.numeric(subint_mat) | nrow(subint_mat) != ncol(subint_mat)){
       stop('Subintensity matrix should be a square numerical matrix')
@@ -118,8 +131,3 @@ summary.disc_phase_type <- function(object, ...) {
   cat('\nMean: ', mean(object), '\n', sep = '')
   cat('\nVariance: ', var(object), '\n\n', sep = '')
 }
-
-
-
-
-

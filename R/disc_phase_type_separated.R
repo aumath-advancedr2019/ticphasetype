@@ -1,3 +1,4 @@
+
 #' Simulate Matrices from Kingsman Coalescent
 #'
 #' Wrapper function that computes the matrices descrbining Kingsman coalescent ready for reward transformation
@@ -9,6 +10,21 @@
 #' @return A `mult_phase_type` object containing the subintensity matrix, reward matrix and vector of initial probabilities
 #'
 #' @example kingsman(4)
+
+# cont_cont_phase_type(subint_mat, init_probs)
+# disc_phase_type(subint_mat, init_probs)
+# mult_phase_type(subint_mat, init_probs, rewards)
+#
+# kingsman(n)
+# itons(mult_phase_type, itons, theta)
+# tailstat(mult_cont_phase_type, tail, theta)
+# segsites(n, theta)
+# t_mrca(n)
+# t_total(n)
+#
+# # obj: cont_cont_phase_type --> reward-transformed disc_phase_type
+# RewTransform(obj, reward)
+# RateMAndStateSpace(n)
 #' @export
 
 kingsman <- function(n = NULL){

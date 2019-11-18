@@ -6,7 +6,7 @@
 # 1 Test continuous phase type functions
 
 test_that("dphtype gives sensible results", {
-  pht = phase_type('T_MRCA', 6)
+  pht = t_mrca(6)
   observed_1 = dphtype(seq(0, 10), pht)
   expected_1 = c(
     0,
@@ -26,7 +26,7 @@ test_that("dphtype gives sensible results", {
 
 
 test_that("qphtype gives sensible results", {
-  pht = phase_type('T_MRCA', 6)
+  pht = t_mrca(6)
   observed_1 = qphtype(seq(0, 0.999, 0.1),
                        pht)
   expected_1 = c(
@@ -41,13 +41,13 @@ test_that("qphtype gives sensible results", {
     2.3641840256832784561425,
     3.0628993748782011863341
   )
-  expect_equal(observed_1, expected_1)
+  expect_equal(observed_1, expected_1, tolerance = 1e-05)
 
 })
 
 
 test_that("pphtype gives sensible results", {
-  pht = phase_type('T_MRCA', 6)
+  pht = t_mrca(6)
   observed_1 = pphtype(seq(0, 1, 0.1), pht)
   expected_1 = c(
     0,
@@ -69,10 +69,30 @@ test_that("pphtype gives sensible results", {
 
 
 test_that("rphtype gives sensible results", {
-  pht = phase_type('T_MRCA', 6)
+  pht = t_mrca(6)
   rph = rphtype(10000, pht)
   expect_equal(mean(rph), 1.66, tolerance = 0.2)
   expect_equal(stats::var(rph), 1.14, tolerance = 0.5)
+
+})
+
+
+test_that("reward transformations is consistent", {
+  n = 5
+
+  obj = t_mrca(n)
+  expected = matrix(c(-10,10,0,0.00,
+                      0,-3,3,0.00,
+                      0,0,-1,1.00,
+                      0,0,0,-0.25), ncol = n-1, nrow = n-1, byrow = T)
+
+
+  observed = rewardtransformparm((1):(n-1), obj$init_probs, obj$subint_mat)$subint_mat
+  expect_equal(expected, observed, tolerance = 1e-6)
+
+
+
+
 
 })
 

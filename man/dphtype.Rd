@@ -19,7 +19,7 @@ rphtype(n, obj)
 \arguments{
 \item{x, q}{vector of quantiles.}
 
-\item{obj}{an object of class \code{phase_type} or \code{disc_phase_type}.}
+\item{obj}{an object of class \code{cont_phase_type} or \code{disc_phase_type}.}
 
 \item{p}{vector of probabilities.}
 

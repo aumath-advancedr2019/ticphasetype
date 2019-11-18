@@ -8,7 +8,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-`ticphasetype` is useful for representing classical statiscics in population genetics by means of phase-type theory. This provides additional flexibility and efficiency for computing and understanding these statistics at the finest level. Do not hesitate to run `?ticphasetype` for a quick summary of the available functions, or to open the help files for the individual functions. There is also a brief description about phase-type distributions at the end of this vignette.
+`ticphasetype` is useful for representing classical statistics in population genetics by means of phase-type theory. This provides additional flexibility and efficiency for computing and understanding these statistics at the finest level. Do not hesitate to run `?ticphasetype` for a quick summary of the available functions, or to open the help files for the individual functions. There is also a brief description about phase-type distributions at the end of this vignette.
 
 
 ```{r, include = FALSE}
@@ -32,7 +32,7 @@ library(ticphasetype)
 A `cont_phase_type` class representing a continuous phase-type distribution for $T_{MRCA}$ can be generated using `cont_phase_type()`. For example, when `n`=5:
 
 ```{r}
-T_MRCA_ph <- cont_phase_type(type = 'T_MRCA', n = 5)
+T_MRCA_ph <- t_mrca(n = 5)
 ```
 
 There are a number of methods associated with the `cont_phase_type`, such as:
@@ -54,7 +54,7 @@ summary(T_MRCA_ph)
 $T_{Total}$ can also be represented using the `cont_phase_type` class:
 
 ```{r}
-T_Total_ph <- cont_phase_type(type = 'T_Total', n = 5)
+T_Total_ph <- t_total(n = 5)
 ```
 
 ```{r}
