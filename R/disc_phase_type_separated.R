@@ -107,7 +107,7 @@ RewTransform <- function(mph_obj, rewards = NULL, theta = NULL){
 #'
 #' @export
 
-segsites <- function(n, theta){
+segsites <- function(n, theta=2){
   if (n<=1 | !is.numeric(n) | n %% 1 != 0 | n %% 1 != 0) {
     stop('n should be a positive integer larger than 1')
   }
@@ -123,7 +123,7 @@ segsites <- function(n, theta){
 
   P = solve(diag(nrow(T_table)) - 2/theta * T_table)
 
-  value <- list(subint_mat = T_table, init_probs = alpha, defect = 0)
+  value <- list(subint_mat = P, init_probs = alpha, defect = 0)
   attr(value, "class") <- c("disc_phase_type")
   return(value)
 }

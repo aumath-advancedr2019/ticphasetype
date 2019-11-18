@@ -9,6 +9,10 @@ disc_phase_type(n = NULL, itons = NULL,
             subint_mat = NULL, init_probs = NULL)
 }
 \arguments{
+\item{subint_mat}{matrix or \code{NULL} (default).}
+
+\item{init_probs}{vector, a one-row matrix or \code{NULL} (default).}
+
 \item{n}{integer larger than 1, or \code{NULL} (default).}
 
 \item{itons}{integer between 1 and n-1, or \code{NULL} (default).}
@@ -16,10 +20,6 @@ disc_phase_type(n = NULL, itons = NULL,
 \item{theta}{numeric.}
 
 \item{tail_stat}{logical.}
-
-\item{subint_mat}{matrix or \code{NULL} (default).}
-
-\item{init_probs}{vector, a one-row matrix or \code{NULL} (default).}
 }
 \description{
 Description of the class \code{disc_phase_type}, which represents discrete phase-type
