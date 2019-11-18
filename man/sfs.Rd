@@ -16,8 +16,16 @@ sfs(n, theta = 2, init_probs = NULL, plot = FALSE)
 \item{plot}{logical}
 }
 \description{
-Returns a list of expected counts of itons up to n-1 or a plot if specified. Works with different values of `theta` (population mutation parameter)
-as well as with custom vector of initial probabilities.
+This function returns a list of expected counts of itons up to n-1, or a plot if specified.
+It builds the site frequency spectrum using Kingman's coalescent. It works for different
+values of `theta` (population mutation parameter).
+}
+\details{
+The initial probabilities can be specified by the user. If not specified, they will
+automatically be constructed as the first state having a probability of 1 and the rest
+a probability of 0.
+
+If \code{plot=TRUE}, then a plot is returned.
 }
 \examples{
 sfs(n = 5)
