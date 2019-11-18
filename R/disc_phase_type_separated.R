@@ -1,79 +1,20 @@
-cont_cont_phase_type(subint_mat, init_probs)
-disc_phase_type(subint_mat, init_probs)
-mult_phase_type(subint_mat, init_probs, rewards)
-
-kingsman(n)
-itons(mult_cont_phase_type, itons, theta)
-tailstat(mult_cont_phase_type, tail, theta)
-segsites(n, theta)
-t_mrca(n)
-t_total(n)
-
-# obj: cont_cont_phase_type --> reward-transformed disc_phase_type
-RewTransform(obj, reward)
-RateMAndStateSpace(n)
-
-
-
-
+#' Simulate Matrices from Kingsman Coalescent
+#'
+#' Wrapper function that computes the matrices descrbining Kingsman coalescent ready for reward transformation
+#'
+#' @usage kingsman(n)
+#'
+#' @param n sample size (should be a positive integer)
+#'
+#' @return A `mult_phase_type` object containing the subintensity matrix, reward matrix and vector of initial probabilities
+#'
+#' @example kingsman(4)
 #' @export
 
-# This function creates a discrete phase-type distribution of Kingsman's coalescent
-# together with the reward matrix for calculating the site-frequency spectrum and
-# related statistics. The user can also specify a different coalescent model by
-# supplying a sub-intensity matrix and an optional initial probabilities vector.
-discrete_ph <- function(n = NULL, subint_mat = NULL, init_probs = NULL){
+kingsman <- function(n = NULL){
 
-  if (is.null(n)) {
-    if (is.null(subint_mat)) {
-      stop('Unable to construct the discrete phase-type distribution. Please provide either n or the subintensity matrix.')
-    }
-    else if (is.matrix(subint_mat)) {
-      if(!is.numeric(subint_mat) | nrow(subint_mat) != ncol(subint_mat)){
-        stop('Subintensity matrix should be a square numerical matrix')
-      }
-      # i am not sure if the condition that values off diagonal have to be non negative and the ones on diagonal have to be
-      # negative has to be neccessarily true.
-
-      # rowsums in Subintensity matrix have to be non positive
-      else if(sum(rowSums(subint_mat) > 0) != 0){
-        stop('The rowsums in subintensity matrix have to be non-positive')
-      }
-
-      if (is.null(init_probs)) {
-        init_probs <- matrix(c(1, rep(0, nrow(subint_mat) - 1)), 1, nrow(subint_mat))
-        warning('The initial probability vector is automatically generated.')
-      }
-      else if ((is.vector(init_probs) & is.atomic(init_probs)) | is.matrix(init_probs)) {
-        if (nrow(subint_mat) == length(init_probs)) {
-          init_probs <- matrix(init_probs, nrow = 1)
-        }
-        else {
-          stop('The length of the initial probabilities does not match the size of the subintensity matrix.')
-        }
-      }
-      else {
-        stop('The initial probabilities must be a a matrix with one row or a vector.')
-      }
-    }
-    else {
-      stop('The subintensity matrix must be a matrix.')
-    }
-    value = list(subint_mat = subint_mat, init_probs = init_probs, defect = 1-sum(init_probs))
-    attr(value, "class") <- "disc_phase_type"
-    return(value)
-  }
-
-  else if (n<=1 | !is.numeric(n) | n %% 1 != 0 | n %% 1 != 0) {
+  if (is.null(n) | n <= 1 | !is.numeric(n) | n %% 1 != 0 | n %% 1 != 0) {
     stop('n should be a positive integer larger than 1')
-  }
-  else if(!is.null(init_probs)){
-    if(!is.numeric(init_probs)) {
-      if (class(init_probs == 'matrix') & ncol != 1){
-        stop('init_probs should be a 1D numerical vector')
-      }
-      stop('init_probs should be a 1D numerical vector')
-    }
   }
 
   else{
@@ -87,29 +28,43 @@ discrete_ph <- function(n = NULL, subint_mat = NULL, init_probs = NULL){
     }
 
     # Initial Distribution
-    if(is.null(init_probs)){
-      if(n == 2){
+    if(n == 2){
         init_probs = matrix(c(1))
       }
       else{
         init_probs = c(1, rep(0, nrow(subint_mat)-1))
       }
     }
-  }
   # Reward Matrix
   RewardM = matrixes$StSpM[1:(nrow(matrixes$StSpM)-1), 1:ncol(matrixes$StSpM)-1]
 
-  value = list(subint_mat = subint_mat, RewardM = RewardM, init_probs = init_probs, defect = 1-sum(init_probs))
-  attr(value, "class") <- c('cont_phase_type', 'rewards')
+  value = list(subint_mat = subint_mat, RewardM = RewardM, init_probs = init_probs)
+  attr(value, "class") <- c('mult_phase_type')
   return(value)
 }
 
-# We need to have this function, otherwise there is no reason for having an `subint_mat` argument in the disc-ph function above
-RewTransform <- function(obj, rewards = NULL){
+#' Discretize MPH object with a reward vector
+#'
+#' Reward transformation of continuous Phase Type distribution into Discrete Phase Type
+#'
+#' @usage RewTransform(mph_obj, rewards, theta)
+#'
+#' @param mph_obj Multivariate Phase Type object generated either from mult_phase_type or kingsman function
+#' @param rewards vector of non negative numbers
+#' @param theta mutation parameter (positive number)
+#'
+#' @return A `disc_phase_type` object containing subintensity matrix (P), vector of initial probabilities (alpha) and defect (probability of not entering any transient
+#' state prior to absorption)
+#'
+#' @example RewTransform(kingsman(4), c(4, 2, 1, 0), 2)
+RewTransform <- function(mph_obj, rewards = NULL, theta = NULL){
   if(is.null(rewards)){
     stop('rewards should be a 1D numerical vector')
   }
-  else {
+  else if(is.numeric(rewards) & sum(rewards < 0) != 0){
+    stop('rewards has to be a vector of non negative numbers')
+  }
+  else{
     if(!is.numeric(rewards)) {
       if (class(rewards == 'matrix') & ncol != 1){
         stop('rewards should be a 1D numerical vector')
@@ -117,8 +72,12 @@ RewTransform <- function(obj, rewards = NULL){
       stop('rewards should be a 1D numerical vector')
     }
   }
+
+  if(!is.numeric(theta) | theta < 0){
+    stop('theta should be a positive number')
+  }
   ######### Computation of T*, alpha and defect ##########
-  rew_transformed = rewardtransformparm(rewards, obj$init_probs, obj$subint_mat)
+  rew_transformed = rewardtransformparm(rewards, mph_obj$init_probs, mph_obj$subint_mat)
   alpha = rew_transformed$init_probs
   T_star = rew_transformed$subint_mat
   defect = rew_transformed$defect
@@ -131,9 +90,23 @@ RewTransform <- function(obj, rewards = NULL){
   value
 }
 
+#' Segregating Sites
+#'
+#' Generate subintensity matrix for the special case of segregating sites
+#'
+#' @usage segsites(n, theta)
+#'
+#' @param n sample size (positive integer)
+#' @param theta mutation parameter (positive)
+#'
+#' @return A `disc_phase_type` object containing subintensity matrix (P), vector of initial probabilities (alpha) and defect (probability of not entering any transient
+#' state prior to absorption)
+#'
+#' @example segsites(n = 4, theta = 2)
+#'
 #' @export
 
-segsites <- function(n, theta = 2){
+segsites <- function(n, theta){
   if (n<=1 | !is.numeric(n) | n %% 1 != 0 | n %% 1 != 0) {
     stop('n should be a positive integer larger than 1')
   }
@@ -141,7 +114,7 @@ segsites <- function(n, theta = 2){
     stop('theta should be a positive number')
   }
 
-  ph = cont_phase_type('T_Total', n = n)
+  ph = t_total(n)
 
   T_table = ph$subint_mat
   alpha = ph$init_probs
@@ -153,25 +126,41 @@ segsites <- function(n, theta = 2){
   attr(value, "class") <- c("disc_phase_type")
   return(value)
 }
-
+#' Itons (frequency counts)
+#'
+#' Generate subintensity matrix, vector of initial probabilites and defect for any frequency count
+#'
+#' @usage itons(mph_obj, itons, theta)
+#'
+#' @param mph_obj Multivariate Phase Type object generated either from mult_phase_type or kingsman function
+#' @param itons Frequency count (positive integer)
+#' @param theta mutation parameter (positive)
+#'
+#' @return A `disc_phase_type` object containing subintensity matrix (P), vector of initial probabilities (alpha) and defect (probability of not entering any transient
+#' state prior to absorption)
+#'
+#' @example itons(kingsman(4), 2, theta = 2)
+#'
 #' @export
 
-itons <- function(obj, itons, theta = 2) {
+itons <- function(mph_obj, itons, theta) {
   if(!is.numeric(itons) | itons %% 1 != 0 | itons < 1){
     stop('itons should be a positive integer larger than 0')
   }
   else if(!is.numeric(theta) | theta < 0){
     stop('theta should be a positive number')
   }
-
-  if(length(obj$subint_mat) == 1){
-    reward = matrix(obj$RewardM)
+  else if(itons >= ncol(mph_obj$RewardM)){
+    stop('itons (frequency count) has to be lower than the sample size "n"')
+  }
+  if(length(mph_obj$subint_mat) == 1){
+    reward = matrix(mph_obj$RewardM)
   }
   else{
-    reward = obj$RewardM[,itons]
+    reward = mph_obj$RewardM[,itons]
   }
   ######### Computation of T*, alpha and defect ##########
-  rew_transformed = rewardtransformparm(reward, obj$init_probs, obj$subint_mat)
+  rew_transformed = rewardtransformparm(reward, mph_obj$init_probs, mph_obj$subint_mat)
   alpha = rew_transformed$init_probs
   T_star = rew_transformed$subint_mat
   defect = rew_transformed$defect
@@ -183,26 +172,40 @@ itons <- function(obj, itons, theta = 2) {
   attr(value, 'class') <- c('disc_phase_type')
   value
 }
-
+#' Tail Statistic
+#'
+#' Generate subintensity matrix, vector of initial probabilites and defect for combination of frequency counts higher than "k" (tail statistic)
+#'
+#' @usage tail_stat(mph_obj, k, theta)
+#'
+#' @param mph_obj Multivariate Phase Type object generated either from mult_phase_type or kingsman function
+#' @param k Minimum Frequency count (positive integer)
+#' @param theta mutation parameter (positive)
+#'
+#' @return A `disc_phase_type` object containing subintensity matrix (P), vector of initial probabilities (alpha) and defect (probability of not entering any transient
+#' state prior to absorption)
+#'
+#' @example tailstat(kingsman(15), k = 10, theta = 2)
+#'
 #' @export
 
-tailstat <- function(obj, k, theta = 2) {
-  if(!is.numeric(k) | k %% 1 != 0 | k < 1){
-    stop('k should be a positive integer larger than 0')
+tailstat <- function(mph_obj, k, theta) {
+  if(!is.numeric(k) | k %% 1 != 0 | k < 1 | k >= ncol(mph_obj$RewardM)){
+    stop('k should be a positive integer larger than 0 and smaller than the sample size')
   }
   else if(!is.numeric(theta) | theta < 0){
     stop('theta should be a positive number')
   }
 
-  if(nrow(obj$subint_mat) == k){
-    reward = matrix(obj$RewardM[, ncol(obj$RewardM)])
+  if(nrow(mph_obj$subint_mat) == k){
+    reward = matrix(mph_obj$RewardM[, ncol(mph_obj$RewardM)])
   }
   else{
-    reward = rowSums(obj$RewardM[, k:ncol(obj$RewardM)])
+    reward = rowSums(mph_obj$RewardM[, k:ncol(mph_obj$RewardM)])
   }
 
   ######### Computation of T*, alpha and defect ##########
-  rew_transformed = rewardtransformparm(reward, obj$init_probs, obj$subint_mat)
+  rew_transformed = rewardtransformparm(reward, mph_obj$init_probs, mph_obj$subint_mat)
   alpha = rew_transformed$init_probs
   T_star = rew_transformed$subint_mat
   defect = rew_transformed$defect

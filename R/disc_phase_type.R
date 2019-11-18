@@ -49,114 +49,43 @@
 #'
 #' @export
 
-disc_phase_type = function(n = NULL, itons = NULL, theta = 2, tail_stat = F, subint_mat = NULL, init_probs = NULL){
+disc_phase_type = function(subint_mat = NULL, init_probs = NULL){
 
-  if (is.null(n)) {
-    if (is.null(subint_mat)) {
-      stop('Unable to construct the discrete phase-type distribution. Please provide either n or the subintensity matrix.')
-    } else if (is.matrix(subint_mat)) {
-      if (is.null(init_probs)) {
-        init_probs <- matrix(c(1, rep(0, nrow(subint_mat) - 1)), 1, nrow(subint_mat))
-        warning('The initial probability vector is automatically generated.')
-      } else if ((is.vector(init_probs) & is.atomic(init_probs)) | is.matrix(init_probs)) {
-        if (nrow(subint_mat) == length(init_probs)) {
-          init_probs <- matrix(init_probs, nrow = 1)
-        } else {
-          stop('The length of the initial probabilities does not match the size of the subintensity matrix.')
-        }
-      } else {
-        stop('The initial probabilities must be a a matrix with one row or a vector.')
-      }
-    } else {
-      stop('The subintensity matrix must be a matrix.')
+  if (is.null(subint_mat)) {
+    stop('Unable to construct the discrete phase-type distribution. Please provide either n or the subintensity matrix.')
+  }
+  else if (is.matrix(subint_mat)) {
+    if(!is.numeric(subint_mat) | nrow(subint_mat) != ncol(subint_mat)){
+      stop('Subintensity matrix should be a square numerical matrix')
     }
-    value = list(subint_mat = subint_mat, init_probs = init_probs, defect = 1-sum(init_probs))
-    attr(value, "class") <- "disc_phase_type"
-    return(value)
-  }
-
-
-  # All Segregating Sites - This computes the P matrix faster than setting rewards to sum(ri)
-  if (n<=1 | !is.numeric(n)) {
-    stop('n should be a positive integer larger than 1')
-  }
-
-  if(is.null(itons)){
-    ph = cont_phase_type('T_Total', n = n)
-
-    T_table = ph$subint_mat
-    alpha = ph$init_probs
-    defect = 0
-
-    P = solve(diag(nrow(T_table)) - 2/theta * T_table)
-  }
-  else if(itons <= 0 | itons > (n-1) | !is.numeric(itons)){
-    stop('itons should be a number between 1 and n-1')
-  }
-  # Special Case (eg. singletons or tail statistic)
-  else{
-
-    ######## Step1: Preparation of Rate matrix (T), initial Distribution (pi) and reward vector ########
-    matrixes = RateMAndStateSpace(n)
-    # Rate Matrix
-    if(n == 2){
-      T_table = matrix(matrixes$RateM[1, 1])
-    }
-    else{
-      T_table = matrixes$RateM[1:ncol(matrixes$RateM)-1, 1:ncol(matrixes$RateM)-1]
+    # rowsums in Subintensity matrix have to be non positive
+    else if(sum(rowSums(subint_mat) > 0) != 0){
+      stop('The rowsums in subintensity matrix have to be non-positive')
     }
 
-    # Initial Distribution
-    if(is.null(init_probs)){
-      if(n == 2){
-        init_probs = matrix(c(1))
+    if (is.null(init_probs)) {
+      init_probs <- matrix(c(1, rep(0, nrow(subint_mat) - 1)), 1, nrow(subint_mat))
+      warning('The initial probability vector is automatically generated.')
+    }
+    else if ((is.vector(init_probs) & is.atomic(init_probs)) | is.matrix(init_probs)) {
+      if (nrow(subint_mat) == length(init_probs)) {
+        init_probs <- matrix(init_probs, nrow = 1)
       }
-      else{
-        init_probs = c(1, rep(0, nrow(T_table)-1))
+      else {
+        stop('The length of the initial probabilities does not match the size of the subintensity matrix.')
       }
     }
-
-    ####### REWARDS #######
-    # Tail Statistic
-    if(tail_stat){
-      if(n == (itons + 1)){
-        reward = matrix(matrixes$StSpM[1:(nrow(matrixes$StSpM)-1), ncol(matrixes$StSpM)-1])
-      }
-      else{
-        reward = apply(matrixes$StSpM[1:(nrow(matrixes$StSpM)-1), itons:(ncol(matrixes$StSpM)-1)], 1, sum)
-      }
+    else {
+      stop('The initial probabilities must be a a matrix with one row or a vector.')
     }
-
-    # I-tons
-    else{
-      if(n == 2){
-        reward = matrix(matrixes$StSpM[1,1])
-      }
-      else{
-        reward = matrixes$StSpM[1:nrow(matrixes$StSpM)-1,][,itons]
-      }
-    }
-
-    ######### Step2: Computation of T*, alpha and defect ##########
-    rew_transformed = rewardtransformparm(reward, init_probs, T_table)
-    alpha = rew_transformed$init_probs
-    T_star = rew_transformed$subint_mat
-    defect = rew_transformed$defect
-
-    ########## Step3: Computation of P and p (transformation to DPH) ##########
-    P = solve(diag(nrow(T_star)) - 2/theta * T_star)
   }
-
-  if(is.null(itons)){
-    value = list(subint_mat = P, init_probs = alpha, defect = defect)
+  else {
+    stop('The subintensity matrix must be a matrix.')
   }
-  else{
-    value = list(subint_mat = P, init_probs = alpha, defect = defect)
-  }
-  attr(value, 'class') <- 'disc_phase_type'
-  value
+  value = list(subint_mat = subint_mat, init_probs = init_probs, defect = 1-sum(init_probs))
+  attr(value, "class") <- "disc_phase_type"
+  return(value)
 }
-
 
 
 #' @export
@@ -165,9 +94,6 @@ mean.disc_phase_type <- function(x, ...) {
   mean <- sum(x$init_probs%*%solve(diag(nrow = nrow(x$subint_mat))-x$subint_mat))
   as.numeric(mean+x$defect)
 }
-
-
-
 
 
 #' @export
