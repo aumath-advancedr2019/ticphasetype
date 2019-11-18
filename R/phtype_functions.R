@@ -35,7 +35,11 @@ dphtype <- function(x, obj){
     t = e - obj$subint_mat %*% e
     dens_vec = c()
     for(i in x){
-      dens_vec <- c(dens_vec, obj$init_probs %*% (obj$subint_mat %^% (i-1)) %*% t)
+      if (i==0) {
+        dens_vec <- c(dens_vec, obj$defect)
+      } else {
+        dens_vec <- c(dens_vec, obj$init_probs %*% (obj$subint_mat %^% (i-1)) %*% t)
+      }
     }
     return(dens_vec)
   } else {
@@ -55,19 +59,22 @@ dphtype <- function(x, obj){
 #' @export
 
 qphtype <- function(p, obj){
-  if (class(obj) == 'phase_type') {
     vec <- c()
-    inv <- function(y) uniroot(function(q) pphtype(q, obj)-y, c(0,20))$root[1]
+    inv <- function(y) uniroot(function(q) pphtype(q, obj)-y, c(0,400))$root[1]
+    if (class(obj) == 'phase_type') {
+      for (i in p) {
+        vec <- c(vec, inv(i))
+      }
+    } else if (class(obj) == 'disc_phase_type') {
     for (i in p) {
-      vec <- c(vec, inv(i))
+      vec <- c(vec, round(inv(i)))
     }
-    return(vec)
-  } else if (class(obj) == 'disc_phase_type') {
-    stop('Still not implemented for disc_phase_type.')
   } else {
     stop("Please provide a 'phase_type' or a 'disc_phase_type' class.")
   }
+    return(vec)
 }
+
 
 
 #' @describeIn dphtype
@@ -148,7 +155,7 @@ rphtype <- function(n, obj){
     # number of states
     p <- nrow(subint_mat)
     # create vector of zeroes
-    n_vec <- numeric(n)+1
+    n_vec <- numeric(n)
 
     # for each n
     for (i in 1:n) {

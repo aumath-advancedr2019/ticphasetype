@@ -111,7 +111,8 @@ dphtype(0.5, T_MRCA_ph)
 ```{r}
 x <- seq(0,10,0.1)
 y <- dphtype(x, T_MRCA_ph)
-plot(x, y)
+plot(x, y, type = 'l')
+lines(x, y)
 title('Density function of T_MRCA')
 ```
 
@@ -122,7 +123,8 @@ qphtype(0.5, T_MRCA_ph)
 ```{r}
 x <- seq(0,0.99,0.01)
 y <- qphtype(x, T_MRCA_ph)
-plot(x, y)
+plot(x, y, type = 'l')
+lines(x, y)
 title('Quantile function of T_MRCA')
 ```
 
@@ -133,7 +135,8 @@ pphtype(0.5, T_MRCA_ph)
 ```{r}
 x <- seq(0,6,0.1)
 y <- pphtype(x, T_MRCA_ph)
-plot(x, y)
+plot(x, y, type = 'l')
+lines(x, y)
 title('Distribution function of T_MRCA')
 ```
 
