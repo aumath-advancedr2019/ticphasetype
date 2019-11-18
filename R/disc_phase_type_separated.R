@@ -1,3 +1,27 @@
+cont_cont_phase_type(subint_mat, init_probs)
+disc_phase_type(subint_mat, init_probs)
+mult_phase_type(subint_mat, init_probs, rewards)
+
+kingsman(n)
+itons(mult_cont_phase_type, itons, theta)
+tailstat(mult_cont_phase_type, tail, theta)
+segsites(n, theta)
+t_mrca(n)
+t_total(n)
+
+# obj: cont_cont_phase_type --> reward-transformed disc_phase_type
+RewTransform(obj, reward)
+RateMAndStateSpace(n)
+
+
+
+
+#' @export
+
+# This function creates a discrete phase-type distribution of Kingsman's coalescent
+# together with the reward matrix for calculating the site-frequency spectrum and
+# related statistics. The user can also specify a different coalescent model by
+# supplying a sub-intensity matrix and an optional initial probabilities vector.
 discrete_ph <- function(n = NULL, subint_mat = NULL, init_probs = NULL){
 
   if (is.null(n)) {
@@ -76,7 +100,7 @@ discrete_ph <- function(n = NULL, subint_mat = NULL, init_probs = NULL){
   RewardM = matrixes$StSpM[1:(nrow(matrixes$StSpM)-1), 1:ncol(matrixes$StSpM)-1]
 
   value = list(subint_mat = subint_mat, RewardM = RewardM, init_probs = init_probs, defect = 1-sum(init_probs))
-  attr(value, "class") <- "disc_phase_type"
+  attr(value, "class") <- c('cont_phase_type', 'rewards')
   return(value)
 }
 
@@ -94,7 +118,7 @@ RewTransform <- function(obj, rewards = NULL){
     }
   }
   ######### Computation of T*, alpha and defect ##########
-  rew_transformed = rewardtransformparm(reward, obj$init_probs, obj$subint_mat)
+  rew_transformed = rewardtransformparm(rewards, obj$init_probs, obj$subint_mat)
   alpha = rew_transformed$init_probs
   T_star = rew_transformed$subint_mat
   defect = rew_transformed$defect
@@ -107,6 +131,8 @@ RewTransform <- function(obj, rewards = NULL){
   value
 }
 
+#' @export
+
 segsites <- function(n, theta = 2){
   if (n<=1 | !is.numeric(n) | n %% 1 != 0 | n %% 1 != 0) {
     stop('n should be a positive integer larger than 1')
@@ -115,7 +141,7 @@ segsites <- function(n, theta = 2){
     stop('theta should be a positive number')
   }
 
-  ph = phase_type('T_Total', n = n)
+  ph = cont_phase_type('T_Total', n = n)
 
   T_table = ph$subint_mat
   alpha = ph$init_probs
@@ -124,9 +150,11 @@ segsites <- function(n, theta = 2){
   P = solve(diag(nrow(T_table)) - 2/theta * T_table)
 
   value <- list(subint_mat = T_table, init_probs = alpha, defect = 0)
-  attr(value, "class") <- c("disc_phase_type", "segregating_sites")
+  attr(value, "class") <- c("disc_phase_type")
   return(value)
 }
+
+#' @export
 
 itons <- function(obj, itons, theta = 2) {
   if(!is.numeric(itons) | itons %% 1 != 0 | itons < 1){
@@ -155,6 +183,8 @@ itons <- function(obj, itons, theta = 2) {
   attr(value, 'class') <- c('disc_phase_type')
   value
 }
+
+#' @export
 
 tailstat <- function(obj, k, theta = 2) {
   if(!is.numeric(k) | k %% 1 != 0 | k < 1){

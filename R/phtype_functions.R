@@ -3,7 +3,7 @@
 #'
 #' @param x,q vector of quantiles.
 #' @param p vector of probabilities.
-#' @param obj an object of class \code{phase_type} or \code{disc_phase_type}.
+#' @param obj an object of class \code{cont_phase_type} or \code{disc_phase_type}.
 #' @param n number of samples to draw.
 #' @param granularity distance between numbers drawable
 #'
@@ -23,7 +23,7 @@
 #' @export
 
 dphtype <- function(x, obj){
-  if (class(obj) == 'phase_type') {
+  if (class(obj) == 'cont_phase_type') {
     vec <- c()
     e <- matrix(rep(1,nrow(obj$subint_mat)), nrow(obj$subint_mat), 1)
     for (i in x) {
@@ -43,7 +43,7 @@ dphtype <- function(x, obj){
     }
     return(dens_vec)
   } else {
-    stop("Please provide a 'phase_type' or a 'disc_phase_type' class.")
+    stop("Please provide a 'cont_phase_type' or a 'disc_phase_type' class.")
   }
 }
 
@@ -61,7 +61,7 @@ dphtype <- function(x, obj){
 qphtype <- function(p, obj){
     vec <- c()
     inv <- function(y) uniroot(function(q) pphtype(q, obj)-y, c(0,400))$root[1]
-    if (class(obj) == 'phase_type') {
+    if (class(obj) == 'cont_phase_type') {
       for (i in p) {
         vec <- c(vec, inv(i))
       }
@@ -70,7 +70,7 @@ qphtype <- function(p, obj){
       vec <- c(vec, round(inv(i)))
     }
   } else {
-    stop("Please provide a 'phase_type' or a 'disc_phase_type' class.")
+    stop("Please provide a 'cont_phase_type' or a 'disc_phase_type' class.")
   }
     return(vec)
 }
@@ -87,7 +87,7 @@ qphtype <- function(p, obj){
 
 
 pphtype <- function(q, obj){
-  if (class(obj) == 'phase_type') {
+  if (class(obj) == 'cont_phase_type') {
     vec <- c()
     e <- matrix(rep(1,nrow(obj$subint_mat)), nrow(obj$subint_mat), 1)
     for (i in q) {
@@ -102,7 +102,7 @@ pphtype <- function(q, obj){
     }
     return(prob_vec)
   } else {
-    stop("Please provide a 'phase_type' or a 'disc_phase_type' class.")
+    stop("Please provide a 'cont_phase_type' or a 'disc_phase_type' class.")
   }
 }
 
@@ -117,7 +117,7 @@ pphtype <- function(q, obj){
 
 
 rphtype <- function(n, obj){
-  if (class(obj) == 'phase_type') {
+  if (class(obj) == 'cont_phase_type') {
 
     # get the sub-intensity matrix
     subint_mat = obj$subint_mat
@@ -172,7 +172,7 @@ rphtype <- function(n, obj){
     return(n_vec)
 
   } else {
-    stop("Please provide a 'phase_type' or a 'disc_phase_type' class.")
+    stop("Please provide a 'cont_phase_type' or a 'disc_phase_type' class.")
   }
 }
 

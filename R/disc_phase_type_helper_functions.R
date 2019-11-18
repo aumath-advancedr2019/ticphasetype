@@ -22,9 +22,7 @@ rewardtransformparm <- function(rewards, init_probs, subint_mat){
       qmat[i,j] <- -subint_mat[i,j]/subint_mat[i,i]
     }
   }
-  ##
   # If all rewards are stricly postive everything is simpler
-  ##
   if(d == p){
     pmat <- qmat
     alphavec <- init_probs
@@ -51,7 +49,7 @@ rewardtransformparm <- function(rewards, init_probs, subint_mat){
     tstarvec[i] <- -subint_mat[i,i]/rewards[i]*pvec[i]
     Tstarmat[i,i] <- -sum(Tstarmat[i,])-tstarvec[i]
   }
-  phase_type(subint_mat = Tstarmat, init_probs = alphavec)
+  cont_phase_type(subint_mat = Tstarmat, init_probs = alphavec)
 }
 
 #----------------------------------------------------------------------------------------------
