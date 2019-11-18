@@ -82,7 +82,7 @@ disc_phase_type = function(n = NULL, itons = NULL, theta = 2, tail_stat = F, sub
   }
 
   if(is.null(itons)){
-    ph = phase_type('T_Total', n = n)
+    ph = cont_phase_type('T_Total', n = n)
 
     T_table = ph$subint_mat
     alpha = ph$init_probs

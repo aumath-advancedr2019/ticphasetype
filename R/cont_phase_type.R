@@ -1,9 +1,9 @@
-#' \code{phase_type} class
+#' \code{cont_phase_type} class
 #'
-#' Description of the class \code{phase_type}, which represents continuous phase-type
+#' Description of the class \code{cont_phase_type}, which represents continuous phase-type
 #' distributions.
 #'
-#' \code{phase_type} is the generator function for the continuous phase-type distribution class
+#' \code{cont_phase_type} is the generator function for the continuous phase-type distribution class
 #' of the same name, which inherits from \code{list}. It can be generated in two different ways:
 #' \itemize{
 #'   \item By specifying whether the user wants a phase-type representation of the
@@ -18,30 +18,30 @@
 #' @param subint_mat matrix or \code{NULL} (default).
 #' @param init_probs vector, a one-row matrix or \code{NULL} (default).
 #'
-#' @usage phase_type(type = NULL, n = NULL,
+#' @usage cont_phase_type(type = NULL, n = NULL,
 #'            subint_mat = NULL, init_probs = NULL)
 #'
 #' @examples
 #' #library(qpdf) # I added this for devtools::check() to pass.
 #' # Time until the MRCA
-#' phase_type('T_MRCA', 4)
+#' cont_phase_type('T_MRCA', 4)
 #'
 #' # Total tree length
-#' ph_example <- phase_type('T_Total', 6)
+#' ph_example <- cont_phase_type('T_Total', 6)
 #' mean(ph_example)
 #' var(ph_example)
 #' summary(ph_example)
 #'
 #' # User-specified phase-type distribution
 #' subint_example <- matrix(runif(16), ncol=4)
-#' ph_user <- phase_type(subint_mat = subint_example)
+#' ph_user <- cont_phase_type(subint_mat = subint_example)
 #' summary(ph_user)
 #'
 #' @export
 
 
 
-phase_type <- function(type = NULL, n = NULL, subint_mat = NULL, init_probs = NULL) {
+cont_phase_type <- function(type = NULL, n = NULL, subint_mat = NULL, init_probs = NULL) {
   if (is.null(type)) {
     if (is.null(subint_mat)) {
       stop('Unable to construct the phase-type distribution. Please provide either the type or the subintensity matrix.')
@@ -87,7 +87,7 @@ phase_type <- function(type = NULL, n = NULL, subint_mat = NULL, init_probs = NU
   value <- list(subint_mat = subint_mat,
                 init_probs = init_probs,
                 defect = 1-sum(init_probs))
-  attr(value, "class") <- "phase_type"
+  attr(value, "class") <- "cont_phase_type"
   value
 }
 
@@ -102,17 +102,17 @@ moment_ph <- function(obj, m) {
 
 #' @export
 
-mean.phase_type <- function(x, ...) {
+mean.cont_phase_type <- function(x, ...) {
   moment_ph(x, 1)
 }
 
-#' Variance of phase_type distributions
+#' Variance of cont_phase_type distributions
 #'
 #' It calculates the variance of continuous and discrete phase-type distributions,
-#' represented by the \code{phase_type} and the \code{disc_phase_type} classes
+#' represented by the \code{cont_phase_type} and the \code{disc_phase_type} classes
 #' respectively
 #'
-#' @param obj a phase_type or disc_phase_type object.
+#' @param obj a cont_phase_type or disc_phase_type object.
 #'
 #' @export
 
@@ -122,14 +122,14 @@ var <- function(obj) {
 
 #' @export
 
-var.phase_type <- function(obj) {
+var.cont_phase_type <- function(obj) {
   moment_ph(obj, 2)-moment_ph(obj, 1)**2
 }
 
 
 #' @export
 
-summary.phase_type <- function(object, ...) {
+summary.cont_phase_type <- function(object, ...) {
   cat('\nSubintensity matrix:\n')
   print(object$subint_mat)
   cat('\nInitial probabilities:\n')
