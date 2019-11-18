@@ -10,9 +10,9 @@ This package implements core functions from phase-type
     theory that are useful in the analysis of biological data.
 }
 \details{
-This package contains two generator functions, namely \code{\link{phase_type}} and
+This package contains two generator functions, namely \code{\link{cont_cont_phase_type}} and
 \code{\link{disc_phase_type}} for continuous and discrete phase-type distributions
-respectively. \code{phase_type()} can easily be used for modelling the time until
+respectively. \code{cont_phase_type()} can easily be used for modelling the time until
 the most recent common ancestor and the total tree length using a user-friendly
 interface. On the other hand, \code{disc_phase_type()} generates phase-type
 representations of i-tons (singletons, doubletons, etc.) and related statistics.

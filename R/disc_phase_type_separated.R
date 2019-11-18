@@ -1,17 +1,17 @@
-cont_cont_phase_type(subint_mat, init_probs)
-disc_phase_type(subint_mat, init_probs)
-mult_phase_type(subint_mat, init_probs, rewards)
-
-kingsman(n)
-itons(mult_cont_phase_type, itons, theta)
-tailstat(mult_cont_phase_type, tail, theta)
-segsites(n, theta)
-t_mrca(n)
-t_total(n)
-
-# obj: cont_cont_phase_type --> reward-transformed disc_phase_type
-RewTransform(obj, reward)
-RateMAndStateSpace(n)
+# cont_cont_phase_type(subint_mat, init_probs)
+# disc_phase_type(subint_mat, init_probs)
+# mult_phase_type(subint_mat, init_probs, rewards)
+#
+# kingsman(n)
+# itons(mult_phase_type, itons, theta)
+# tailstat(mult_cont_phase_type, tail, theta)
+# segsites(n, theta)
+# t_mrca(n)
+# t_total(n)
+#
+# # obj: cont_cont_phase_type --> reward-transformed disc_phase_type
+# RewTransform(obj, reward)
+# RateMAndStateSpace(n)
 
 
 
@@ -141,7 +141,7 @@ segsites <- function(n, theta = 2){
     stop('theta should be a positive number')
   }
 
-  ph = cont_phase_type('T_Total', n = n)
+  ph = t_total(n)
 
   T_table = ph$subint_mat
   alpha = ph$init_probs
