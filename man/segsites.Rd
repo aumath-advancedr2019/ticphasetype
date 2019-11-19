@@ -18,3 +18,7 @@ state prior to absorption)
 \description{
 Generate subintensity matrix for the special case of segregating sites
 }
+\examples{
+segsites(n = 4, theta = 2)
+
+}

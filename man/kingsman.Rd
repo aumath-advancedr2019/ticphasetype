@@ -15,3 +15,7 @@ A `mult_phase_type` object containing the subintensity matrix, reward matrix and
 \description{
 Wrapper function that computes the matrices descrbining Kingsman coalescent ready for reward transformation
 }
+\examples{
+kingsman(4)
+
+}

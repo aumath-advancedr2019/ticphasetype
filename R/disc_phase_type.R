@@ -19,33 +19,12 @@
 #'
 #' See examples for further explanation on the usage.
 #'
-#' @param n integer larger than 1, or \code{NULL} (default).
-#' @param itons integer between 1 and n-1, or \code{NULL} (default).
 #' @param init_probs vector, a one-row matrix or \code{NULL} (default).
 #' @param subint_mat matrix or \code{NULL} (default).
-#' @param theta numeric.
-#' @param tail_stat logical.
 #'
-#' @usage disc_phase_type(n = NULL, itons = NULL,
-#'             theta = 2, tail_stat = F,
-#'             subint_mat = NULL, init_probs = NULL)
+#' @usage disc_phase_type(subint_mat = NULL, init_probs = NULL)
 #'
 #'
-#' @examples
-#' # Total number of segregating sites
-#' disc_phase_type(4)
-#' disc_phase_type(5, theta=0.5)
-#'
-#' # Below examples are not implemented:
-#' # Number of singletons
-#' disc_ph_example <- disc_phase_type(4, itons=1)
-#' mean(disc_ph_example)
-#' var(disc_ph_example)
-#' summary(disc_ph_example)
-#'
-#' # Tail statistic
-#' disc_ph_tail <- disc_phase_type(4, itons=2, tail_stat=TRUE)
-#' summary(disc_ph_tail)
 #'
 #' @export
 
@@ -53,19 +32,6 @@ disc_phase_type = function(subint_mat = NULL, init_probs = NULL){
 
   if (is.null(subint_mat)) {
     stop('Unable to construct the discrete phase-type distribution. Please provide either n or the subintensity matrix.')
-  }
-  if(is.null(itons)){
-    ph = t_total(n)
-
-    T_table = ph$subint_mat
-    alpha = ph$init_probs
-    defect = 0
-
-    P = solve(diag(nrow(T_table)) - 2/theta * T_table)
-  }
-  else if(itons <= 0 | itons > (n-1) | !is.numeric(itons)){
-    stop('itons should be a number between 1 and n-1')
-
   }
   else if (is.matrix(subint_mat)) {
     if(!is.numeric(subint_mat) | nrow(subint_mat) != ncol(subint_mat)){

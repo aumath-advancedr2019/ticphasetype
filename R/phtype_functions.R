@@ -5,7 +5,6 @@
 #' @param p vector of probabilities.
 #' @param obj an object of class \code{cont_phase_type} or \code{disc_phase_type}.
 #' @param n number of samples to draw.
-#' @param granularity distance between numbers drawable
 #'
 #' @export
 

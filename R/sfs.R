@@ -20,7 +20,8 @@
 #' By default, a list of expected values for each i-ton and its variance is returned.
 #' If \code{plot=TRUE}, then a plot is returned.
 #'
-#' @examples sfs(n = 5)
+#' @examples
+#' sfs(n = 5)
 #' sfs(5, theta = 3)
 #' sfs(10, 2, init_probs = c(0.8, 0.2))
 #'
@@ -40,9 +41,10 @@ sfs <- function(n, theta = 2, init_probs = NULL, plot = FALSE){
       init_probs = c(init_probs, rep(0, states - length(init_probs)))
     }
   }
+  coalescent = kingsman(n)
   # calculate E[ksi_i] and Var[ksi_i] for every i < n
   for (iton in 1:(n-1)){
-    dph = disc_phase_type(n, itons = iton, theta = theta, init_probs = init_probs)
+    dph = itons(coalescent, iton, theta)
     E_ksi[iton] = mean(dph) - 1
     Var_ksi[iton] = var(dph)
   }

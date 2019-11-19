@@ -24,8 +24,6 @@ rphtype(n, obj)
 \item{p}{vector of probabilities.}
 
 \item{n}{number of samples to draw.}
-
-\item{granularity}{distance between numbers drawable}
 }
 \description{
 Density, distribution function, quantile function and random generation for

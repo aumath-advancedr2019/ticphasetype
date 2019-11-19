@@ -20,3 +20,7 @@ state prior to absorption)
 \description{
 Reward transformation of continuous Phase Type distribution into Discrete Phase Type
 }
+\examples{
+RewTransform(kingsman(4), c(4, 2, 1, 0), 2)
+
+}

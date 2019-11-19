@@ -9,7 +9,9 @@
 #'
 #' @return A `mult_phase_type` object containing the subintensity matrix, reward matrix and vector of initial probabilities
 #'
-#' @example kingsman(4)
+#' @examples
+#' kingsman(4)
+#'
 #' @export
 
 kingsman <- function(n = NULL){
@@ -57,7 +59,11 @@ kingsman <- function(n = NULL){
 #' @return A `disc_phase_type` object containing subintensity matrix (P), vector of initial probabilities (alpha) and defect (probability of not entering any transient
 #' state prior to absorption)
 #'
-#' @example RewTransform(kingsman(4), c(4, 2, 1, 0), 2)
+#' @examples
+#' RewTransform(kingsman(4), c(4, 2, 1, 0), 2)
+#'
+#' @export
+
 RewTransform <- function(mph_obj, rewards = NULL, theta = NULL){
   if(is.null(rewards)){
     stop('rewards should be a 1D numerical vector')
@@ -103,7 +109,8 @@ RewTransform <- function(mph_obj, rewards = NULL, theta = NULL){
 #' @return A `disc_phase_type` object containing subintensity matrix (P), vector of initial probabilities (alpha) and defect (probability of not entering any transient
 #' state prior to absorption)
 #'
-#' @example segsites(n = 4, theta = 2)
+#' @examples
+#' segsites(n = 4, theta = 2)
 #'
 #' @export
 
@@ -140,7 +147,8 @@ segsites <- function(n, theta=2){
 #' @return A `disc_phase_type` object containing subintensity matrix (P), vector of initial probabilities (alpha) and defect (probability of not entering any transient
 #' state prior to absorption)
 #'
-#' @example itons(kingsman(4), 2, theta = 2)
+#' @examples
+#' itons(kingsman(4), 2, theta = 2)
 #'
 #' @export
 
@@ -151,7 +159,7 @@ itons <- function(mph_obj, itons, theta) {
   else if(!is.numeric(theta) | theta < 0){
     stop('theta should be a positive number')
   }
-  else if(itons >= ncol(mph_obj$RewardM)){
+  else if(itons > ncol(mph_obj$RewardM)){
     stop('itons (frequency count) has to be lower than the sample size "n"')
   }
   if(length(mph_obj$subint_mat) == 1){
@@ -177,7 +185,7 @@ itons <- function(mph_obj, itons, theta) {
 #'
 #' Generate subintensity matrix, vector of initial probabilites and defect for combination of frequency counts higher than "k" (tail statistic)
 #'
-#' @usage tail_stat(mph_obj, k, theta)
+#' @usage tailstat(mph_obj, k, theta)
 #'
 #' @param mph_obj Multivariate Phase Type object generated either from mult_phase_type or kingsman function
 #' @param k Minimum Frequency count (positive integer)
@@ -186,7 +194,8 @@ itons <- function(mph_obj, itons, theta) {
 #' @return A `disc_phase_type` object containing subintensity matrix (P), vector of initial probabilities (alpha) and defect (probability of not entering any transient
 #' state prior to absorption)
 #'
-#' @example tailstat(kingsman(15), k = 10, theta = 2)
+#' @examples
+#' tailstat(kingsman(15), k = 10, theta = 2)
 #'
 #' @export
 

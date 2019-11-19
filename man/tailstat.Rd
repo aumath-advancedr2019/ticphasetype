@@ -4,7 +4,7 @@
 \alias{tailstat}
 \title{Tail Statistic}
 \usage{
-tail_stat(mph_obj, k, theta)
+tailstat(mph_obj, k, theta)
 }
 \arguments{
 \item{mph_obj}{Multivariate Phase Type object generated either from mult_phase_type or kingsman function}
@@ -19,4 +19,8 @@ state prior to absorption)
 }
 \description{
 Generate subintensity matrix, vector of initial probabilites and defect for combination of frequency counts higher than "k" (tail statistic)
+}
+\examples{
+tailstat(kingsman(15), k = 10, theta = 2)
+
 }

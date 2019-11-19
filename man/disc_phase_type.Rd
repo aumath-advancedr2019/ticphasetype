@@ -4,22 +4,12 @@
 \alias{disc_phase_type}
 \title{\code{disc_phase_type} class}
 \usage{
-disc_phase_type(n = NULL, itons = NULL,
-            theta = 2, tail_stat = F,
-            subint_mat = NULL, init_probs = NULL)
+disc_phase_type(subint_mat = NULL, init_probs = NULL)
 }
 \arguments{
 \item{subint_mat}{matrix or \code{NULL} (default).}
 
 \item{init_probs}{vector, a one-row matrix or \code{NULL} (default).}
-
-\item{n}{integer larger than 1, or \code{NULL} (default).}
-
-\item{itons}{integer between 1 and n-1, or \code{NULL} (default).}
-
-\item{theta}{numeric.}
-
-\item{tail_stat}{logical.}
 }
 \description{
 Description of the class \code{disc_phase_type}, which represents discrete phase-type
@@ -41,21 +31,4 @@ The discrete phase-type distribution can be generated in two different ways:
 }
 
 See examples for further explanation on the usage.
-}
-\examples{
-# Total number of segregating sites
-disc_phase_type(4)
-disc_phase_type(5, theta=0.5)
-
-# Below examples are not implemented:
-# Number of singletons
-disc_ph_example <- disc_phase_type(4, itons=1)
-mean(disc_ph_example)
-var(disc_ph_example)
-summary(disc_ph_example)
-
-# Tail statistic
-disc_ph_tail <- disc_phase_type(4, itons=2, tail_stat=TRUE)
-summary(disc_ph_tail)
-
 }

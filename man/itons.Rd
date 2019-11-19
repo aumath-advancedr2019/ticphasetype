@@ -20,3 +20,7 @@ state prior to absorption)
 \description{
 Generate subintensity matrix, vector of initial probabilites and defect for any frequency count
 }
+\examples{
+itons(kingsman(4), 2, theta = 2)
+
+}
