@@ -10,11 +10,7 @@
 #'
 #' @return A `disc_phase_type` object containing subintensity matrix (P), vector of initial probabilities (alpha) and defect (probability of not entering any transient
 #' state prior to absorption)
-#'
-#' @examples
-#' RewTransform(kingsman(4), c(4, 2, 1, 0), 2)
-#'
-#' @export
+
 
 RewTransform <- function(mph_obj, rewards = NULL, theta = NULL){
   if(is.null(rewards)){
