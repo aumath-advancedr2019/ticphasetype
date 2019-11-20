@@ -39,13 +39,10 @@ tailstat <- function(mph_obj, k, theta) {
   rew_transformed = rewardtransformparm(reward, mph_obj$init_probs, mph_obj$subint_mat)
   alpha = rew_transformed$init_probs
   T_star = rew_transformed$subint_mat
-  defect = rew_transformed$defect
 
   ########## Computation of P and p (transformation to DPH) ##########
   P = solve(diag(nrow(T_star)) - 2/theta * T_star)
 
-  value = list(subint_mat = P, init_probs = alpha, defect = defect)
-  attr(value, 'class') <- c('disc_phase_type')
-  value
+  disc_phase_type(P, alpha)
 }
 

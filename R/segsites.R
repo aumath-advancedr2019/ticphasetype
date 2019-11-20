@@ -31,7 +31,5 @@ segsites <- function(n, theta=2){
 
   P = solve(diag(nrow(T_table)) - 2/theta * T_table)
 
-  value <- list(subint_mat = P, init_probs = alpha, defect = 0)
-  attr(value, "class") <- c("disc_phase_type")
-  return(value)
+  disc_phase_type(P, alpha)
 }

@@ -9,7 +9,6 @@
 #' @param init_probs initial probabilities
 #' @param subint_mat sub-intensity matrix
 #'
-# @import dplyr
 #'
 #' @usage rewardtransformparm(rewards, init_probs, subint_mat)
 

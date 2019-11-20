@@ -41,7 +41,5 @@ itons <- function(mph_obj, itons, theta) {
   ########## Computation of P and p (transformation to DPH) ##########
   P = solve(diag(nrow(T_star)) - 2/theta * T_star)
 
-  value = list(subint_mat = P, init_probs = alpha, defect = defect)
-  attr(value, 'class') <- c('disc_phase_type')
-  value
+  disc_phase_type(P, alpha)
 }

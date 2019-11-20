@@ -9,7 +9,6 @@
 #' then a they are automatically generated as the first state having a probability of 1 and the rest
 #' a probability of 0.
 #'
-#' See examples for further explanation on the usage.
 #'
 #' @param init_probs vector, a one-row matrix or \code{NULL} (default).
 #' @param subint_mat matrix or \code{NULL} (default).
@@ -30,7 +29,7 @@ disc_phase_type = function(subint_mat = NULL, init_probs = NULL){
       stop('Subintensity matrix should be a square numerical matrix')
     }
     # rowsums in Subintensity matrix have to be non positive
-    else if(sum(rowSums(subint_mat) > 0) != 0){
+    else if(sum(subint_mat < 0) != 0){
       stop('The rowsums in subintensity matrix have to be non-positive')
     }
 
