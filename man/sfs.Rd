@@ -23,7 +23,6 @@ By default, a list of expected values for each i-ton and its variance is returne
 If \code{plot=TRUE}, then a plot is returned.
 }
 \examples{
-sfs(n = 5)
-sfs(5, theta = 3)
+sfs(n = 5, theta = 3)
 
 }

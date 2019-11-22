@@ -16,8 +16,7 @@
 #' If \code{plot=TRUE}, then a plot is returned.
 #'
 #' @examples
-#' sfs(n = 5)
-#' sfs(5, theta = 3)
+#' sfs(n = 5, theta = 3)
 #'
 #' @import graphics
 #'
