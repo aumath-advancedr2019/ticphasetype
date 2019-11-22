@@ -107,9 +107,25 @@ test_that("reward transformations is consistent", {
 
 
   expect_equal(expected, observed, tolerance = 1e-6)
+})
 
 
+test_that("RewTransform wrapper for rewardtransformation is consistent", {
+  n = 5
 
+  mphobj = kingsman(n)
+
+  reward_length = length(mphobj$init_probs)
+  transformed = RewTransform(mphobj, 0:(reward_length-1), 2)
+  transformed$subint_mat
+
+  expected = matrix(c(0.1428571, 0.1714286, 0.2142857, 0.1942857, 0.1904762,
+                      0.0000000, 0.4000000, 0.0000000, 0.3200000, 0.1666667,
+                      0.0000000, 0.0000000, 0.5000000, 0.1333333, 0.2777778,
+                      0.0000000, 0.0000000, 0.0000000, 0.8000000, 0.0000000,
+                      0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.8333333), nrow = 5, ncol = 5, byrow = TRUE)
+
+  expect_equal(expected, transformed$subint_mat, tolerance = 1e-6)
 
 })
 
