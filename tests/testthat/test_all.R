@@ -81,15 +81,32 @@ test_that("reward transformations is consistent", {
   n = 5
 
   obj = t_mrca(n)
+  observed = rewardtransformation((1):(n-1), obj$init_probs, obj$subint_mat)$subint_mat
+
   expected = matrix(c(-10,10,0,0.00,
                       0,-3,3,0.00,
                       0,0,-1,1.00,
                       0,0,0,-0.25), ncol = n-1, nrow = n-1, byrow = T)
 
 
-  observed = rewardtransformparm((1):(n-1), obj$init_probs, obj$subint_mat)$subint_mat
   expect_equal(expected, observed, tolerance = 1e-6)
 
+
+  n = 8
+
+  obj = t_mrca(n)
+  observed = rewardtransformation((1):(n-1), obj$init_probs, obj$subint_mat)$subint_mat
+
+  expected = matrix(c(-28, 28.0, 0.0, 0.0, 0.0, 0.0, 0.0000000,
+                      0, -10.5, 10.5, 0.0, 0.0, 0.0, 0.0000000,
+                      0, 0.0, -5.0, 5.0, 0.0, 0.0, 0.0000000,
+                      0, 0.0, 0.0, -2.5, 2.5, 0.0, 0.0000000,
+                      0, 0.0, 0.0, 0.0, -1.2, 1.2, 0.0000000,
+                      0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.5000000,
+                      0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.1428571), ncol = n-1, nrow = n-1, byrow = T)
+
+
+  expect_equal(expected, observed, tolerance = 1e-6)
 
 
 

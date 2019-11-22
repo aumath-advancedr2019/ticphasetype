@@ -36,7 +36,7 @@ tailstat <- function(mph_obj, k, theta) {
   }
 
   ######### Computation of T*, alpha and defect ##########
-  rew_transformed = rewardtransformparm(reward, mph_obj$init_probs, mph_obj$subint_mat)
+  rew_transformed = rewardtransformation(reward, mph_obj$init_probs, mph_obj$subint_mat)
   alpha = rew_transformed$init_probs
   T_star = rew_transformed$subint_mat
 

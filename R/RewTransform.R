@@ -32,7 +32,7 @@ RewTransform <- function(mph_obj, rewards = NULL, theta = NULL){
     stop('theta should be a positive number')
   }
   ######### Computation of T*, alpha and defect ##########
-  rew_transformed = rewardtransformparm(rewards, mph_obj$init_probs, mph_obj$subint_mat)
+  rew_transformed = rewardtransformation(rewards, mph_obj$init_probs, mph_obj$subint_mat)
   alpha = rew_transformed$init_probs
   T_star = rew_transformed$subint_mat
   defect = rew_transformed$defect
