@@ -26,10 +26,10 @@ a probability of 0.
 subintensity_matrix = matrix(c(-1.5, 0, 0, 1.5, -1, 0, 0, 1, -0.5), ncol = 3)
 cont_phase_type(subintensity_matrix)
 
----
+#---
 
 subintensity_matrix = matrix(c(-1.5, 0, 0, 1.5, -1, 0, 0, 1, -0.5), ncol = 3)
-intitial_probabilities = c(0.9, 0.1, 0)
-cont_phase_type(subintensity_matrix, initial_probabilites)
+initial_probabilities = c(0.9, 0.1, 0)
+cont_phase_type(subintensity_matrix, initial_probabilities)
 
 }
