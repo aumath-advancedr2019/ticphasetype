@@ -22,3 +22,14 @@ matrix and an optional initial probability vector. If the initial probabilities 
 then a they are automatically generated as the first state having a probability of 1 and the rest
 a probability of 0.
 }
+\examples{
+subintensity_matrix = matrix(c(0.4, 0, 0, 0.24, 0.4, 0, 0.12, 0.2, 0.5), ncol = 3)
+disc_phase_type(subintensity_matrix)
+
+---
+
+subintensity_matrix = matrix(c(0.4, 0, 0, 0.24, 0.4, 0, 0.12, 0.2, 0.5), ncol = 3)
+intitial_probabilities = c(0.9, 0.1, 0)
+disc_phase_type(subintensity_matrix, initial_probabilites)
+
+}

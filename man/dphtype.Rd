@@ -33,10 +33,10 @@ phase-type distributions
 \itemize{
 \item \code{dphtype}: Density function.
 
-\item \code{qphtype}: Quantile Function. Still not implemented for disc_phase_type.
+\item \code{qphtype}: Quantile Function
 
 \item \code{pphtype}: Distribution function.
 
-\item \code{rphtype}: Random number generator. Still not implemented for disc_phase_type.
+\item \code{rphtype}: Random number generator
 }}
 

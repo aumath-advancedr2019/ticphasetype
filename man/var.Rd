@@ -10,7 +10,7 @@ var(obj)
 \item{obj}{a cont_phase_type or disc_phase_type object.}
 }
 \description{
-It calculates the variance of continuous and discrete phase-type distributions,
+Calculates the variance of continuous and discrete phase-type distributions,
 represented by the \code{cont_phase_type} and the \code{disc_phase_type} classes
 respectively
 }

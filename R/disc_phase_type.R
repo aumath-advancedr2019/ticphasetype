@@ -15,7 +15,15 @@
 #'
 #' @usage disc_phase_type(subint_mat = NULL, init_probs = NULL)
 #'
+#' @examples
+#' subintensity_matrix = matrix(c(0.4, 0, 0, 0.24, 0.4, 0, 0.12, 0.2, 0.5), ncol = 3)
+#' disc_phase_type(subintensity_matrix)
 #'
+#' ---
+#'
+#' subintensity_matrix = matrix(c(0.4, 0, 0, 0.24, 0.4, 0, 0.12, 0.2, 0.5), ncol = 3)
+#' intitial_probabilities = c(0.9, 0.1, 0)
+#' disc_phase_type(subintensity_matrix, initial_probabilites)
 #'
 #' @export
 

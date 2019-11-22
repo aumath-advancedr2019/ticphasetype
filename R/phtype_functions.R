@@ -49,7 +49,7 @@ dphtype <- function(x, obj){
 
 #' @describeIn dphtype
 #'
-#' Quantile Function. Still not implemented for disc_phase_type.
+#' Quantile Function
 #'
 #' @usage qphtype(p, obj)
 #'
@@ -108,7 +108,7 @@ pphtype <- function(q, obj){
 
 #' @describeIn dphtype
 #'
-#' Random number generator. Still not implemented for disc_phase_type.
+#' Random number generator
 #'
 #' @usage rphtype(n, obj)
 #'

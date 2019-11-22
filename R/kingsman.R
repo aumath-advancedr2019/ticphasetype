@@ -1,11 +1,11 @@
 #' Simulate Matrices from Kingsman coalescent
 #'
-#' Wrapper function that computes the matrices descrbining Kingsman coalescent ready for reward
+#' Wrapper function that computes the matrices describing Kingsman coalescent ready for reward
 #' transformation.
 #'
 #' @usage kingsman(n)
 #'
-#' @param n sample size (should be a positive integer)
+#' @param n sample size (a positive integer)
 #'
 #' @return A \code{mult_phase_type} object containing the subintensity matrix, reward matrix and vector of initial probabilities
 #'

@@ -4,14 +4,12 @@
 \alias{sfs}
 \title{Site Frequency Spectrum}
 \usage{
-sfs(n, theta = 2, init_probs = NULL, plot = FALSE)
+sfs(n, theta = 2, plot = FALSE)
 }
 \arguments{
 \item{n}{sample size}
 
 \item{theta}{population mutation parameter}
-
-\item{init_probs}{vector of initial probabilities. There is no need to supply entire vector if most of its elements are zero. The function computes the rest automatically}
 
 \item{plot}{logical}
 }
@@ -31,6 +29,5 @@ If \code{plot=TRUE}, then a plot is returned.
 \examples{
 sfs(n = 5)
 sfs(5, theta = 3)
-sfs(10, 2, init_probs = c(0.8, 0.2))
 
 }
