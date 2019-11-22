@@ -8,8 +8,10 @@
 #' @param rewards vector of non negative numbers
 #' @param theta mutation parameter (positive number)
 #'
-#' @return A `disc_phase_type` object containing subintensity matrix (P), vector of initial probabilities (alpha) and defect (probability of not entering any transient
-#' state prior to absorption)
+#'
+#' @return A list containing keys `subint_mat`, `init_probs` and `defect`
+#'
+#' @export
 
 
 RewTransform <- function(mph_obj, rewards = NULL, theta = NULL){
@@ -33,6 +35,7 @@ RewTransform <- function(mph_obj, rewards = NULL, theta = NULL){
   }
   ######### Computation of T*, alpha and defect ##########
   rew_transformed = rewardtransformation(rewards, mph_obj$init_probs, mph_obj$subint_mat)
+
   alpha = rew_transformed$init_probs
   T_star = rew_transformed$subint_mat
   defect = rew_transformed$defect
