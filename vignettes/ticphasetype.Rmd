@@ -41,7 +41,7 @@ The mean and variance of these two quantities can be derived relatively easily. 
 
 Instead, we can think of the sum of exponential distributions as a continuous-time Markov chain, where coalescent events are represented as Markov jumps with rate $T_i$ for $T_{MRCA}$ and $iT_i$ for $T_{Total}$. The Markov chain will end with an absorbing state, which in both cases will be the MRCA. 
 
-The Markov chain can be represented using phase-type theory, where the jump rates are defined with a sub-intensity matrix $T$ and the initial distribution will be defined as a row vector $\pi$. If we define $\tau$ as the smallest time (or length) for which we are in the absorbing state, then $\tau\sim PH(\pi,T)$. This continuous phase-type distribution has well-documented and easy-to-implement formulas for the expectation, the variance, the survival function, the distribution function and the density function. Moreover, since both $\pi$ and $T$ can easily be speficied, we can represent evolutionary histories that do not follow the standard coalescent model and still use the same phase-type formulas. 
+The Markov chain can be represented using phase-type theory, where the jump rates are defined with a sub-intensity matrix $T$ and the initial distribution will be defined as a row vector $\pi$. If we define $\tau$ as the smallest time (or length) to reach the absorbing state, then $\tau\sim PH(\pi,T)$. This continuous phase-type distribution has well-documented and easy-to-implement formulas for the expectation, the variance, the survival function, the distribution function and the density function. Moreover, since both $\pi$ and $T$ can easily be speficied, we can represent evolutionary histories that do not follow the standard coalescent model and still use the same phase-type formulas. 
 
 `ticphasetype` contains an efficient implementation of continuous phase-type distributions. It has a user-friendly interface for creating phase-type representations of $T_{MRCA}$ and $T_{Total}$ under the standard coalescent model, but it also allows the user to specify their own sub-intensity matrix and initial probabilities for a more flexible implementation. 
 
@@ -224,7 +224,7 @@ The `kingsman()` function returns a `mult_phase_type` object which is a continuo
 If we want to obtain a representation of the tripletons $\xi_3$ when `n`=6, we can use the coalescent in the `itons()` function:
 
 ```{r}
-itons_ph = itons(coalescent, itons = 3, theta = 2)
+itons_ph = itons(coalescent, i = 3, theta = 2)
 summary(itons_ph)
 ```
 

@@ -7,13 +7,13 @@
 kingsman(n)
 }
 \arguments{
-\item{n}{sample size (should be a positive integer)}
+\item{n}{sample size (a positive integer)}
 }
 \value{
 A \code{mult_phase_type} object containing the subintensity matrix, reward matrix and vector of initial probabilities
 }
 \description{
-Wrapper function that computes the matrices descrbining Kingsman coalescent ready for reward
+Wrapper function that computes the matrices describing Kingsman coalescent ready for reward
 transformation.
 }
 \examples{

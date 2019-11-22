@@ -10,7 +10,7 @@ t_mrca(n)
 \item{n}{positive integer larger than 1.}
 }
 \description{
-This function creates a continuous phase-type representation of the time until the most recent
+The function creates a continuous phase-type representation of the time until the most recent
 common ancestor for a specified number of sequences and following Kingsman's coalescent model.
 }
 \examples{

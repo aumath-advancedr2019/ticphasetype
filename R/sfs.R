@@ -4,18 +4,13 @@
 #' It builds the site frequency spectrum using Kingman's coalescent. It works for different
 #' values of `theta` (population mutation parameter).
 #'
-#' @usage sfs(n, theta = 2, init_probs = NULL, plot = FALSE)
+#' @usage sfs(n, theta = 2, plot = FALSE)
 #'
 #' @param n sample size
 #' @param theta population mutation parameter
-#' @param init_probs vector of initial probabilities. There is no need to supply entire vector if most of its elements are zero. The function computes the rest automatically
 #' @param plot logical
 #'
 #' @details
-#'
-#' The initial probabilities can be specified by the user. If not specified, they will
-#' automatically be constructed as the first state having a probability of 1 and the rest
-#' a probability of 0.
 #'
 #' By default, a list of expected values for each i-ton and its variance is returned.
 #' If \code{plot=TRUE}, then a plot is returned.
@@ -23,24 +18,16 @@
 #' @examples
 #' sfs(n = 5)
 #' sfs(5, theta = 3)
-#' sfs(10, 2, init_probs = c(0.8, 0.2))
 #'
 #' @import graphics
 #'
 #' @export
 
 
-sfs <- function(n, theta = 2, init_probs = NULL, plot = FALSE){
+sfs <- function(n, theta, plot = FALSE){
   E_ksi = rep(NA, n-1)
   Var_ksi = rep(NA, n-1)
 
-  states = nrow(RateMAndStateSpace(n)$StSpM)-1
-  if(!is.null(init_probs)){
-    if(length(init_probs) != states){
-      message('Zeros added to init_probs vector to make it the right size')
-      init_probs = c(init_probs, rep(0, states - length(init_probs)))
-    }
-  }
   coalescent = kingsman(n)
   # calculate E[ksi_i] and Var[ksi_i] for every i < n
   for (iton in 1:(n-1)){
@@ -48,8 +35,6 @@ sfs <- function(n, theta = 2, init_probs = NULL, plot = FALSE){
     E_ksi[iton] = mean(dph) - 1
     Var_ksi[iton] = var(dph)
   }
-
-
 
   if (plot == TRUE) {
     data = list(E_ksi = E_ksi, Var_ksi = Var_ksi)

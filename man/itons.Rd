@@ -4,12 +4,12 @@
 \alias{itons}
 \title{I-tons (frequency counts)}
 \usage{
-itons(mph_obj, itons, theta)
+itons(mph_obj, i, theta)
 }
 \arguments{
 \item{mph_obj}{Multivariate Phase Type object generated either from mult_phase_type or kingsman function}
 
-\item{itons}{Frequency count (positive integer)}
+\item{i}{Frequency count (positive integer)}
 
 \item{theta}{mutation parameter (positive)}
 }
@@ -21,6 +21,6 @@ state prior to absorption)
 Generate subintensity matrix, vector of initial probabilites and defect for any frequency count
 }
 \examples{
-itons(kingsman(4), 2, theta = 2)
+itons(kingsman(4), i = 2, theta = 2)
 
 }

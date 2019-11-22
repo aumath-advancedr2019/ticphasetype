@@ -1,6 +1,6 @@
 #' Segregating sites
 #'
-#' Generate subintensity matrix for the special case of segregating sites
+#' Generator of subintensity matrix for the special case of segregating sites, ie. summary of all frequency counts
 #'
 #' @usage segsites(n, theta)
 #'
@@ -15,7 +15,7 @@
 #'
 #' @export
 
-segsites <- function(n, theta=2){
+segsites <- function(n, theta){
   if (n<=1 | !is.numeric(n) | n %% 1 != 0 | n %% 1 != 0) {
     stop('n should be a positive integer larger than 1')
   }

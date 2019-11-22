@@ -16,7 +16,7 @@ A `disc_phase_type` object containing subintensity matrix (P), vector of initial
 state prior to absorption)
 }
 \description{
-Generate subintensity matrix for the special case of segregating sites
+Generator of subintensity matrix for the special case of segregating sites, ie. summary of all frequency counts
 }
 \examples{
 segsites(n = 4, theta = 2)
