@@ -19,3 +19,11 @@ A list containing keys `subint_mat`, `init_probs` and `defect`
 \description{
 Reward transformation of continuous phase-type distribution into a discrete phase-type distribution.
 }
+\examples{
+n = 5
+mphobj = kingsman(n)
+reward_length = length(mphobj$init_probs)
+transformed = RewTransform(mphobj, 0:(reward_length-1), 2)
+transformed$subint_mat
+
+}
