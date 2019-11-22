@@ -193,7 +193,7 @@ Because phase-type theory has well-defined functions for discrete phase-type dis
 The total number of segregating sites can be represented using a `disc_phase_type` class, this is, by means of a discrete phase-type distribution. For example, when `n`=4:
 
 ```{r}
-stotal_ph = segsites(4)
+stotal_ph = segsites(4, theta = 2)
 summary(stotal_ph)
 ```
 

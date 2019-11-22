@@ -14,7 +14,7 @@ This package implements core functions from phase-type
 commonly used in population genomics. \code{\link{t_mrca}} and \code{\link{t_total}}
 can be used for modelling the time until the most recent common ancestor and the
 total tree length for Kingman's coalescence using a user-friendly interface. These
-two quantities are represented using a discrete phase-type distribution
+two quantities are represented using a continuous phase-type distribution
 (the \code{\link{cont_phase_type}} class). The user can use the generator function
 for this class if they want phase-type representations based on other coalescent
 models.
