@@ -19,10 +19,6 @@ It builds the site frequency spectrum using Kingman's coalescent. It works for d
 values of `theta` (population mutation parameter).
 }
 \details{
-The initial probabilities can be specified by the user. If not specified, they will
-automatically be constructed as the first state having a probability of 1 and the rest
-a probability of 0.
-
 By default, a list of expected values for each i-ton and its variance is returned.
 If \code{plot=TRUE}, then a plot is returned.
 }
