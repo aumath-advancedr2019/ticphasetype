@@ -14,8 +14,7 @@ RewTransform(mph_obj, rewards, theta)
 \item{theta}{mutation parameter (positive number)}
 }
 \value{
-A `disc_phase_type` object containing subintensity matrix (P), vector of initial probabilities (alpha) and defect (probability of not entering any transient
-state prior to absorption)
+A list containing keys `subint_mat`, `init_probs` and `defect`
 }
 \description{
 Reward transformation of continuous phase-type distribution into a discrete phase-type distribution.
