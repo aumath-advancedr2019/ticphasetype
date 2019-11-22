@@ -1,6 +1,6 @@
 #' Functions used to transform to discrete phase type and calculate the number of segregating sites
 
-#' RewardTransformParm
+#' rewardtransformation
 #'
 #' Function to compute reward transformed matrix T* as well as vector of initial probabilities
 #' and the defect
@@ -10,9 +10,9 @@
 #' @param subint_mat sub-intensity matrix
 #'
 #'
-#' @usage rewardtransformparm(rewards, init_probs, subint_mat)
+#' @usage rewardtransformation(rewards, init_probs, subint_mat)
 
-rewardtransformparm <- function(rewards, init_probs, subint_mat){
+rewardtransformation <- function(rewards, init_probs, subint_mat){
   d <- sum(rewards > 0)
   p <- length(init_probs)
   qmat <- matrix(rep(0,p^2), ncol = p)

@@ -87,7 +87,7 @@ test_that("reward transformations is consistent", {
                       0,0,0,-0.25), ncol = n-1, nrow = n-1, byrow = T)
 
 
-  observed = rewardtransformparm((1):(n-1), obj$init_probs, obj$subint_mat)$subint_mat
+  observed = rewardtransformation((1):(n-1), obj$init_probs, obj$subint_mat)$subint_mat
   expect_equal(expected, observed, tolerance = 1e-6)
 
 
