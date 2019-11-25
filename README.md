@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.com/aumath-advancedr2019/ticphasetype.svg?branch=master)](https://travis-ci.com/aumath-advancedr2019/ticphasetype)
 
-# ticphasetype 
+# ticphasetype <img src="man/figures/TIC_logo.svg" align="right" />
 
-This package implements core functions from phase-type theory that are useful in the analysis of biological data.
+This package implements core functions from phase-type theory that are useful in the analysis of biological data. It includes easy-to-use functions for modelling common statistics in evolutionary genetics, as well as a flexible high-level interface for more advanced users. You can learn more about the package in `vignette('ticphasetype')`.
 
 ## Details
 
