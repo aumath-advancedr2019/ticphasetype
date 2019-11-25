@@ -144,20 +144,8 @@
     <pre class="examples"><div class='input'><span class='no'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>
 <span class='no'>mphobj</span> <span class='kw'>=</span> <span class='fu'><a href='kingsman.html'>kingsman</a></span>(<span class='no'>n</span>)
 <span class='no'>reward_length</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>mphobj</span>$<span class='no'>init_probs</span>)
-<span class='no'>transformed</span> <span class='kw'>=</span> <span class='fu'>RewTransform</span>(<span class='no'>mphobj</span>, <span class='fl'>0</span>:(<span class='no'>reward_length</span>-<span class='fl'>1</span>), <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "entered rewardtransformation"
-#&gt; [1] 1 0 0 0 0 0
-#&gt; [1] 0 1 2 3 4 5
-#&gt;      [,1] [,2] [,3] [,4] [,5] [,6]
-#&gt; [1,]  -10   10    0    0    0    0
-#&gt; [2,]    0   -6    3    3    0    0
-#&gt; [3,]    0    0   -3    0    2    1
-#&gt; [4,]    0    0    0   -3    1    2
-#&gt; [5,]    0    0    0    0   -1    0
-#&gt; [6,]    0    0    0    0    0   -1
-#&gt; [1] "64"
-#&gt;      [,1]
-#&gt; [1,]    1
-#&gt; [1] 0</div><div class='input'><span class='no'>transformed</span>$<span class='no'>subint_mat</span></div><div class='output co'>#&gt;           [,1]      [,2]      [,3]      [,4]      [,5]
+<span class='no'>transformed</span> <span class='kw'>=</span> <span class='fu'>RewTransform</span>(<span class='no'>mphobj</span>, <span class='fl'>0</span>:(<span class='no'>reward_length</span>-<span class='fl'>1</span>), <span class='fl'>2</span>)
+<span class='no'>transformed</span>$<span class='no'>subint_mat</span></div><div class='output co'>#&gt;           [,1]      [,2]      [,3]      [,4]      [,5]
 #&gt; [1,] 0.1428571 0.1714286 0.2142857 0.1942857 0.1904762
 #&gt; [2,] 0.0000000 0.4000000 0.0000000 0.3200000 0.1666667
 #&gt; [3,] 0.0000000 0.0000000 0.5000000 0.1333333 0.2777778

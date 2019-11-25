@@ -1,4 +1,4 @@
-#' I-tons (frequency counts)
+#' i-tons (frequency counts)
 #'
 #' Generate subintensity matrix, vector of initial probabilites and defect for any frequency count
 #'
