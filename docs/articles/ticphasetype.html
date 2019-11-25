@@ -82,17 +82,17 @@
     
 <div id="introduction-to-the-package" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction-to-the-package" class="anchor"></a>Introduction to the package</h1>
+<a href="#introduction-to-the-package" class="anchor"></a>1. Introduction to the package</h1>
 <p><code>ticphasetype</code> is useful for representing classical statistics in population genetics by means of phase-type theory. This provides additional flexibility and efficiency for computing and understanding these statistics at the finest level. Do not hesitate to run <code><a href="../reference/ticphasetype-package.html">?ticphasetype</a></code> for a quick summary of the available functions, or to open the help files for the individual functions. There is also a brief description of both continuous and discrete phase-type distributions.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ticphasetype)</a></code></pre></div>
 </div>
 <div id="continuous-phase-type-distributions-t_mrca-and-t_total" class="section level1">
 <h1 class="hasAnchor">
-<a href="#continuous-phase-type-distributions-t_mrca-and-t_total" class="anchor"></a>Continuous phase-type distributions: <span class="math inline">\(T_{MRCA}\)</span> and <span class="math inline">\(T_{Total}\)</span>
+<a href="#continuous-phase-type-distributions-t_mrca-and-t_total" class="anchor"></a>2. Continuous phase-type distributions: <span class="math inline">\(T_{MRCA}\)</span> and <span class="math inline">\(T_{Total}\)</span>
 </h1>
 <div id="theoretical-background" class="section level2">
 <h2 class="hasAnchor">
-<a href="#theoretical-background" class="anchor"></a>Theoretical background</h2>
+<a href="#theoretical-background" class="anchor"></a>2.1. Theoretical background</h2>
 <p>In an evolutionary tree the time until two sequences coalesce <span class="math inline">\(T_i\)</span> can be measured in number of generations <span class="math inline">\(R_i\)</span> divided by the population size <span class="math inline">\(N\)</span>, this is, <span class="math inline">\(T_i=R_i/N\)</span>. <span class="math inline">\(T_i\)</span> can easily be proven to approximate to an exponential distribution with rate <span class="math inline">\(\binom{i}{2}\)</span>.</p>
 <p>In order to understand the evolutionary history of sequences two additional quantities can be defined –namely the time until the most recent common ancestor <span class="math inline">\(T_{MRCA}\)</span> and the total tree length <span class="math inline">\(T_{Total}\)</span>. <span class="math inline">\(T_{MRCA}\)</span> will simply be the sum of all times until two sequences coalesce, in other words <span class="math inline">\(T_{MRCA}=T_n+T_{n-1}+...+T_2\)</span>, where <span class="math inline">\(T_i\sim\text{exp}(\binom{i}{2})\)</span>. <span class="math inline">\(T_{Total}\)</span>, on the other hand, takes into account the length of all possible branches, so <span class="math inline">\(T_{Total}=nT_n+(n-1)T_{n-1}+...+2T_2\)</span> and, thus, <span class="math inline">\(iT_i\sim \text{exp}(\binom{i-1}{2})\)</span>.</p>
 <p>The mean and variance of these two quantities can be derived relatively easily. Defining their distribution, however, has proven to be more challenging since both <span class="math inline">\(T_{MRCA}\)</span> and <span class="math inline">\(T_{Total}\)</span> are sums of independent exponentially distributed variables with different rates. Their distribution can be computed as a series of convolutions, but their formulation, application and interpretation might be challenging for the average population geneticist.</p>
@@ -102,7 +102,7 @@
 </div>
 <div id="time-until-the-most-recent-common-ancestor-t_mrca" class="section level2">
 <h2 class="hasAnchor">
-<a href="#time-until-the-most-recent-common-ancestor-t_mrca" class="anchor"></a>Time until the most recent common ancestor (<span class="math inline">\(T_{MRCA}\)</span>)</h2>
+<a href="#time-until-the-most-recent-common-ancestor-t_mrca" class="anchor"></a>2.2. Time until the most recent common ancestor (<span class="math inline">\(T_{MRCA}\)</span>)</h2>
 <p>A <code>cont_phase_type</code> class representing a continuous phase-type distribution for <span class="math inline">\(T_{MRCA}\)</span> can be generated using <code><a href="../reference/cont_phase_type.html">cont_phase_type()</a></code>. For example, when <code>n</code>=5:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">T_MRCA_ph &lt;-<span class="st"> </span><span class="kw"><a href="../reference/t_mrca.html">t_mrca</a></span>(<span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
 <p>There are a number of methods associated with the <code>cont_phase_type</code>, such as:</p>
@@ -132,7 +132,7 @@
 </div>
 <div id="total-tree-lenght-t_total" class="section level2">
 <h2 class="hasAnchor">
-<a href="#total-tree-lenght-t_total" class="anchor"></a>Total tree lenght (<span class="math inline">\(T_{Total}\)</span>)</h2>
+<a href="#total-tree-lenght-t_total" class="anchor"></a>2.3. Total tree lenght (<span class="math inline">\(T_{Total}\)</span>)</h2>
 <p><span class="math inline">\(T_{Total}\)</span> can also be represented using the <code>cont_phase_type</code> class:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">T_Total_ph &lt;-<span class="st"> </span><span class="kw"><a href="../reference/t_total.html">t_total</a></span>(<span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(T_Total_ph)</a>
@@ -157,7 +157,7 @@
 </div>
 <div id="user-defined-sub-intensity-matrix" class="section level2">
 <h2 class="hasAnchor">
-<a href="#user-defined-sub-intensity-matrix" class="anchor"></a>User-defined sub-intensity matrix</h2>
+<a href="#user-defined-sub-intensity-matrix" class="anchor"></a>2.4. User-defined sub-intensity matrix</h2>
 <p>Moreover, the height of an evolutionary tree can also be represented by a user-defined sub-intensity matrix. This is specially useful if the model does not follow Kingman’s n–coalescent, but other coalescent models such as the psi-coalescent or the beta-coalescent. As an example, an arbitrary sub-intensity matrix can be generated:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">n=<span class="dv">5</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">subint_arbit &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="dv">0</span>, <span class="dt">nrow =</span> n<span class="dv">-1</span>, <span class="dt">ncol =</span> n<span class="dv">-1</span>)</a>
@@ -173,11 +173,11 @@
 <a class="sourceLine" id="cb8-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb8-13" data-line-number="13">subint_arbit[n<span class="dv">-1</span>,n<span class="dv">-1</span>] &lt;-<span class="st"> </span><span class="dv">-1</span></a></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">subint_arbit</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#&gt;           [,1]     [,2]      [,3]      [,4]</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; [1,] -14.76009  3.07134  8.627879  3.060869</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; [2,]   0.00000 -5.20337  4.130822  1.072549</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; [3,]   0.00000  0.00000 -4.982667  4.982667</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt; [4,]   0.00000  0.00000  0.000000 -1.000000</span></a></code></pre></div>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#&gt;           [,1]      [,2]      [,3]      [,4]</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; [1,] -15.52806  7.532991  3.439928  4.555136</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; [2,]   0.00000 -5.571791  4.295188  1.276603</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; [3,]   0.00000  0.000000 -8.258736  8.258736</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt; [4,]   0.00000  0.000000  0.000000 -1.000000</span></a></code></pre></div>
 <p>This matrix can be supplied to the <code><a href="../reference/cont_phase_type.html">cont_phase_type()</a></code> generator function, together with optional initial probabilities:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">T_arbit_ph &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cont_phase_type.html">cont_phase_type</a></span>(<span class="dt">subint_mat =</span> subint_arbit)</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; Warning in cont_phase_type(subint_mat = subint_arbit): The initial</span></a>
@@ -187,11 +187,11 @@
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(T_arbit_ph)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; Subintensity matrix:</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt;           [,1]     [,2]      [,3]      [,4]</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; [1,] -14.76009  3.07134  8.627879  3.060869</span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; [2,]   0.00000 -5.20337  4.130822  1.072549</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; [3,]   0.00000  0.00000 -4.982667  4.982667</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; [4,]   0.00000  0.00000  0.000000 -1.000000</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt;           [,1]      [,2]      [,3]      [,4]</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; [1,] -15.52806  7.532991  3.439928  4.555136</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; [2,]   0.00000 -5.571791  4.295188  1.276603</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; [3,]   0.00000  0.000000 -8.258736  8.258736</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; [4,]   0.00000  0.000000  0.000000 -1.000000</span></a>
 <a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; Initial probabilities:</span></a>
 <a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></a>
@@ -200,13 +200,13 @@
 <a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co">#&gt; Defect:</span></a>
 <a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">#&gt; [1] 0</span></a>
 <a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#&gt; Mean: 1.258209</span></a>
+<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#&gt; Mean: 1.223573</span></a>
 <a class="sourceLine" id="cb11-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="co">#&gt; Variance: 1.056826</span></a></code></pre></div>
+<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="co">#&gt; Variance: 1.04378</span></a></code></pre></div>
 </div>
 <div id="density-distribution-and-quantile-functions" class="section level2">
 <h2 class="hasAnchor">
-<a href="#density-distribution-and-quantile-functions" class="anchor"></a>Density, distribution and quantile functions</h2>
+<a href="#density-distribution-and-quantile-functions" class="anchor"></a>2.5. Density, distribution and quantile functions</h2>
 <p><code>ticphasetype</code> also includes the density function (<code><a href="../reference/dphtype.html">dphtype()</a></code>), quantile function (<code><a href="../reference/dphtype.html">qphtype()</a></code>), distribution function (<code><a href="../reference/dphtype.html">pphtype()</a></code>) and random draw generator (<code><a href="../reference/dphtype.html">rphtype()</a></code>) for the continuous phase-type distribution:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="../reference/dphtype.html">dphtype</a></span>(<span class="fl">0.5</span>, T_MRCA_ph)</a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; [1] 0.4013376</span></a></code></pre></div>
@@ -233,7 +233,7 @@
 <a class="sourceLine" id="cb17-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/graphics/title.html">title</a></span>(<span class="st">'Distribution function of T_MRCA'</span>)</a></code></pre></div>
 <p><img src="ticphasetype_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw"><a href="../reference/dphtype.html">rphtype</a></span>(<span class="dv">3</span>, T_MRCA_ph)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co">#&gt; [1] 1.5811542 0.1840773 2.2946099</span></a></code></pre></div>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co">#&gt; [1] 0.9061477 1.1947156 1.6640659</span></a></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dphtype.html">rphtype</a></span>(<span class="dv">10000</span>, T_MRCA_ph)</a>
 <a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(x, <span class="dt">main =</span> <span class="st">'Random draws of T_MRCA'</span>, <span class="dt">breaks=</span><span class="dv">20</span>)</a></code></pre></div>
 <p><img src="ticphasetype_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
@@ -241,11 +241,11 @@
 </div>
 <div id="discrete-phase-type-distributions-s_total-xi_i-and-xi_k" class="section level1">
 <h1 class="hasAnchor">
-<a href="#discrete-phase-type-distributions-s_total-xi_i-and-xi_k" class="anchor"></a>Discrete Phase-Type Distributions: <span class="math inline">\(S_{total}\)</span>, <span class="math inline">\(\xi_i\)</span> and <span class="math inline">\(\xi_{k+}\)</span>
+<a href="#discrete-phase-type-distributions-s_total-xi_i-and-xi_k" class="anchor"></a>3. Discrete Phase-Type Distributions: <span class="math inline">\(S_{total}\)</span>, <span class="math inline">\(\xi_i\)</span> and <span class="math inline">\(\xi_{k+}\)</span>
 </h1>
 <div id="theoretical-background-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#theoretical-background-1" class="anchor"></a>Theoretical background</h2>
+<a href="#theoretical-background-1" class="anchor"></a>3.1. Theoretical background</h2>
 <p>Some quantities in population genomics are discrete, such as the total number of segregating sites <span class="math inline">\(S_{total}\)</span> or other statistics related to the site-frequency spectrum (singletons, doubletons, tail statistic, etc.). Representing the site-frequency spectrum, or SFS, can be challenging if the sample size is large, if the data does not follow Kingman’s coalescence or if we are trying to estimate the mutation parameter <span class="math inline">\(\theta\)</span> using non-standard estimators.</p>
 <p>Luckily, all these quantities can be represented using discrete phase-type theory. Similar to the continuous phase-type distribution being a generalization of exponentially distributed variables, the discrete phase-type distribution can be seen as a generalization of various geometric distributions. Each state in the continuous phase-type distribution will represent a stochastic process, such that the time until absorption of a random variable (<span class="math inline">\(\tau\)</span>) follows an absorbing Markov chain. In this case we say that <span class="math inline">\(\tau+1\sim DPH(\pi, T)\)</span>, where <span class="math inline">\(T\)</span> is the sub-intensity matrix that gathers the transition rates and <span class="math inline">\(\pi\)</span> is the vector of initial probabilities.</p>
 <p>The discrete phase-type representation of <span class="math inline">\(S_{total}\)</span> can be built from the continuous phase-type representation of the total branch length. Folllowing theorem 3.5 in Hobolth et. al (2019), the total branch length can be discretized if the mutation parameter <span class="math inline">\(\theta\)</span> is supplied.</p>
@@ -257,7 +257,7 @@
 </div>
 <div id="total-number-of-segregating-sites-s_total" class="section level2">
 <h2 class="hasAnchor">
-<a href="#total-number-of-segregating-sites-s_total" class="anchor"></a>Total number of segregating sites (<span class="math inline">\(S_{total}\)</span>)</h2>
+<a href="#total-number-of-segregating-sites-s_total" class="anchor"></a>3.2. Total number of segregating sites (<span class="math inline">\(S_{total}\)</span>)</h2>
 <p>The total number of segregating sites can be represented using a <code>disc_phase_type</code> class, this is, by means of a discrete phase-type distribution. For example, when <code>n</code>=4:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">stotal_ph =<span class="st"> </span><span class="kw"><a href="../reference/segsites.html">segsites</a></span>(<span class="dv">4</span>, <span class="dt">theta =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(stotal_ph)</a>
@@ -292,7 +292,7 @@
 </div>
 <div id="i-tons-xi_i" class="section level2">
 <h2 class="hasAnchor">
-<a href="#i-tons-xi_i" class="anchor"></a>i-tons (<span class="math inline">\(\xi_i\)</span>)</h2>
+<a href="#i-tons-xi_i" class="anchor"></a>3.3. i-tons (<span class="math inline">\(\xi_i\)</span>)</h2>
 <p>The i-tons <span class="math inline">\(\xi_i\)</span> can also be represented using a discrete phase-type distribution. First, we will define the coalescent process as a continuous phase-type distribution:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">coalescent &lt;-<span class="st"> </span><span class="kw"><a href="../reference/kingsman.html">kingsman</a></span>(<span class="dv">6</span>)</a></code></pre></div>
 <p>The <code><a href="../reference/kingsman.html">kingsman()</a></code> function returns a <code>mult_phase_type</code> object which is a continuous phase-type distribution with a reward matrix <code>RewardM</code>, for later reward-transformation and discretization.</p>
@@ -319,7 +319,7 @@
 </div>
 <div id="tail-statistic-xi_k" class="section level2">
 <h2 class="hasAnchor">
-<a href="#tail-statistic-xi_k" class="anchor"></a>Tail-statistic (<span class="math inline">\(\xi_{k+}\)</span>)</h2>
+<a href="#tail-statistic-xi_k" class="anchor"></a>3.4. Tail-statistic (<span class="math inline">\(\xi_{k+}\)</span>)</h2>
 <p>In <code>ticphasetype</code> the tail statistic is implemented using the coalescent and the <code><a href="../reference/tailstat.html">tailstat()</a></code> function. For example, <span class="math inline">\(\xi_{3+}\)</span> when <code>n</code>=5:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">coalescent &lt;-<span class="st"> </span><span class="kw"><a href="../reference/kingsman.html">kingsman</a></span>(<span class="dv">5</span>)</a>
 <a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw"><a href="../reference/tailstat.html">tailstat</a></span>(coalescent, <span class="dt">k =</span> <span class="dv">3</span>, <span class="dt">theta =</span> <span class="dv">2</span>))</a>
@@ -343,12 +343,12 @@
 </div>
 <div id="user-defined-sub-intensity-matrix-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#user-defined-sub-intensity-matrix-1" class="anchor"></a>User-defined sub-intensity matrix</h2>
+<a href="#user-defined-sub-intensity-matrix-1" class="anchor"></a>3.5. User-defined sub-intensity matrix</h2>
 <p>As with the class <code>cont_phase_type</code>, using the <code><a href="../reference/disc_phase_type.html">disc_phase_type()</a></code> generator the user can specify the sub-intensity matrix, with optional initial probabilities (see <code><a href="../reference/disc_phase_type.html">?disc_phase_type</a></code> for further information).</p>
 </div>
 <div id="density-distribution-and-quantile-functions-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#density-distribution-and-quantile-functions-1" class="anchor"></a>Density, distribution and quantile functions</h2>
+<a href="#density-distribution-and-quantile-functions-1" class="anchor"></a>3.6. Density, distribution and quantile functions</h2>
 <p><code>ticphasetype</code> also contains the density function (<code><a href="../reference/dphtype.html">dphtype()</a></code>), quantile function (<code><a href="../reference/dphtype.html">qphtype()</a></code>), distribution function (<code><a href="../reference/dphtype.html">pphtype()</a></code>) and random draw generator (<code><a href="../reference/dphtype.html">rphtype()</a></code>) for the discrete phase-type distribution. For example, for <span class="math inline">\(S_{total}\)</span> when <span class="math inline">\(\theta=3\)</span>:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">S_tot_ph &lt;-<span class="st"> </span><span class="kw"><a href="../reference/segsites.html">segsites</a></span>(<span class="dv">10</span>, <span class="dt">theta =</span> <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(S_tot_ph)</a>
@@ -408,7 +408,7 @@
 <a class="sourceLine" id="cb31-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/graphics/title.html">title</a></span>(<span class="st">'Quantile function of S_total with theta=3 and n=10'</span>)</a></code></pre></div>
 <p><img src="ticphasetype_files/figure-html/unnamed-chunk-31-1.png" width="700"></p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw"><a href="../reference/dphtype.html">rphtype</a></span>(<span class="dv">3</span>, S_tot_ph)</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co">#&gt; [1] 5 8 8</span></a></code></pre></div>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co">#&gt; [1]  4  5 12</span></a></code></pre></div>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dphtype.html">rphtype</a></span>(<span class="dv">10000</span>, S_tot_ph)</a>
 <a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(x, <span class="dt">main =</span> <span class="st">'Random draws of S_total with theta=3 and n=10'</span>, <span class="dt">breaks=</span><span class="dv">20</span>)</a></code></pre></div>
 <p><img src="ticphasetype_files/figure-html/unnamed-chunk-33-1.png" width="700"></p>
@@ -422,24 +422,24 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#introduction-to-the-package">Introduction to the package</a></li>
+<li><a href="#introduction-to-the-package">1. Introduction to the package</a></li>
       <li>
-<a href="#continuous-phase-type-distributions-t_mrca-and-t_total">Continuous phase-type distributions: <span class="math inline">\(T_{MRCA}\)</span> and <span class="math inline">\(T_{Total}\)</span></a><ul class="nav nav-pills nav-stacked">
-<li><a href="#theoretical-background">Theoretical background</a></li>
-      <li><a href="#time-until-the-most-recent-common-ancestor-t_mrca">Time until the most recent common ancestor (<span class="math inline">\(T_{MRCA}\)</span>)</a></li>
-      <li><a href="#total-tree-lenght-t_total">Total tree lenght (<span class="math inline">\(T_{Total}\)</span>)</a></li>
-      <li><a href="#user-defined-sub-intensity-matrix">User-defined sub-intensity matrix</a></li>
-      <li><a href="#density-distribution-and-quantile-functions">Density, distribution and quantile functions</a></li>
+<a href="#continuous-phase-type-distributions-t_mrca-and-t_total">2. Continuous phase-type distributions: <span class="math inline">\(T_{MRCA}\)</span> and <span class="math inline">\(T_{Total}\)</span></a><ul class="nav nav-pills nav-stacked">
+<li><a href="#theoretical-background">2.1. Theoretical background</a></li>
+      <li><a href="#time-until-the-most-recent-common-ancestor-t_mrca">2.2. Time until the most recent common ancestor (<span class="math inline">\(T_{MRCA}\)</span>)</a></li>
+      <li><a href="#total-tree-lenght-t_total">2.3. Total tree lenght (<span class="math inline">\(T_{Total}\)</span>)</a></li>
+      <li><a href="#user-defined-sub-intensity-matrix">2.4. User-defined sub-intensity matrix</a></li>
+      <li><a href="#density-distribution-and-quantile-functions">2.5. Density, distribution and quantile functions</a></li>
       </ul>
 </li>
       <li>
-<a href="#discrete-phase-type-distributions-s_total-xi_i-and-xi_k">Discrete Phase-Type Distributions: <span class="math inline">\(S_{total}\)</span>, <span class="math inline">\(\xi_i\)</span> and <span class="math inline">\(\xi_{k+}\)</span></a><ul class="nav nav-pills nav-stacked">
-<li><a href="#theoretical-background-1">Theoretical background</a></li>
-      <li><a href="#total-number-of-segregating-sites-s_total">Total number of segregating sites (<span class="math inline">\(S_{total}\)</span>)</a></li>
-      <li><a href="#i-tons-xi_i">i-tons (<span class="math inline">\(\xi_i\)</span>)</a></li>
-      <li><a href="#tail-statistic-xi_k">Tail-statistic (<span class="math inline">\(\xi_{k+}\)</span>)</a></li>
-      <li><a href="#user-defined-sub-intensity-matrix-1">User-defined sub-intensity matrix</a></li>
-      <li><a href="#density-distribution-and-quantile-functions-1">Density, distribution and quantile functions</a></li>
+<a href="#discrete-phase-type-distributions-s_total-xi_i-and-xi_k">3. Discrete Phase-Type Distributions: <span class="math inline">\(S_{total}\)</span>, <span class="math inline">\(\xi_i\)</span> and <span class="math inline">\(\xi_{k+}\)</span></a><ul class="nav nav-pills nav-stacked">
+<li><a href="#theoretical-background-1">3.1. Theoretical background</a></li>
+      <li><a href="#total-number-of-segregating-sites-s_total">3.2. Total number of segregating sites (<span class="math inline">\(S_{total}\)</span>)</a></li>
+      <li><a href="#i-tons-xi_i">3.3. i-tons (<span class="math inline">\(\xi_i\)</span>)</a></li>
+      <li><a href="#tail-statistic-xi_k">3.4. Tail-statistic (<span class="math inline">\(\xi_{k+}\)</span>)</a></li>
+      <li><a href="#user-defined-sub-intensity-matrix-1">3.5. User-defined sub-intensity matrix</a></li>
+      <li><a href="#density-distribution-and-quantile-functions-1">3.6. Density, distribution and quantile functions</a></li>
       </ul>
 </li>
       </ul>
