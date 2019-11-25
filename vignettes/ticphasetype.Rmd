@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Introduction to the package
+# 1. Introduction to the package
 
 `ticphasetype` is useful for representing classical statistics in population genetics by means of phase-type theory. This provides additional flexibility and efficiency for computing and understanding these statistics at the finest level. Do not hesitate to run `?ticphasetype` for a quick summary of the available functions, or to open the help files for the individual functions. There is also a brief description of both continuous and discrete phase-type distributions.
 
@@ -29,9 +29,9 @@ library(ticphasetype)
 ```
 
 
-# Continuous phase-type distributions: $T_{MRCA}$ and $T_{Total}$
+# 2. Continuous phase-type distributions: $T_{MRCA}$ and $T_{Total}$
 
-## Theoretical background
+## 2.1. Theoretical background
 
 In an evolutionary tree the time until two sequences coalesce $T_i$ can be measured in number of generations $R_i$ divided by the population size $N$, this is, $T_i=R_i/N$. $T_i$ can easily be proven to approximate to an exponential distribution with rate $\binom{i}{2}$.
 
@@ -45,7 +45,7 @@ The Markov chain can be represented using phase-type theory, where the jump rate
 
 `ticphasetype` contains an efficient implementation of continuous phase-type distributions. It has a user-friendly interface for creating phase-type representations of $T_{MRCA}$ and $T_{Total}$ under the standard coalescent model, but it also allows the user to specify their own sub-intensity matrix and initial probabilities for a more flexible implementation. 
 
-## Time until the most recent common ancestor ($T_{MRCA}$)
+## 2.2. Time until the most recent common ancestor ($T_{MRCA}$)
 
 A `cont_phase_type` class representing a continuous phase-type distribution for $T_{MRCA}$ can be generated using `cont_phase_type()`. For example, when `n`=5:
 
@@ -67,7 +67,7 @@ var(T_MRCA_ph)
 summary(T_MRCA_ph)
 ```
 
-## Total tree lenght ($T_{Total}$)
+## 2.3. Total tree lenght ($T_{Total}$)
 
 $T_{Total}$ can also be represented using the `cont_phase_type` class:
 
@@ -79,7 +79,7 @@ T_Total_ph <- t_total(n = 5)
 summary(T_Total_ph)
 ```
 
-## User-defined sub-intensity matrix
+## 2.4. User-defined sub-intensity matrix
 
 Moreover, the height of an evolutionary tree can also be represented by a user-defined sub-intensity matrix. This is specially useful if the model does not follow Kingman’s n–coalescent, but other coalescent models such as the psi-coalescent or the beta-coalescent. As an example, an arbitrary sub-intensity matrix can be generated:
 
@@ -118,7 +118,7 @@ We can apply the methods `cont_phase_type` class methods for this new user-tailo
 summary(T_arbit_ph)
 ```
 
-## Density, distribution and quantile functions
+## 2.5. Density, distribution and quantile functions
 
 `ticphasetype` also includes the density function (`dphtype()`), quantile function (`qphtype()`), distribution function (`pphtype()`) and random draw generator (`rphtype()`) for the continuous phase-type distribution:
 
@@ -168,9 +168,9 @@ x <- rphtype(10000, T_MRCA_ph)
 hist(x, main = 'Random draws of T_MRCA', breaks=20)
 ```
 
-# Discrete Phase-Type Distributions: $S_{total}$, $\xi_i$ and $\xi_{k+}$
+# 3. Discrete Phase-Type Distributions: $S_{total}$, $\xi_i$ and $\xi_{k+}$
 
-## Theoretical background
+## 3.1. Theoretical background
 
 Some quantities in population genomics are discrete, such as the total number of segregating sites $S_{total}$ or other statistics related to the site-frequency spectrum (singletons, doubletons, tail statistic, etc.). Representing the site-frequency spectrum, or SFS, can be challenging if the sample size is large, if the data does not follow Kingman's coalescence or if we are trying to estimate the mutation parameter $\theta$ using non-standard estimators. 
 
@@ -188,7 +188,7 @@ Note that $S_{total}$ can also be represented by reward-transforming the coalesc
 
 Because phase-type theory has well-defined functions for discrete phase-type distributions, the expectation, the variance, the survival function, the distribution function and the density function of all the variables defined above can be computed efficiently. `ticphasetype` contains an efficient implementation of continuous phase-type distribution, together with wrapper functions for representing i-tons, tail statistics and the number of segregating sites. 
 
-## Total number of segregating sites ($S_{total}$)
+## 3.2. Total number of segregating sites ($S_{total}$)
 
 The total number of segregating sites can be represented using a `disc_phase_type` class, this is, by means of a discrete phase-type distribution. For example, when `n`=4:
 
@@ -211,7 +211,7 @@ var(stotal_ph)
 ```
 
 
-## i-tons ($\xi_i$)
+## 3.3. i-tons ($\xi_i$)
 
 The i-tons $\xi_i$ can also be represented using a discrete phase-type distribution. First, we will define the coalescent process as a continuous phase-type distribution:
 
@@ -228,7 +228,7 @@ itons_ph = itons(coalescent, i = 3, theta = 2)
 summary(itons_ph)
 ```
 
-## Tail-statistic ($\xi_{k+}$)
+## 3.4. Tail-statistic ($\xi_{k+}$)
 
 In `ticphasetype` the tail statistic is implemented using the coalescent and the `tailstat()` function. For example, $\xi_{3+}$ when `n`=5:
 
@@ -237,11 +237,11 @@ coalescent <- kingsman(5)
 summary(tailstat(coalescent, k = 3, theta = 2))
 ```
 
-## User-defined sub-intensity matrix
+## 3.5. User-defined sub-intensity matrix
 
 As with the class `cont_phase_type`, using the `disc_phase_type()` generator the user can specify the sub-intensity matrix, with optional initial probabilities (see `?disc_phase_type` for further information).
 
-## Density, distribution and quantile functions
+## 3.6. Density, distribution and quantile functions
 
 `ticphasetype` also contains the density function (`dphtype()`), quantile function (`qphtype()`), distribution function (`pphtype()`) and random draw generator (`rphtype()`) for the discrete phase-type distribution. For example, for $S_{total}$ when $\theta=3$:
 
