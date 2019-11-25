@@ -23,13 +23,6 @@
 #' @export
 
 rewardtransformation = function(rewards, init_probs, subint_mat) {
-
-  print("entered rewardtransformation")
-  print(init_probs)
-  print(rewards)
-  print(subint_mat)
-
-
   # See BN p. 145
 
   # non-zero rewards
@@ -61,9 +54,6 @@ rewardtransformation = function(rewards, init_probs, subint_mat) {
     Qzerozero = qmat[(rewards == 0), (rewards == 0)]
 
     # P_mat is the subintensity matrix of P_star_mat
-    print("64")
-    print(diag(1, nrow=p-d))
-    print(Qzerozero)
     P_mat = Qplusplus + Qpluszero %*% solve(diag(1, nrow = p - d) - Qzerozero) %*% Qzeroplus
 
     piplus = init_probs[(rewards > 0)]
