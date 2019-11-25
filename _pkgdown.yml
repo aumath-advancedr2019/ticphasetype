@@ -1,1 +1,27 @@
 destination: docs
+reference:
+  - title: "Continuous phase-type distributions"
+    contents:
+      - cont_phase_type
+      - t_mrca
+      - t_total
+  - title: "Discrete phase-type distributions"
+    contents:
+      - disc_phase_type
+      - kingsman
+      - segsites
+      - itons
+      - tailstat
+      - sfs
+  - title: "Distribution, quantile and probability functions"
+    contents:
+      - dphtype
+      - qphtype
+      - pphtype
+      - rphtype
+  - title: "Helper functions"
+    desc: >
+      Internal helper functions.
+    contents:
+      - RateMAndStateSpace
+      - RewTransform
