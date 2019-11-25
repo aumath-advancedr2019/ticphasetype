@@ -70,10 +70,11 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="ticphasetype-build-status" class="section level1">
+
+
+<div id="ticphasetype" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#ticphasetype-build-status" class="anchor"></a>ticphasetype <a href="https://travis-ci.com/aumath-advancedr2019/ticphasetype"><img src="https://travis-ci.com/aumath-advancedr2019/ticphasetype.svg?branch=master" alt="Build Status"></a>
-</h1></div>
+<a href="#ticphasetype" class="anchor"></a>ticphasetype</h1></div>
 <p>This package implements core functions from phase-type theory that are useful in the analysis of biological data.</p>
 <div id="details" class="section level2">
 <h2 class="hasAnchor">
@@ -82,7 +83,7 @@
 <p>On the other hand, ticphasetype can also model the mutational process. The package contains a generator function for the block counting process of Kingsman’s coalescent (<code><a href="reference/kingsman.html">kingsman()</a></code>). By reward-transforming this continuous phase-type representation, ticphasetype creates discrete phase-type distributions of singletons, doubletons and related statistics (<code><a href="reference/itons.html">itons()</a></code>), for the total number of segregating sites (<code><a href="reference/segsites.html">segsites()</a></code>), and for the tail statistic (<code><a href="reference/tailstat.html">tailstat()</a></code>). All these quantities are represented using the <code><a href="reference/disc_phase_type.html">disc_phase_type()</a></code> class, whose generator function can also be used for user-tailored discrete phase-type distributions.</p>
 <p>The mean and the variance of the any phase-type representation can easily be computed using <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> and <code><a href="reference/var.html">var()</a></code> respectively. Moreover, a readable summary of a distribution can be obtained using the generic function <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
 <p>This package also contains functions for the density (<code><a href="reference/dphtype.html">dphtype()</a></code>), quantiles (<code><a href="reference/dphtype.html">qphtype()</a></code>), distribution (<code><a href="reference/dphtype.html">pphtype()</a></code>) and random draw generator (<code><a href="reference/dphtype.html">rphtype()</a></code>) for both discrete and continuous phase-type distributions. Additionally, the user can calculate and plot the site-frequency spectrum using <code><a href="reference/sfs.html">sfs()</a></code>.</p>
-<p>The vignette for the package can be consulted <a href="https://aumath-advancedr2019.github.io/ticphasetype/articles/ticphasetype.html">here</a>. For a quick overview of all included functions, please visit <a href="https://aumath-advancedr2019.github.io/ticphasetype/reference/index.html">this link</a>.</p>
+<p>The vignette for the package can be consulted <a href="https://aumath-advancedr2019.github.io/ticphasetype/articles/ticphasetype.html">here</a>. For a quick overview of all included functions, please visit <a href="https://aumath-advancedr2019.github.io/ticphasetype/reference/index.html">this link</a> .</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -92,6 +93,7 @@
 <p>Please be aware that our package depends on the <a href="https://cran.r-project.org/web/packages/partitions/index.html">R partitions package</a>, which is only supported by R version &gt;= 3.6.0.</p>
 </div>
 </div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -117,7 +119,13 @@
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://travis-ci.com/aumath-advancedr2019/ticphasetype"><img src="https://travis-ci.com/aumath-advancedr2019/ticphasetype.svg?branch=master" alt="Build Status"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 

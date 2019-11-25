@@ -1,4 +1,6 @@
-# ticphasetype [![Build Status](https://travis-ci.com/aumath-advancedr2019/ticphasetype.svg?branch=master)](https://travis-ci.com/aumath-advancedr2019/ticphasetype)
+[![Build Status](https://travis-ci.com/aumath-advancedr2019/ticphasetype.svg?branch=master)](https://travis-ci.com/aumath-advancedr2019/ticphasetype)
+
+# ticphasetype 
 
 This package implements core functions from phase-type theory that are useful in the analysis of biological data.
 
@@ -12,7 +14,7 @@ The mean and the variance of the any phase-type representation can easily be com
 
 This package also contains functions for the density (`dphtype()`), quantiles (`qphtype()`), distribution (`pphtype()`) and random draw generator (`rphtype()`) for both discrete and continuous phase-type distributions. Additionally, the user can calculate and plot the site-frequency spectrum using `sfs()`.
 
-The vignette for the package can be consulted [here](https://aumath-advancedr2019.github.io/ticphasetype/articles/ticphasetype.html). For a quick overview of all included functions, please visit [this link](https://aumath-advancedr2019.github.io/ticphasetype/reference/index.html). 
+The vignette for the package can be consulted [here](https://aumath-advancedr2019.github.io/ticphasetype/articles/ticphasetype.html). For a quick overview of all included functions, please visit [this link](https://aumath-advancedr2019.github.io/ticphasetype/reference/index.html) . 
 
 ## Installation
 
