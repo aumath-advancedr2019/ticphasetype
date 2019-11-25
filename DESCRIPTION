@@ -2,11 +2,14 @@ Package: ticphasetype
 Type: Package
 Title: Phase-type distributions for bioinformatics
 Version: 0.1.0
-Author: Tomas, Iker & Carl (TIC)
-Maintainer: The package maintainer <kobelmas@pm.me>
+Authors@R: c(
+    person("Iker", "Rivas-Gonzalez", email = "ikerrivas96@gmail.com", role = c("aut", "cre")),
+    person("Tomas", "Sladecek", email = "winston@rstudio.com", role = "aut"),
+    person("Carl", "Kobel", email = "kobelmas@pm.me", role = "aut"))
 Description: This package implements core functions from phase-type
     theory that are useful in the analysis of biological data.
 License: Unlimited
+URL: https://aumath-advancedr2019.github.io/ticphasetype/, https://github.com/aumath-advancedr2019/ticphasetype
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

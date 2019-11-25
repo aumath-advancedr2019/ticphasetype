@@ -50,7 +50,14 @@
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/aumath-advancedr2019/ticphasetype">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -66,7 +73,7 @@
       <h1>ticphasetype</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/aumath-advancedr2019/ticphasetype/blob/master/vignettes/ticphasetype.Rmd"><code>vignettes/ticphasetype.Rmd</code></a></small>
       <div class="hidden name"><code>ticphasetype.Rmd</code></div>
 
     </div>
@@ -167,9 +174,9 @@
 <a class="sourceLine" id="cb8-13" data-line-number="13">subint_arbit[n<span class="dv">-1</span>,n<span class="dv">-1</span>] &lt;-<span class="st"> </span><span class="dv">-1</span></a></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">subint_arbit</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#&gt;           [,1]       [,2]      [,3]      [,4]</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; [1,] -13.51273   2.785189  4.530356  6.197184</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; [2,]   0.00000 -13.051003  4.393518  8.657485</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; [3,]   0.00000   0.000000 -2.015608  2.015608</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; [1,] -16.77763   6.516313  7.696890  2.564430</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; [2,]   0.00000 -11.832978  6.306856  5.526122</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; [3,]   0.00000   0.000000 -5.070151  5.070151</span></a>
 <a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt; [4,]   0.00000   0.000000  0.000000 -1.000000</span></a></code></pre></div>
 <p>This matrix can be supplied to the <code><a href="../reference/cont_phase_type.html">cont_phase_type()</a></code> generator function, together with optional initial probabilities:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">T_arbit_ph &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cont_phase_type.html">cont_phase_type</a></span>(<span class="dt">subint_mat =</span> subint_arbit)</a>
@@ -181,9 +188,9 @@
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; Subintensity matrix:</span></a>
 <a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt;           [,1]       [,2]      [,3]      [,4]</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; [1,] -13.51273   2.785189  4.530356  6.197184</span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; [2,]   0.00000 -13.051003  4.393518  8.657485</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; [3,]   0.00000   0.000000 -2.015608  2.015608</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; [1,] -16.77763   6.516313  7.696890  2.564430</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; [2,]   0.00000 -11.832978  6.306856  5.526122</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; [3,]   0.00000   0.000000 -5.070151  5.070151</span></a>
 <a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; [4,]   0.00000   0.000000  0.000000 -1.000000</span></a>
 <a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; Initial probabilities:</span></a>
@@ -193,9 +200,9 @@
 <a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co">#&gt; Defect:</span></a>
 <a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">#&gt; [1] 0</span></a>
 <a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#&gt; Mean: 1.290557</span></a>
+<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#&gt; Mean: 1.223737</span></a>
 <a class="sourceLine" id="cb11-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="co">#&gt; Variance: 1.165482</span></a></code></pre></div>
+<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="co">#&gt; Variance: 1.040859</span></a></code></pre></div>
 </div>
 <div id="density-distribution-and-quantile-functions" class="section level2">
 <h2 class="hasAnchor">
@@ -226,7 +233,7 @@
 <a class="sourceLine" id="cb17-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/graphics/title.html">title</a></span>(<span class="st">'Distribution function of T_MRCA'</span>)</a></code></pre></div>
 <p><img src="ticphasetype_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw"><a href="../reference/dphtype.html">rphtype</a></span>(<span class="dv">3</span>, T_MRCA_ph)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co">#&gt; [1] 1.091363 1.134498 0.825255</span></a></code></pre></div>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co">#&gt; [1] 1.175846 1.442736 0.644917</span></a></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dphtype.html">rphtype</a></span>(<span class="dv">10000</span>, T_MRCA_ph)</a>
 <a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(x, <span class="dt">main =</span> <span class="st">'Random draws of T_MRCA'</span>, <span class="dt">breaks=</span><span class="dv">20</span>)</a></code></pre></div>
 <p><img src="ticphasetype_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
@@ -451,7 +458,7 @@
 <a class="sourceLine" id="cb31-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/graphics/title.html">title</a></span>(<span class="st">'Quantile function of S_total with theta=3 and n=10'</span>)</a></code></pre></div>
 <p><img src="ticphasetype_files/figure-html/unnamed-chunk-31-1.png" width="700"></p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw"><a href="../reference/dphtype.html">rphtype</a></span>(<span class="dv">3</span>, S_tot_ph)</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co">#&gt; [1]  8  3 20</span></a></code></pre></div>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co">#&gt; [1] 10 23 10</span></a></code></pre></div>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dphtype.html">rphtype</a></span>(<span class="dv">10000</span>, S_tot_ph)</a>
 <a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(x, <span class="dt">main =</span> <span class="st">'Random draws of S_total with theta=3 and n=10'</span>, <span class="dt">breaks=</span><span class="dv">20</span>)</a></code></pre></div>
 <p><img src="ticphasetype_files/figure-html/unnamed-chunk-33-1.png" width="700"></p>
@@ -494,7 +501,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Iker Rivas-Gonzalez, Tomas Sladecek, Carl Kobel.</p>
 </div>
 
 <div class="pkgdown">
