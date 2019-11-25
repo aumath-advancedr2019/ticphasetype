@@ -74,48 +74,15 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#ticphasetype-build-status" class="anchor"></a>ticphasetype <a href="https://travis-ci.com/aumath-advancedr2019/ticphasetype"><img src="https://travis-ci.com/aumath-advancedr2019/ticphasetype.svg?branch=master" alt="Build Status"></a>
 </h1></div>
-<div id="outline-for-package" class="section level2">
+<p>This package implements core functions from phase-type theory that are useful in the analysis of biological data.</p>
+<div id="details" class="section level2">
 <h2 class="hasAnchor">
-<a href="#outline-for-package" class="anchor"></a>Outline for package</h2>
-<div id="density-cummulative-probability-quantile-function-and-random-generator-for-continuous-and-discrete-phase-type-distributions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#density-cummulative-probability-quantile-function-and-random-generator-for-continuous-and-discrete-phase-type-distributions" class="anchor"></a>Density, cummulative probability, quantile function and random generator for continuous and discrete phase-type distributions:</h3>
-<ul>
-<li>dphasetype()</li>
-<li>pphasetype()</li>
-<li>qphasetype()</li>
-<li>rphasetype()</li>
-</ul>
-</div>
-<div id="phase-type-matrices-for-basic-kingsman-coalescent" class="section level3">
-<h3 class="hasAnchor">
-<a href="#phase-type-matrices-for-basic-kingsman-coalescent" class="anchor"></a>Phase-Type matrices for basic Kingsman Coalescent</h3>
-<ul>
-<li>T_mrca</li>
-<li>T_total</li>
-<li>Kingsman</li>
-</ul>
-</div>
-<div id="phase-type-representation-of-different-summary-statistics" class="section level3">
-<h3 class="hasAnchor">
-<a href="#phase-type-representation-of-different-summary-statistics" class="anchor"></a>Phase-type representation of different summary statistics</h3>
-<ul>
-<li>mean and variance</li>
-<li>S_total</li>
-<li>i-tons</li>
-<li>tail statistic</li>
-<li>sfs (site frequency spectrum)</li>
-</ul>
-</div>
-</div>
-<div id="roles" class="section level2">
-<h2 class="hasAnchor">
-<a href="#roles" class="anchor"></a>Roles</h2>
-<ul>
-<li>pm: Iker.</li>
-<li>de: Carl.</li>
-<li>qe: Tomas.</li>
-</ul>
+<a href="#details" class="anchor"></a>Details</h2>
+<p>ticphasetype contains several functions for representing statistics that are commonly used in population genomics. <code><a href="reference/t_mrca.html">t_mrca()</a></code> and <code><a href="reference/t_total.html">t_total()</a></code> can be used for modelling the time until the most recent common ancestor and the total tree length for Kingman’s coalescence using a user-friendly interface. These two quantities are represented using a discrete phase-type distribution (the <code>cont_phase_type</code> class). The user can use the generator function for this class if they want phase-type representations based on other coalescent models.</p>
+<p>On the other hand, ticphasetype can also model the mutational process. The package contains a generator function for the block counting process of Kingsman’s coalescent (<code><a href="reference/kingsman.html">kingsman()</a></code>). By reward-transforming this continuous phase-type representation, ticphasetype creates discrete phase-type distributions of singletons, doubletons and related statistics (<code><a href="reference/itons.html">itons()</a></code>), for the total number of segregating sites (<code><a href="reference/segsites.html">segsites()</a></code>), and for the tail statistic (<code><a href="reference/tailstat.html">tailstat()</a></code>). All these quantities are represented using the <code><a href="reference/disc_phase_type.html">disc_phase_type()</a></code> class, whose generator function can also be used for user-tailored discrete phase-type distributions.</p>
+<p>The mean and the variance of the any phase-type representation can easily be computed using <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> and <code><a href="reference/var.html">var()</a></code> respectively. Moreover, a readable summary of a distribution can be obtained using the generic function <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
+<p>This package also contains functions for the density (<code><a href="reference/dphtype.html">dphtype()</a></code>), quantiles (<code><a href="reference/dphtype.html">qphtype()</a></code>), distribution (<code><a href="reference/dphtype.html">pphtype()</a></code>) and random draw generator (<code><a href="reference/dphtype.html">rphtype()</a></code>) for both discrete and continuous phase-type distributions. Additionally, the user can calculate and plot the site-frequency spectrum using <code><a href="reference/sfs.html">sfs()</a></code>.</p>
+<p>The vignette for the package can be consulted <a href="https://aumath-advancedr2019.github.io/ticphasetype/articles/ticphasetype.html">here</a>. For a quick overview of all included functions, please visit <a href="https://aumath-advancedr2019.github.io/ticphasetype/reference/index.html">this link</a>.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
